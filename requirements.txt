@@ -2,3 +2,6 @@ Flask>=3.0
 python-dotenv>=1.0
 pydantic>=2.8
 flask-cors>=4.0
+SQLAlchemy
+PyMySQL
+Werkzeug
