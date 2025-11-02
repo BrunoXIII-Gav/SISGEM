@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>SISGEM - Iniciar Sesión</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&amp;display=swap" rel="stylesheet" />
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#EF6262",
+                        "background-light": "#F3F4F6", // A light gray for contrast
+                        "background-dark": "#1F2937", // A dark gray for dark mode
+                    },
+                    fontFamily: {
+                        display: ["Montserrat", "sans-serif"],
+                    },
+                    borderRadius: {
+                        DEFAULT: "0.5rem", // 8px
+                    },
+                },
+            },
+        };
+    </script>
+</head>
+
+<body class="font-display bg-background-light dark:bg-background-dark">
+    <div class="flex items-center justify-center min-h-screen">
+        <div class="flex w-full max-w-5xl mx-auto overflow-hidden shadow-2xl rounded-lg">
+            <div
+                class="hidden md:flex flex-col items-center justify-center w-1/2 bg-primary p-12 text-center text-white">
+                <div class="mb-8 w-48 h-48 rounded-full bg-white/20 flex items-center justify-center">
+                    <svg class="w-36 h-36 text-white" fill="none" viewBox="0 0 100 100">
+                        <path
+                            d="M72.5 55C72.5 62.4558 66.4558 68.5 59 68.5C53.5 68.5 49.3333 65.5 47 62.5C41.6667 73.1667 33.3333 77.5 25 77.5C14.2284 77.5 5.5 68.7716 5.5 58C5.5 47.2284 14.2284 38.5 25 38.5C35.7716 38.5 44.5 47.2284 44.5 58C44.5 59.9474 44.1805 61.8115 43.5851 63.5H44.5C44.5 58.7188 45.4215 54.3409 47.0721 50.5H53.5L55.5 53.5L58.5 50.5H72.5V55Z"
+                            fill="#A5D6A7"></path>
+                        <path
+                            d="M94.5 45C94.5 49.1421 91.1421 52.5 87 52.5C82.8579 52.5 79.5 49.1421 79.5 45C79.5 40.8579 82.8579 37.5 87 37.5C91.1421 37.5 94.5 40.8579 94.5 45Z"
+                            fill="#E3F2FD"></path>
+                        <path
+                            d="M59 68.5C66.4558 68.5 72.5 62.4558 72.5 55H53.5L55.5 53.5L58.5 50.5H47.0721C45.4215 54.3409 44.5 58.7188 44.5 63.5C45.3195 66.1885 47 68.5 50 68.5C51.5 68.5 52.5 68 53.5 67C55.5 68 57.5 68.5 59 68.5Z"
+                            fill="#7CB342"></path>
+                        <rect fill="none" height="100" rx="50" stroke="#E0E0E0" stroke-width="1" width="100" x="0"
+                            y="0"></rect>
+                    </svg>
+                </div>
+                <h1 class="text-5xl font-bold tracking-wider">SISGEM</h1>
+            </div>
+            <div
+                class="w-full md:w-1/2 bg-background-light dark:bg-background-dark p-8 sm:p-12 flex flex-col justify-center">
+                <div class="md:hidden flex flex-col items-center mb-8">
+                    <div class="mb-4 w-24 h-24 rounded-full bg-primary/20 flex items-center justify-center">
+                        <svg class="w-20 h-20 text-primary" fill="none" viewBox="0 0 100 100">
+                            <path
+                                d="M72.5 55C72.5 62.4558 66.4558 68.5 59 68.5C53.5 68.5 49.3333 65.5 47 62.5C41.6667 73.1667 33.3333 77.5 25 77.5C14.2284 77.5 5.5 68.7716 5.5 58C5.5 47.2284 14.2284 38.5 25 38.5C35.7716 38.5 44.5 47.2284 44.5 58C44.5 59.9474 44.1805 61.8115 43.5851 63.5H44.5C44.5 58.7188 45.4215 54.3409 47.0721 50.5H53.5L55.5 53.5L58.5 50.5H72.5V55Z"
+                                fill="#A5D6A7"></path>
+                            <path
+                                d="M94.5 45C94.5 49.1421 91.1421 52.5 87 52.5C82.8579 52.5 79.5 49.1421 79.5 45C79.5 40.8579 82.8579 37.5 87 37.5C91.1421 37.5 94.5 40.8579 94.5 45Z"
+                                fill="#E3F2FD"></path>
+                            <path
+                                d="M59 68.5C66.4558 68.5 72.5 62.4558 72.5 55H53.5L55.5 53.5L58.5 50.5H47.0721C45.4215 54.3409 44.5 58.7188 44.5 63.5C45.3195 66.1885 47 68.5 50 68.5C51.5 68.5 52.5 68 53.5 67C55.5 68 57.5 68.5 59 68.5Z"
+                                fill="#7CB342"></path>
+                        </svg>
+                    </div>
+                    <h1 class="text-3xl font-bold text-gray-800 dark:text-gray-200">SISGEM</h1>
+                </div>
+                <div class="bg-white dark:bg-gray-800 p-8 rounded-lg shadow-md w-full max-w-md mx-auto">
+                    <h2 class="text-2xl font-bold text-center text-gray-800 dark:text-gray-100 mb-8">LOGIN</h2>
+                    <form class="space-y-6">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300"
+                                for="username">Usuario</label>
+                            <div class="mt-1">
+                                <input autocomplete="username"
+                                    class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-primary focus:border-primary dark:bg-gray-700 dark:border-gray-600 dark:text-gray-200 dark:focus:ring-offset-gray-800"
+                                    id="username" name="username" required="" type="text" />
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300"
+                                for="password">Contraseña</label>
+                            <div class="mt-1">
+                                <input autocomplete="current-password"
+                                    class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-primary focus:border-primary dark:bg-gray-700 dark:border-gray-600 dark:text-gray-200 dark:focus:ring-offset-gray-800"
+                                    id="password" name="password" required="" type="password" />
+                            </div>
+                        </div>
+                        <div>
+                            <button
+                                class="w-full flex justify-center py-3 px-4 border border-transparent rounded-md shadow-sm text-sm font-bold text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-700 dark:bg-gray-200 dark:text-gray-900 dark:hover:bg-white dark:focus:ring-offset-gray-800 dark:focus:ring-gray-100"
+                                type="submit">
+                                INICIAR SESIÓN
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>
