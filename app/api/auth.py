@@ -58,6 +58,7 @@ def logout():
     session.clear()
     return redirect(url_for("auth.login"))
 
+
 @auth_bp.route("/inicio")
 @login_required
 def inicio():
@@ -76,6 +77,15 @@ def inicio():
         "ATENDIDA": ("bg-green-100 text-green-700", "bg-green-600"),
     }
 
+    # Mapeo solo de presentación (UI): cómo mostrar el estado al usuario
+    estado_display_map = {
+        "EN PROGRESO": "EN CURSO",
+        "ATENDIDA": "CERRADA",
+        "ABIERTA": "ABIERTA",
+        "ABIERTO": "ABIERTA",
+        "ATENDIDO": "CERRADA",
+    }
+
     def es_abierta(s):
         return bool(s) and s.upper().startswith("ABIER")
 
@@ -87,7 +97,8 @@ def inicio():
                     "id": e.id_emergencias,
                     "nombre": e.Nombre_emergencia,
                     "distrito": e.distrito or "",
-                    "estado": e.estado or "",
+                    # Mostrar etiqueta amigable en el popup del mapa
+                    "estado": estado_display_map.get(e.estado or "", e.estado or ""),
                     "lat": float(e.lat),
                     "lon": float(e.lon),
                 })
@@ -97,4 +108,5 @@ def inicio():
     return render_template("inicio.html",
                            emergencias=emergencias,
                            estado_map=estado_map,
+                           estado_display_map=estado_display_map,
                            markers=markers)

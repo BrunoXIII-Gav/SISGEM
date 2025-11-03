@@ -8,6 +8,14 @@
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+          integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+          crossorigin=""/>
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+            integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+            crossorigin=""></script>
 <script>
         tailwind.config = {
             darkMode: "class",
@@ -78,25 +86,101 @@
 <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
 <div class="flex flex-col gap-6 p-6 bg-white dark:bg-gray-900/50 rounded-xl border border-gray-200 dark:border-gray-700">
 <div class="flex flex-col">
-<label class="text-base font-medium leading-normal text-gray-800 dark:text-gray-200 pb-2" for="location">Ubicación</label>
-<div class="relative flex items-center">
-<input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-gray-800 dark:text-gray-200 focus:outline-0 focus:ring-2 focus:ring-brand-primary/50 border border-gray-300 dark:border-gray-600 bg-brand-light dark:bg-gray-800 h-12 placeholder:text-gray-400 dark:placeholder:text-gray-500 px-4 text-base font-normal leading-normal" id="location" placeholder="Ingrese dirección o coordenadas" type="text" value=""/>
-<button aria-label="Use my current location" class="absolute right-2 flex cursor-pointer items-center justify-center rounded-md h-8 w-8 bg-gray-200 dark:bg-gray-700 text-brand-secondary dark:text-gray-400 hover:bg-gray-300 dark:hover:bg-gray-600">
-<span class="material-symbols-outlined text-lg">my_location</span>
-</button>
-</div>
+    <label class="text-base font-medium leading-normal text-gray-800 dark:text-gray-200 pb-2" for="location">Ubicación</label>
+
+    <!-- Selección de distrito de Lima -->
+    <div class="mb-2">
+        <label class="text-sm font-medium leading-normal text-gray-800 dark:text-gray-200 pb-1" for="distrito-lima">Distrito de Lima</label>
+        <select id="distrito-lima" class="form-select w-full rounded-lg text-gray-800 dark:text-gray-200 focus:outline-0 focus:ring-2 focus:ring-brand-primary/50 border border-gray-300 dark:border-gray-600 bg-brand-light dark:bg-gray-800 h-12 px-4 text-base">
+            <option value="">Seleccione un distrito</option>
+            <option value="Ancón">Ancón</option>
+            <option value="Ate">Ate</option>
+            <option value="Barranco">Barranco</option>
+            <option value="Breña">Breña</option>
+            <option value="Carabayllo">Carabayllo</option>
+            <option value="Chaclacayo">Chaclacayo</option>
+            <option value="Chorrillos">Chorrillos</option>
+            <option value="Cieneguilla">Cieneguilla</option>
+            <option value="Comas">Comas</option>
+            <option value="El Agustino">El Agustino</option>
+            <option value="Independencia">Independencia</option>
+            <option value="Jesús María">Jesús María</option>
+            <option value="La Molina">La Molina</option>
+            <option value="La Victoria">La Victoria</option>
+            <option value="Lima">Lima</option>
+            <option value="Lince">Lince</option>
+            <option value="Los Olivos">Los Olivos</option>
+            <option value="Lurigancho">Lurigancho</option>
+            <option value="Lurín">Lurín</option>
+            <option value="Magdalena del Mar">Magdalena del Mar</option>
+            <option value="Miraflores">Miraflores</option>
+            <option value="Pachacámac">Pachacámac</option>
+            <option value="Pucusana">Pucusana</option>
+            <option value="Pueblo Libre">Pueblo Libre</option>
+            <option value="Puente Piedra">Puente Piedra</option>
+            <option value="Punta Hermosa">Punta Hermosa</option>
+            <option value="Punta Negra">Punta Negra</option>
+            <option value="Rímac">Rímac</option>
+            <option value="San Bartolo">San Bartolo</option>
+            <option value="San Borja">San Borja</option>
+            <option value="San Isidro">San Isidro</option>
+            <option value="San Juan de Lurigancho">San Juan de Lurigancho</option>
+            <option value="San Juan de Miraflores">San Juan de Miraflores</option>
+            <option value="San Luis">San Luis</option>
+            <option value="San Martín de Porres">San Martín de Porres</option>
+            <option value="San Miguel">San Miguel</option>
+            <option value="Santa Anita">Santa Anita</option>
+            <option value="Santa María del Mar">Santa María del Mar</option>
+            <option value="Santa Rosa">Santa Rosa</option>
+            <option value="Santiago de Surco">Santiago de Surco</option>
+            <option value="Surquillo">Surquillo</option>
+            <option value="Villa El Salvador">Villa El Salvador</option>
+            <option value="Villa María del Triunfo">Villa María del Triunfo</option>
+        </select>
+    </div>
+
+    <!-- Campo de dirección (puede usarse para geocodificar) -->
+    <div class="mb-2">
+        <input class="form-input w-full rounded-lg text-gray-800 dark:text-gray-200 focus:outline-0 focus:ring-2 focus:ring-brand-primary/50 border border-gray-300 dark:border-gray-600 bg-brand-light dark:bg-gray-800 h-12 placeholder:text-gray-400 dark:placeholder:text-gray-500 px-4 text-base" id="location" placeholder="Ingrese dirección (o deje vacío si usa lat/lng)" type="text" value=""/>
+    </div>
+
+    <!-- Inputs para latitud / longitud y botón de búsqueda -->
+    <div class="flex items-center gap-2">
+        <input id="latitude" class="form-input w-1/2 rounded-lg text-gray-800 dark:text-gray-200 focus:outline-0 focus:ring-2 focus:ring-brand-primary/50 border border-gray-300 dark:border-gray-600 bg-brand-light dark:bg-gray-800 h-12 placeholder:text-gray-400 dark:placeholder:text-gray-500 px-4 text-base" placeholder="Latitud" type="text" />
+        <input id="longitude" class="form-input w-1/2 rounded-lg text-gray-800 dark:text-gray-200 focus:outline-0 focus:ring-2 focus:ring-brand-primary/50 border border-gray-300 dark:border-gray-600 bg-brand-light dark:bg-gray-800 h-12 placeholder:text-gray-400 dark:placeholder:text-gray-500 px-4 text-base" placeholder="Longitud" type="text" />
+    </div>
+
+    <div class="flex items-center gap-2 mt-2">
+        <button id="search-location" class="flex items-center justify-center rounded-lg h-10 bg-brand-primary text-white px-4 text-sm font-bold">Buscar</button>
+        <button aria-label="Use my current location" id="btn-current-location" class="flex items-center justify-center rounded-md h-10 px-3 bg-gray-200 dark:bg-gray-700 text-brand-secondary dark:text-gray-400 hover:bg-gray-300 dark:hover:bg-gray-600">
+            <span class="material-symbols-outlined text-lg">my_location</span>
+        </button>
+    </div>
+
 </div>
 <div class="flex flex-col">
 <label class="text-base font-medium leading-normal text-gray-800 dark:text-gray-200 pb-2" for="emergency-name">Nombre de la emergencia</label>
 <input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-gray-800 dark:text-gray-200 focus:outline-0 focus:ring-2 focus:ring-brand-primary/50 border border-gray-300 dark:border-gray-600 bg-brand-light dark:bg-gray-800 h-12 placeholder:text-gray-400 dark:placeholder:text-gray-500 px-4 text-base font-normal leading-normal" id="emergency-name" placeholder="E.g., Incendio Forestal en Valparaíso" type="text" value=""/>
 </div>
 <div class="flex flex-col">
+    <label class="text-base font-medium leading-normal text-gray-800 dark:text-gray-200 pb-2" for="emergency-type">Tipo de emergencia</label>
+    <select id="emergency-type" class="form-select flex w-full min-w-0 flex-1 appearance-none resize-none overflow-hidden rounded-lg text-gray-800 dark:text-gray-200 focus:outline-0 focus:ring-2 focus:ring-brand-primary/50 border border-gray-300 dark:border-gray-600 bg-brand-light dark:bg-gray-800 h-12 placeholder:text-gray-400 dark:placeholder:text-gray-500 px-4 text-base font-normal leading-normal">
+        <option value="">Seleccione un tipo</option>
+        <option value="incendio">Incendio</option>
+        <option value="inundacion">Inundación</option>
+        <option value="terremoto">Terremoto</option>
+        <option value="accidente">Accidente</option>
+        <option value="fuga_quimica">Fuga Química</option>
+        <option value="otros">Otros</option>
+    </select>
+</div>
+<div class="flex flex-col">
 <label class="text-base font-medium leading-normal text-gray-800 dark:text-gray-200 pb-2" for="emergency-status">Estado de la emergencia</label>
 <select class="form-select flex w-full min-w-0 flex-1 appearance-none resize-none overflow-hidden rounded-lg text-gray-800 dark:text-gray-200 focus:outline-0 focus:ring-2 focus:ring-brand-primary/50 border border-gray-300 dark:border-gray-600 bg-brand-light dark:bg-gray-800 h-12 placeholder:text-gray-400 dark:placeholder:text-gray-500 px-4 text-base font-normal leading-normal" id="emergency-status">
-<option>Seleccione un estado</option>
-<option value="activa">Activa</option>
-<option value="monitoreo">En Monitoreo</option>
-<option value="controlada">Controlada</option>
+<option value="">Seleccione un estado</option>
+<option value="ABIERTA">ABIERTA</option>
+<option value="EN CURSO">EN CURSO</option>
+<option value="CERRADA">CERRADA</option>
 </select>
 </div>
 <div class="flex flex-col">
@@ -107,25 +191,22 @@
 <button class="flex max-w-xs cursor-pointer items-center justify-center overflow-hidden rounded-lg h-11 bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 hover:bg-gray-300 dark:hover:bg-gray-600 px-6 text-sm font-bold leading-normal tracking-wide">
                                 Cancelar
                             </button>
-<button class="flex max-w-xs cursor-not-allowed items-center justify-center overflow-hidden rounded-lg h-11 bg-brand-primary text-white px-6 text-sm font-bold leading-normal tracking-wide disabled:opacity-50 disabled:cursor-not-allowed" disabled="">
+<button id="btn-save-emergency" class="flex max-w-xs cursor-pointer items-center justify-center overflow-hidden rounded-lg h-11 bg-brand-success text-white hover:opacity-90 px-6 text-sm font-bold leading-normal tracking-wide">
+                                Registrar emergencia
+                            </button>
+<button id="btn-identificar" class="flex max-w-xs cursor-not-allowed items-center justify-center overflow-hidden rounded-lg h-11 bg-brand-primary text-white px-6 text-sm font-bold leading-normal tracking-wide disabled:opacity-50 disabled:cursor-not-allowed" disabled="">
                                 Identificar recursos y peligros
                             </button>
 </div>
 </div>
 <div class="w-full min-h-[400px] lg:min-h-full flex items-center justify-center bg-gray-200 dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 overflow-hidden">
-<div class="relative w-full h-full">
-<div class="absolute inset-0 bg-cover bg-center" data-alt="Interactive map placeholder showing a regional view." data-location="Regional map view" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBgcYg7Alsj_FxPoE4ub1pOqW-JrEfsgwonSlbM6MdwV1fz2sdsaeMuzdo0eUpE-nJr8FP4p4Xk-nGeLE9hluhVyhpkNQuqQCTyo8uQFDngDW-6pwS6OIN_9joEgt_IlIlR7wT1BpcCQdDZtNzcXhzD9DBFUowjOwyj2KzE5miR7eQmx4EbOj5PCOxIT7XMafIxZ_A2fOzwQlTQmgMiogAa9WLLqANGL-tPc4aT3w2MpdEp5J7JRkKSiHfPK5MK53R2xWOKEhbcqGA');"></div>
-<div class="absolute inset-0 flex items-center justify-center bg-black/30">
-<div class="text-center p-4">
-<span class="material-symbols-outlined text-white text-5xl mb-2">map</span>
-<p class="text-white font-semibold">Mapa Interactivo</p>
-<p class="text-gray-300 text-sm">El mapa se actualizará con la ubicación ingresada.</p>
-</div>
-</div>
-</div>
+    <div id="map" class="w-full h-full min-h-[400px]"></div>
 </div>
 </div>
 </div>
 </main>
 </div>
+    <!-- Turf.js para operaciones geométricas (point-in-polygon) -->
+    <script src="https://unpkg.com/@turf/turf@6.5.0/turf.min.js"></script>
+    <script src="{{ url_for('static', filename='js/crear_emergencia.js') }}"></script>
 </body></html>

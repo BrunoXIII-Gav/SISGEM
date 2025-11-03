@@ -14,9 +14,11 @@ from flask import Flask
 app = Flask(__name__, template_folder="templates", static_folder="static")
 app.secret_key = os.getenv("FLASK_SECRET", "dev-secret")
 
-
 from app.api.auth import auth_bp
 app.register_blueprint(auth_bp)
+
+from app.api.crear_emergencia import emergencia_bp
+app.register_blueprint(emergencia_bp)
 
 
 @app.route("/")

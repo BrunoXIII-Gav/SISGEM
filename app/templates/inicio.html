@@ -86,11 +86,11 @@
           <div class="hidden md:flex items-center gap-6">
             <a class="text-sm font-medium text-muted-light dark:text-muted-dark hover:text-primary dark:hover:text-primary" href="#">Inicio</a>
             <a class="text-sm font-medium text-muted-light dark:text-muted-dark hover:text-primary dark:hover:text-primary" href="#">Registro</a>
-            <button
+            <a href="{{ url_for('emergencia.crear_emergencia') }}"
               class="flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-primary text-white text-sm font-bold shadow-sm hover:bg-primary/90"
             >
               <span>Crear Emergencia</span>
-            </button>
+            </a>
             <a
               class="text-sm font-medium text-muted-light dark:text-muted-dark hover:text-primary dark:hover:text-primary"
               href="{{ url_for('auth.logout') }}"
@@ -173,7 +173,7 @@
                             <td class="h-[72px] px-4 py-2 text-sm">
                               <div class="inline-flex items-center justify-center rounded-full py-1 px-3 text-xs font-bold {{ pill[0] }}">
                                 <span class="w-2 h-2 mr-2 rounded-full {{ pill[1] }}"></span>
-                                {{ e.estado or 'Sin estado' }}
+                                {{ estado_display_map.get(e.estado or '', e.estado or 'Sin estado') }}
                               </div>
                             </td>
                             <td class="h-[72px] px-4 py-2 text-right">
