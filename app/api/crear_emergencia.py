@@ -23,6 +23,27 @@ def api_crear_emergencia():
     """
     data = request.get_json(silent=True) or {}
 
+    # Restricciones de ámbito: solo Lima Metropolitana
+    LIMA_DISTRITOS = {
+        "Ancón", "Ate", "Barranco", "Breña", "Carabayllo", "Chaclacayo", "Chorrillos",
+        "Cieneguilla", "Comas", "El Agustino", "Independencia", "Jesús María", "La Molina",
+        "La Victoria", "Lima", "Lince", "Los Olivos", "Lurigancho", "Lurín", "Magdalena del Mar",
+        "Miraflores", "Pachacámac", "Pucusana", "Pueblo Libre", "Puente Piedra", "Punta Hermosa",
+        "Punta Negra", "Rímac", "San Bartolo", "San Borja", "San Isidro",
+        "San Juan de Lurigancho", "San Juan de Miraflores", "San Luis",
+        "San Martín de Porres", "San Miguel", "Santa Anita", "Santa María del Mar",
+        "Santa Rosa", "Santiago de Surco", "Surquillo", "Villa El Salvador",
+        "Villa María del Triunfo"
+    }
+    # Caja aproximada que contiene Lima Metropolitana (provincia de Lima)
+    # lat in [-12.5, -11.6], lon in [-77.25, -76.6]
+    LIMA_BBOX = {
+        "south": -12.50,
+        "west": -77.25,
+        "north": -11.60,
+        "east": -76.60,
+    }
+
     # Extraer y normalizar payload
     nombre = (data.get("nombre") or data.get("Nombre_emergencia") or "").strip()
     descripcion = (data.get("descripcion") or data.get("detalles") or "").strip()
@@ -46,6 +67,27 @@ def api_crear_emergencia():
     # Validación mínima
     if not nombre:
         return jsonify({"ok": False, "error": "El nombre de la emergencia es obligatorio."}), 400
+
+    # Validaciones de ámbito Lima Metropolitana
+    # 1) Distrito es obligatorio y debe pertenecer a Lima Metropolitana
+    if not distrito:
+        return jsonify({
+            "ok": False,
+            "error": "Debe seleccionar un distrito de Lima Metropolitana."
+        }), 400
+    if distrito not in LIMA_DISTRITOS:
+        return jsonify({
+            "ok": False,
+            "error": "Solo se permiten distritos de Lima Metropolitana."
+        }), 400
+
+    # 2) Si hay coordenadas, deben caer dentro de la caja de Lima
+    if lat is not None and lon is not None:
+        if not (LIMA_BBOX["south"] <= lat <= LIMA_BBOX["north"] and LIMA_BBOX["west"] <= lon <= LIMA_BBOX["east"]):
+            return jsonify({
+                "ok": False,
+                "error": "Las coordenadas deben ubicarse dentro de Lima Metropolitana."
+            }), 400
 
     # Timestamps automáticos
     # Normalización de estado para coincidir con ENUM de la BD ('ABIERTA','EN PROGRESO','ATENDIDA')

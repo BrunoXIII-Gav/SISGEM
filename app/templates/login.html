@@ -2,33 +2,33 @@
 <html lang="es">
 
 <head>
-    <meta charset="utf-8" />
-    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>SISGEM - Iniciar Sesión</title>
-    <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
-    <link href="https://fonts.googleapis.com" rel="preconnect" />
-    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&amp;display=swap" rel="stylesheet" />
-    <script>
-        tailwind.config = {
-            darkMode: "class",
-            theme: {
-                extend: {
-                    colors: {
-                        primary: "#EF6262",
-                        "background-light": "#F3F4F6",
-                        "background-dark": "#1F2937",
-                    },
-                    fontFamily: {
-                        display: ["Montserrat", "sans-serif"],
-                    },
-                    borderRadius: {
-                        DEFAULT: "0.5rem", // 8px
-                    },
-                },
-            },
-        };
-    </script>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <title>SISGEM - Iniciar Sesión</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+  <link href="https://fonts.googleapis.com" rel="preconnect" />
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&amp;display=swap" rel="stylesheet" />
+  <script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            primary: "#EF6262",
+            "background-light": "#F3F4F6",
+            "background-dark": "#1F2937",
+          },
+          fontFamily: {
+            display: ["Montserrat", "sans-serif"],
+          },
+          borderRadius: {
+            DEFAULT: "0.5rem", // 8px
+          },
+        },
+      },
+    };
+  </script>
 </head>
 
 <body class="min-h-screen bg-gray-100">
@@ -49,28 +49,27 @@
             <div>
               <label for="email" class="block text-sm font-medium text-gray-700">Correo</label>
               <input id="email" name="email" type="email" required autocomplete="username"
-                     class="mt-1 w-full px-3 py-2 border rounded-md" />
+                class="mt-1 w-full px-3 py-2 border rounded-md" />
             </div>
 
             <div>
               <label for="password" class="block text-sm font-medium text-gray-700">Contraseña</label>
               <input id="password" name="password" type="password" required autocomplete="current-password"
-                     class="mt-1 w-full px-3 py-2 border rounded-md" />
+                class="mt-1 w-full px-3 py-2 border rounded-md" />
             </div>
 
-            <button type="submit"
-                    class="w-full py-3 rounded-md text-white font-semibold bg-gray-800 hover:bg-gray-900">
+            <button type="submit" class="w-full py-3 rounded-md text-white font-semibold bg-gray-800 hover:bg-gray-900">
               INICIAR SESIÓN
             </button>
 
             {% with msgs = get_flashed_messages(with_categories=true) %}
-              {% if msgs %}
-                <div class="space-y-2 mt-3">
-                  {% for cat, m in msgs %}
-                    <div class="text-sm {{ 'text-red-600' if cat=='error' else 'text-green-600' }}">{{ m }}</div>
-                  {% endfor %}
-                </div>
-              {% endif %}
+            {% if msgs %}
+            <div class="space-y-2 mt-3">
+              {% for cat, m in msgs %}
+              <div class="text-sm {{ 'text-red-600' if cat=='error' else 'text-green-600' }}">{{ m }}</div>
+              {% endfor %}
+            </div>
+            {% endif %}
             {% endwith %}
           </form>
         </div>

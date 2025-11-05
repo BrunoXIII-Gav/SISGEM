@@ -4,8 +4,34 @@
     let marker;
     // capa GeoJSON actual del distrito seleccionado (se comparte entre funciones)
     let distritoLayer = null;
+    const distritoGeoCache = {}; // cache simple por nombre de distrito -> geojson
+    // Capa/geo de Lima Metropolitana (provincia) para geovalla global
+    let limaLayer = null;
+    let limaGeo = null;
     const defaultCenter = [-12.0464, -77.0428]; // Lima
     const defaultZoom = 11.5;
+
+    // BBOX aproximado de Lima Metropolitana (provincia de Lima)
+    const LIMA_BBOX = { south: -12.50, west: -77.25, north: -11.60, east: -76.60 };
+
+    function isInsideLimaBBox(lat, lon) {
+        return lat >= LIMA_BBOX.south && lat <= LIMA_BBOX.north && lon >= LIMA_BBOX.west && lon <= LIMA_BBOX.east;
+    }
+
+    function getNominatimSearchUrl(paramsObj) {
+        const u = new URL('https://nominatim.openstreetmap.org/search');
+        // default params
+        u.searchParams.set('format', 'json');
+        u.searchParams.set('addressdetails', '1');
+        u.searchParams.set('accept-language', 'es');
+        u.searchParams.set('countrycodes', 'pe');
+        // limitar por viewbox y bounded a Lima
+        u.searchParams.set('viewbox', `${LIMA_BBOX.west},${LIMA_BBOX.north},${LIMA_BBOX.east},${LIMA_BBOX.south}`);
+        u.searchParams.set('bounded', '1');
+        // custom params
+        Object.keys(paramsObj || {}).forEach(k => u.searchParams.set(k, paramsObj[k]));
+        return u.toString();
+    }
 
     function initMap() {
         const mapEl = document.getElementById('map');
@@ -20,11 +46,49 @@
             attribution: '&copy; OpenStreetMap'
         }).addTo(map);
 
+        // Cargar límites de Lima Metropolitana (provincia) y dibujarlos
+        fetch(getNominatimSearchUrl({ q: 'Provincia de Lima, Perú', polygon_geojson: '1', polygon_threshold: '0.001', limit: '1' }))
+            .then(r => r.json())
+            .then(data => {
+                if (Array.isArray(data) && data.length && data[0].geojson) {
+                    limaGeo = data[0].geojson;
+                    limaLayer = L.geoJSON(limaGeo, {
+                        style: {
+                            color: '#1976D2',
+                            weight: 1.5,
+                            opacity: 0.8,
+                            fillColor: '#90CAF9',
+                            fillOpacity: 0.10
+                        }
+                    }).addTo(map);
+                    try { map.fitBounds(limaLayer.getBounds()); } catch(e){}
+                }
+            })
+            .catch(err => console.warn('No se pudo cargar el polígono de Lima', err));
+
         // Evento de clic en el mapa para colocar/mover el marcador
         map.on('click', function(e) {
             // Click manual: colocar marcador y mostrar coordenadas en el campo
             updateMarker(e.latlng.lat, e.latlng.lng, 'Ubicación seleccionada', null);
         });
+    }
+
+    // Dado un objeto de resultado de Nominatim, formatea una dirección corta (solo calle y número)
+    function shortAddressFromNominatim(result, rawFallback) {
+        try {
+            const addr = result && result.address ? result.address : {};
+            const street = addr.road || addr.pedestrian || addr.footway || addr.residential || addr.path || addr.cycleway || addr.construction || '';
+            const number = addr.house_number || '';
+            if (street && number) return `${street} ${number}`;
+            if (street) return street;
+            // Si no hay calle, intentar usar el primer segmento de display_name
+            const disp = (result && result.display_name) ? result.display_name : (rawFallback || '');
+            if (disp) return disp.split(',')[0].trim();
+            return '';
+        } catch (e) {
+            const disp = (result && result.display_name) ? result.display_name : (rawFallback || '');
+            return disp ? disp.split(',')[0].trim() : '';
+        }
     }
 
     function updateMarker(lat, lng, label, displayName) {
@@ -62,12 +126,12 @@
                         const lat = position.coords.latitude;
                         const lng = position.coords.longitude;
                         // Intentar reverse geocoding para una etiqueta legible (opcional)
-                        fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lng}`)
+                        fetch(`https://nominatim.openstreetmap.org/reverse?format=json&addressdetails=1&accept-language=es&lat=${lat}&lon=${lng}`)
                             .then(r => r.json())
                                 .then(data => {
-                                const display = data && data.display_name ? data.display_name : null;
-                                // pasar displayName sólo si existe, si no dejar null para usar coordenadas
-                                placeIfInsideDistrict(lat, lng, display ? display : null);
+                                const display = data ? shortAddressFromNominatim(data, null) : null;
+                                // pasar displayName corto si existe, si no dejar null para usar coordenadas
+                                placeIfInsideDistrict(lat, lng, display || null);
                             })
                             .catch(() => {
                                 placeIfInsideDistrict(lat, lng, 'Mi ubicación');
@@ -82,9 +146,72 @@
         }
     }
 
+    function clearLocation() {
+        // limpiar inputs
+        const latEl = document.getElementById('latitude');
+        const lonEl = document.getElementById('longitude');
+        const locEl = document.getElementById('location');
+        if (latEl) latEl.value = '';
+        if (lonEl) lonEl.value = '';
+        if (locEl) locEl.value = '';
+
+        // remover marcador del mapa si existe
+        if (map && marker) {
+            try { map.removeLayer(marker); } catch (e) {}
+            marker = null;
+        }
+
+        // Reencuadrar mapa a distrito o Lima o vista por defecto
+        try {
+            if (map) {
+                if (distritoLayer && map.hasLayer(distritoLayer)) {
+                    map.fitBounds(distritoLayer.getBounds());
+                } else if (limaLayer) {
+                    map.fitBounds(limaLayer.getBounds());
+                } else {
+                    map.setView(defaultCenter, defaultZoom);
+                }
+            }
+        } catch (e) {}
+    }
+
+    function setupClearHandler() {
+        const btn = document.getElementById('btn-clear-location');
+        if (!btn) return;
+        btn.addEventListener('click', function(e){
+            e.preventDefault();
+            clearLocation();
+        });
+    }
+
     // Intenta colocar el marcador solo si está dentro del distrito seleccionado (si hay uno)
     function placeIfInsideDistrict(lat, lon, name) {
         if (!map) return;
+        // Primero, validar contra valla de Lima Metropolitana
+        if (!isInsideLimaBBox(parseFloat(lat), parseFloat(lon))) {
+            alert('La ubicación está fuera de Lima Metropolitana.');
+            try { if (limaLayer) map.fitBounds(limaLayer.getBounds()); } catch(e){}
+            return;
+        }
+
+        if (limaGeo) {
+            try {
+                const ptLima = turf.point([parseFloat(lon), parseFloat(lat)]);
+                const features = (limaGeo.type === 'FeatureCollection') ? limaGeo.features : [{ type: 'Feature', geometry: limaGeo }];
+                let insideLima = false;
+                for (let i = 0; i < features.length; i++) {
+                    if (turf.booleanPointInPolygon(ptLima, features[i])) { insideLima = true; break; }
+                }
+                if (!insideLima) {
+                    alert('La ubicación está fuera de Lima Metropolitana.');
+                    try { if (limaLayer) map.fitBounds(limaLayer.getBounds()); } catch(e){}
+                    return;
+                }
+            } catch (e) {
+                console.warn('Fallo validando polígono de Lima, usando BBOX.', e);
+            }
+        }
+
         if (distritoLayer) {
             try {
                 const pt = turf.point([parseFloat(lon), parseFloat(lat)]);
@@ -160,24 +287,25 @@
                     const streetOnly = m[1].trim();
                     const houseNumber = m[2].trim();
                     // En Nominatim la house number suele incluirse en 'street', pero probamos varias combinaciones
-                    const params = `format=json&addressdetails=1&limit=3&street=${encodeURIComponent(streetOnly + ' ' + houseNumber)}&house_number=${encodeURIComponent(houseNumber)}&city=${encodeURIComponent('Lima')}&country=${encodeURIComponent('Peru')}`;
-                    fetch(`https://nominatim.openstreetmap.org/search?${params}`)
+                    const url = getNominatimSearchUrl({ limit: '3', street: `${streetOnly} ${houseNumber}`, house_number: houseNumber, city: 'Lima', country: 'Peru' });
+                    fetch(url)
                         .then(r => r.json())
                         .then(data => {
                             if (data && data.length > 0 && data[0].address && data[0].address.house_number) {
                                 const lat = parseFloat(data[0].lat);
                                 const lon = parseFloat(data[0].lon);
-                                const name = data[0].display_name || raw;
+                                const name = shortAddressFromNominatim(data[0], raw);
                                 placeIfInsideDistrict(lat, lon, name);
                             } else {
                                 // fallback: búsqueda general (como antes)
-                                fetch(`https://nominatim.openstreetmap.org/search?format=json&addressdetails=1&q=${encodeURIComponent(raw)}`)
+                                const url2 = getNominatimSearchUrl({ q: raw });
+                                fetch(url2)
                                     .then(r2 => r2.json())
                                     .then(data2 => {
                                         if (data2 && data2.length > 0) {
                                             const lat = parseFloat(data2[0].lat);
                                             const lon = parseFloat(data2[0].lon);
-                                            const name = data2[0].display_name || raw;
+                                            const name = shortAddressFromNominatim(data2[0], raw);
                                             placeIfInsideDistrict(lat, lon, name);
                                         } else {
                                             alert('No se encontró la dirección. Intente otra búsqueda.');
@@ -189,13 +317,14 @@
                         .catch(err => {
                             console.error('Error en geocodificación estructurada', err);
                             // en caso de error, intentar búsqueda general
-                            fetch(`https://nominatim.openstreetmap.org/search?format=json&addressdetails=1&q=${encodeURIComponent(raw)}`)
+                            const url3 = getNominatimSearchUrl({ q: raw });
+                            fetch(url3)
                                 .then(r3 => r3.json())
                                 .then(data3 => {
                                     if (data3 && data3.length > 0) {
                                         const lat = parseFloat(data3[0].lat);
                                         const lon = parseFloat(data3[0].lon);
-                                        const name = data3[0].display_name || raw;
+                                        const name = shortAddressFromNominatim(data3[0], raw);
                                         placeIfInsideDistrict(lat, lon, name);
                                     } else {
                                         alert('No se encontró la dirección. Intente otra búsqueda.');
@@ -207,13 +336,14 @@
                 }
 
                 // Si no hay número detectado, hacer búsqueda general (añadir addressdetails para mejor info)
-                fetch(`https://nominatim.openstreetmap.org/search?format=json&addressdetails=1&q=${encodeURIComponent(raw)}`)
+                const url4 = getNominatimSearchUrl({ q: raw });
+                fetch(url4)
                     .then(response => response.json())
                     .then(data => {
                         if (data && data.length > 0) {
                             const lat = parseFloat(data[0].lat);
                             const lon = parseFloat(data[0].lon);
-                            const name = data[0].display_name || raw;
+                            const name = shortAddressFromNominatim(data[0], raw);
                             // Colocar marcador solo si está dentro del distrito (si aplica)
                             placeIfInsideDistrict(lat, lon, name);
                         } else {
@@ -261,6 +391,7 @@
             const distrito = (document.getElementById('distrito-lima')?.value || '').trim();
 
             if (!nombre) { alert('El nombre es obligatorio'); return; }
+            if (!distrito) { alert('Debe seleccionar un distrito de Lima Metropolitana'); return; }
 
             const payload = {
                 nombre,
@@ -314,13 +445,32 @@
 
             // Geocodificar el distrito en Lima, Perú y solicitar la geometría (GeoJSON)
             const query = `${distrito}, Lima, Perú`;
-            fetch(`https://nominatim.openstreetmap.org/search?format=json&polygon_geojson=1&limit=1&q=${encodeURIComponent(query)}`)
+            // Si ya está en cache, úsalo
+            if (distritoGeoCache[distrito]) {
+                try {
+                    distritoLayer = L.geoJSON(distritoGeoCache[distrito], {
+                        style: {
+                            color: '#FF5722',
+                            weight: 2,
+                            opacity: 0.9,
+                            fillColor: '#FFCCBC',
+                            fillOpacity: 0.25
+                        }
+                    }).addTo(map);
+                    map.fitBounds(distritoLayer.getBounds());
+                } catch (e) {}
+                return;
+            }
+
+            const url = getNominatimSearchUrl({ q: query, polygon_geojson: '1', polygon_threshold: '0.001', limit: '1' });
+            fetch(url)
                 .then(response => response.json())
                 .then(data => {
                     if (data && data.length > 0) {
                         const item = data[0];
                         // Si Nominatim devuelve geojson, dibujar límites
                         if (item && item.geojson) {
+                            distritoGeoCache[distrito] = item.geojson; // cachear
                             distritoLayer = L.geoJSON(item.geojson, {
                                 style: {
                                     color: '#FF5722',
@@ -360,6 +510,7 @@
             setupLocationButton();
             setupSearchHandlers();
             setupDistritoHandler();
+            setupClearHandler();
             setupSaveHandler();
         });
     } else {
@@ -367,6 +518,7 @@
         setupLocationButton();
         setupSearchHandlers();
         setupDistritoHandler();
+        setupClearHandler();
         setupSaveHandler();
     }
 })();
