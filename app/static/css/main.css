@@ -1,0 +1,44 @@
+/* Scrollbar styling for emergency list */
+.scroll-y::-webkit-scrollbar {
+	width: 10px;
+}
+.scroll-y::-webkit-scrollbar-track {
+	background: #f1f5f9; /* Tailwind slate-50 */
+}
+.scroll-y::-webkit-scrollbar-thumb {
+	background-color: #cbd5e1; /* slate-300 */
+	border-radius: 9999px;
+	border: 2px solid #f1f5f9;
+}
+.scroll-y::-webkit-scrollbar-thumb:hover {
+	background-color: #94a3b8; /* slate-400 */
+}
+
+/* Dark mode scrollbars */
+@media (prefers-color-scheme: dark) {
+	.scroll-y::-webkit-scrollbar-track {
+		background: #1f2937; /* gray-800 */
+	}
+	.scroll-y::-webkit-scrollbar-thumb {
+		background-color: #475569; /* slate-600 */
+		border: 2px solid #1f2937;
+	}
+	.scroll-y::-webkit-scrollbar-thumb:hover {
+		background-color: #64748b; /* slate-500 */
+	}
+}
+
+/* Sticky map on large screens */
+@media (min-width: 1024px) {
+	.sticky-map {
+		position: sticky;
+		top: 90px; /* below header */
+	}
+}
+
+/* Highlight row when synced with map */
+.row-highlight {
+	background-color: rgba(37, 99, 235, 0.12); /* primary/12 */
+	transition: background-color 0.3s ease;
+}
+.row-emergencia { cursor: pointer; }

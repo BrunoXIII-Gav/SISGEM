@@ -58,7 +58,7 @@
     <div class="flex h-full grow flex-col">
       <header
         class="sticky top-0 z-10 flex items-center justify-between border-b border-border-light dark:border-border-dark bg-surface-light/80 dark:bg-surface-dark/80 backdrop-blur-sm px-6 py-3 md:px-10">
-        <div class="flex items-center gap-3">
+        <a href="{{ url_for('auth.inicio') }}" class="flex items-center gap-3">
           <div class="text-primary size-8">
             <svg fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
               <path
@@ -70,130 +70,242 @@
             </svg>
           </div>
           <h2 class="text-xl font-bold tracking-tight text-text-light dark:text-text-dark">SISGEM</h2>
-        </div>
+        </a>
 
         <div class="hidden md:flex items-center gap-6">
-          <a class="text-sm font-medium text-muted-light dark:text-muted-dark hover:text-primary dark:hover:text-primary"
-            href="#">Inicio</a>
-          <a class="text-sm font-medium text-muted-light dark:text-muted-dark hover:text-primary dark:hover:text-primary"
-            href="#">Registro</a>
-          <a href="{{ url_for('emergencia.crear_emergencia') }}"
-            class="flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-primary text-white text-sm font-bold shadow-sm hover:bg-primary/90">
+          <a class="text-sm font-medium text-muted-light dark:text-muted-dark hover:text-primary dark:hover:text-primary" href="{{ url_for('auth.inicio') }}">Inicio</a>
+          <a href="{{ url_for('emergencia.crear_emergencia') }}" class="flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-primary text-white text-sm font-bold shadow-sm hover:bg-primary/90">
             <span>Crear Emergencia</span>
-          </a>
-          <a class="text-sm font-medium text-muted-light dark:text-muted-dark hover:text-primary dark:hover:text-primary"
-            href="{{ url_for('auth.logout') }}">
-            Salir
           </a>
         </div>
 
-        <div class="flex items-center gap-4">
-          <button
-            class="flex items-center justify-center rounded-full size-10 bg-surface-light dark:bg-surface-dark border border-border-light dark:border-border-dark text-muted-light dark:text-muted-dark">
+        <div class="flex items-center gap-4 relative">
+          <button id="user-menu-button" aria-haspopup="true" aria-expanded="false"
+            class="flex items-center justify-center rounded-full size-10 bg-surface-light dark:bg-surface-dark border border-border-light dark:border-border-dark text-muted-light dark:text-muted-dark focus:outline-none focus:ring-2 focus:ring-primary">
             <span class="material-symbols-outlined text-xl">person</span>
           </button>
+          <!-- Dropdown -->
+          <div id="user-menu" class="hidden absolute right-0 top-12 z-20 w-44 rounded-lg border border-border-light dark:border-border-dark bg-surface-light dark:bg-surface-dark shadow-lg py-1">
+            <div class="px-4 py-2 text-xs uppercase tracking-wide text-muted-light dark:text-muted-dark">Cuenta</div>
+            <a href="{{ url_for('auth.logout') }}" class="flex items-center gap-2 px-4 py-2 text-sm text-text-light dark:text-text-dark hover:bg-background-light dark:hover:bg-background-dark/60">
+              <span class="material-symbols-outlined text-base">logout</span>
+              Salir
+            </a>
+          </div>
         </div>
       </header>
 
       <main class="flex-1 px-4 py-8 sm:px-6 lg:px-10">
-        <div class="mx-auto max-w-7xl space-y-8">
-          <!-- ====== MAPA LEAFLET ====== -->
-          <section
-            class="h-[450px] w-full rounded-xl overflow-hidden shadow-sm border border-border-light dark:border-border-dark">
-            <div id="map" class="h-full w-full"></div>
-          </section>
+  <div class="w-full mt-10 lg:mt-16">
+          <!-- Layout de dos columnas: izquierda lista, derecha mapa -->
+          <div class="flex flex-col gap-8">
+            <!-- Columna izquierda: Emergencias -->
+            <section class="order-2">
+              <div class="space-y-4 flex flex-col">
+                <div class="flex items-center justify-between">
+                  <h3 class="text-2xl font-bold tracking-tight text-text-light dark:text-text-dark">Emergencias Registradas</h3>
+                  <span class="text-sm text-muted-light dark:text-muted-dark">Total: {{ total }}</span>
+                </div>
+                <!-- Chips de filtros activos -->
+                <div id="chips" class="flex flex-wrap gap-2">
+                  {% if filtros.q %}<span class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs bg-primary/10 text-primary">Buscar: {{ filtros.q }}<button type="button" class="chip-remove" data-key="q"><span class="material-symbols-outlined text-sm">close</span></button></span>{% endif %}
+                  {% if filtros.distrito %}<span class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs bg-primary/10 text-primary">Distrito: {{ filtros.distrito }}<button type="button" class="chip-remove" data-key="distrito"><span class="material-symbols-outlined text-sm">close</span></button></span>{% endif %}
+                  {% if filtros.estado %}<span class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs bg-primary/10 text-primary">Estado: {{ estado_display_map.get(filtros.estado, filtros.estado) }}<button type="button" class="chip-remove" data-key="estado"><span class="material-symbols-outlined text-sm">close</span></button></span>{% endif %}
+                  {% if filtros.tipo %}<span class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs bg-primary/10 text-primary">Tipo: {{ tipos_opts.get(filtros.tipo, filtros.tipo) }}<button type="button" class="chip-remove" data-key="tipo"><span class="material-symbols-outlined text-sm">close</span></button></span>{% endif %}
+                  {% if filtros.desde %}<span class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs bg-primary/10 text-primary">Desde: {{ filtros.desde }}<button type="button" class="chip-remove" data-key="desde"><span class="material-symbols-outlined text-sm">close</span></button></span>{% endif %}
+                  {% if filtros.hasta %}<span class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs bg-primary/10 text-primary">Hasta: {{ filtros.hasta }}<button type="button" class="chip-remove" data-key="hasta"><span class="material-symbols-outlined text-sm">close</span></button></span>{% endif %}
+                </div>
 
-          <section>
-            <div class="space-y-4">
-              <h3 class="text-2xl font-bold tracking-tight text-text-light dark:text-text-dark">Emergencias Registradas
-              </h3>
-
-              <div class="flex items-center gap-4">
-                <label class="flex flex-col min-w-40 h-12 w-full">
-                  <div
-                    class="flex w-full flex-1 items-stretch rounded-lg h-full border border-border-light dark:border-border-dark bg-surface-light dark:bg-surface-dark focus-within:ring-2 focus-within:ring-primary focus-within:ring-offset-2 focus-within:ring-offset-background-light dark:focus-within:ring-offset-background-dark">
-                    <div
-                      class="text-muted-light dark:text-muted-dark flex items-center justify-center pl-4 rounded-l-lg border-r-0">
-                      <span class="material-symbols-outlined">search</span>
+                <form id="filtros" class="grid grid-cols-2 gap-3 lg:grid-cols-7 items-start" method="get" action="{{ url_for('auth.inicio') }}">
+                  <!-- Buscador -->
+                  <label class="flex flex-col h-12 col-span-2 lg:col-span-2">
+                    <div class="flex w-full flex-1 items-stretch rounded-lg h-full border border-border-light dark:border-border-dark bg-surface-light dark:bg-surface-dark focus-within:ring-2 focus-within:ring-primary focus-within:ring-offset-2 focus-within:ring-offset-background-light dark:focus-within:ring-offset-background-dark">
+                      <div class="text-muted-light dark:text-muted-dark flex items-center justify-center pl-4 rounded-l-lg">
+                        <span class="material-symbols-outlined">search</span>
+                      </div>
+                      <input name="q" value="{{ filtros.q }}" class="form-input flex w-full min-w-0 flex-1 text-text-light dark:text-text-dark focus:outline-0 focus:ring-0 border-none bg-transparent h-full placeholder:text-muted-light dark:placeholder:text-muted-dark px-4 rounded-r-lg pl-2 text-base" placeholder="Buscar ID o nombre" />
                     </div>
-                    <input
-                      class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden text-text-light dark:text-text-dark focus:outline-0 focus:ring-0 border-none bg-transparent focus:border-none h-full placeholder:text-muted-light dark:placeholder:text-muted-dark px-4 rounded-r-lg pl-2 text-base font-normal leading-normal"
-                      placeholder="Buscar por ID o nombre..." value="" />
-                  </div>
-                </label>
-
-                <div class="relative h-12">
-                  <select
-                    class="form-select h-full w-full appearance-none rounded-lg border border-border-light bg-surface-light py-2 pl-3 pr-10 text-sm text-text-light dark:text-text-dark focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background-light dark:border-border-dark dark:bg-surface-dark dark:focus:ring-offset-background-dark">
-                    <option selected>Ubicación</option>
-                    <option>Miraflores</option>
-                    <option>San Isidro</option>
-                    <option>Surco</option>
-                    <option>La Molina</option>
-                  </select>
-                  <div
-                    class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-muted-light dark:text-muted-dark">
-                    <span class="material-symbols-outlined">expand_more</span>
-                  </div>
-                </div>
-              </div>
-
-              <div class="@container">
-                <div
-                  class="flex overflow-hidden rounded-lg border border-border-light dark:border-border-dark bg-surface-light dark:bg-surface-dark">
-                  <table class="w-full">
-                    <thead class="bg-background-light dark:bg-background-dark">
-                      <tr>
-                        <th class="px-4 py-3 text-left text-sm font-bold w-[10%] text-text-light dark:text-text-dark">ID
-                        </th>
-                        <th class="px-4 py-3 text-left text-sm font-bold w-[35%] text-text-light dark:text-text-dark">
-                          Nombre de Emergencia</th>
-                        <th class="px-4 py-3 text-left text-sm font-bold w-[20%] text-text-light dark:text-text-dark">
-                          Ubicación</th>
-                        <th class="px-4 py-3 text-left text-sm font-bold w-[20%] text-text-light dark:text-text-dark">
-                          Estado</th>
-                        <th class="px-4 py-3 text-left text-sm font-bold w-[15%]"></th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {% for e in emergencias %}
-                      {% set pill = estado_map.get(e.estado or '', ('bg-gray-100 text-gray-700','bg-gray-500')) %}
-                      <tr class="border-t border-t-border-light dark:border-t-border-dark">
-                        <td class="h-[72px] px-4 py-2 text-sm text-muted-light dark:text-muted-dark">{{ e.id_emergencias
-                          }}</td>
-                        <td class="h-[72px] px-4 py-2 text-sm font-medium">{{ e.Nombre_emergencia }}</td>
-                        <td class="h-[72px] px-4 py-2 text-sm text-muted-light dark:text-muted-dark">{{ e.distrito or
-                          '-' }}</td>
-                        <td class="h-[72px] px-4 py-2 text-sm">
-                          <div
-                            class="inline-flex items-center justify-center rounded-full py-1 px-3 text-xs font-bold {{ pill[0] }}">
-                            <span class="w-2 h-2 mr-2 rounded-full {{ pill[1] }}"></span>
-                            {{ estado_display_map.get(e.estado or '', e.estado or 'Sin estado') }}
-                          </div>
-                        </td>
-                        <td class="h-[72px] px-4 py-2 text-right">
-                          <a href="#" class="text-primary text-sm font-bold hover:underline">Ver Detalle</a>
-                        </td>
-                      </tr>
-                      {% else %}
-                      <tr>
-                        <td colspan="5" class="px-4 py-4 text-sm text-muted-light dark:text-muted-dark">No hay
-                          emergencias registradas.</td>
-                      </tr>
+                  </label>
+                  <!-- Distrito -->
+                  <div class="relative h-12 col-span-1">
+                    <select name="distrito" class="form-select h-full w-full appearance-none rounded-lg border border-border-light bg-surface-light py-2 pl-3 pr-10 text-sm text-text-light dark:text-text-dark focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background-light dark:border-border-dark dark:bg-surface-dark dark:focus:ring-offset-background-dark">
+                      <option value="">Distrito</option>
+                      {% for d in distritos_opts %}
+                      <option value="{{ d }}" {% if filtros.distrito==d %}selected{% endif %}>{{ d }}</option>
                       {% endfor %}
-                    </tbody>
-                  </table>
+                    </select>
+                    <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-muted-light dark:text-muted-dark">
+                      <span class="material-symbols-outlined">expand_more</span>
+                    </div>
+                  </div>
+                  <!-- Estado -->
+                  <div class="relative h-12 col-span-1">
+                    <select name="estado" class="form-select h-full w-full appearance-none rounded-lg border border-border-light bg-surface-light py-2 pl-3 pr-10 text-sm text-text-light dark:text-text-dark focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background-light dark:border-border-dark dark:bg-surface-dark dark:focus:ring-offset-background-dark">
+                      <option value="">Estado</option>
+                      {% for ekey in estados_opts %}
+                      <option value="{{ ekey }}" {% if filtros.estado==ekey %}selected{% endif %}>{{ estado_display_map.get(ekey, ekey) }}</option>
+                      {% endfor %}
+                    </select>
+                    <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-muted-light dark:text-muted-dark">
+                      <span class="material-symbols-outlined">expand_more</span>
+                    </div>
+                  </div>
+                  <!-- Tipo -->
+                  <div class="relative h-12 col-span-1">
+                    <select name="tipo" class="form-select h-full w-full appearance-none rounded-lg border border-border-light bg-surface-light py-2 pl-3 pr-10 text-sm text-text-light dark:text-text-dark focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background-light dark:border-border-dark dark:bg-surface-dark dark:focus:ring-offset-background-dark">
+                      <option value="">Tipo</option>
+                      {% for code, label in tipos_opts.items() %}
+                      <option value="{{ code }}" {% if filtros.tipo==code %}selected{% endif %}>{{ label }}</option>
+                      {% endfor %}
+                    </select>
+                    <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-muted-light dark:text-muted-dark">
+                      <span class="material-symbols-outlined">expand_more</span>
+                    </div>
+                  </div>
+                  <!-- Fechas -->
+                  <div class="flex flex-col col-span-1">
+                    <input type="date" name="desde" value="{{ filtros.desde }}" class="form-input h-12 rounded-lg border border-border-light dark:border-border-dark bg-surface-light dark:bg-surface-dark text-sm px-3" placeholder="Desde" />
+                  </div>
+                  <div class="flex flex-col col-span-1">
+                    <input type="date" name="hasta" value="{{ filtros.hasta }}" class="form-input h-12 rounded-lg border border-border-light dark:border-border-dark bg-surface-light dark:bg-surface-dark text-sm px-3" placeholder="Hasta" />
+                  </div>
+                  <!-- Botones -->
+                  <div class="flex gap-2 col-span-2 lg:col-span-7">
+                    <button type="submit" class="h-10 px-4 rounded-lg bg-primary text-white text-sm font-bold shadow-sm hover:bg-primary/90">Filtrar</button>
+                    <a href="{{ url_for('auth.inicio') }}" class="h-10 px-4 rounded-lg bg-surface-light dark:bg-surface-dark border border-border-light dark:border-border-dark text-sm font-medium flex items-center hover:bg-background-light dark:hover:bg-background-dark">Limpiar</a>
+                  </div>
+                </form>
+                <script>
+                  (function(){
+                    const form = document.getElementById('filtros');
+                    if(!form) return;
+                    // Auto-submit al cambiar selects o fechas
+                    form.querySelectorAll('select,input[type=date]').forEach(el=>{
+                      el.addEventListener('change', ()=> form.submit());
+                    });
+                    // Debounce para búsqueda
+                    const qInput = form.querySelector('input[name="q"]');
+                    let tt;
+                    if(qInput){
+                      qInput.addEventListener('input', ()=>{
+                        clearTimeout(tt);
+                        tt = setTimeout(()=> form.submit(), 400);
+                      });
+                    }
+                    // Chips remove -> eliminar param de URL
+                    document.querySelectorAll('.chip-remove').forEach(btn=>{
+                      btn.addEventListener('click', ()=>{
+                        const key = btn.getAttribute('data-key');
+                        const sp = new URLSearchParams(window.location.search);
+                        sp.delete(key);
+                        window.location.search = sp.toString();
+                      });
+                    });
+                  })();
+                </script>
+                <!-- Tabla scrollable -->
+                <div class="@container overflow-hidden rounded-lg border border-border-light dark:border-border-dark bg-surface-light dark:bg-surface-dark flex flex-col">
+                  <div class="overflow-x-auto">
+                    <table class="w-full">
+                      <thead class="bg-background-light dark:bg-background-dark sticky top-0">
+                        <tr>
+                          <th class="px-4 py-3 text-left text-sm font-bold w-[10%] text-text-light dark:text-text-dark">ID</th>
+                          <th class="px-4 py-3 text-left text-sm font-bold w-[35%] text-text-light dark:text-text-dark">Nombre de Emergencia</th>
+                          <th class="px-4 py-3 text-left text-sm font-bold w-[18%] text-text-light dark:text-text-dark">Ubicación</th>
+                          <th class="px-4 py-3 text-left text-sm font-bold w-[18%] text-text-light dark:text-text-dark">Tiempo</th>
+                          <th class="px-4 py-3 text-left text-sm font-bold w-[18%] text-text-light dark:text-text-dark">Estado</th>
+                          <th class="px-4 py-3 text-left text-sm font-bold w-[15%]"></th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {% for e in emergencias %}
+                        {% set pill = estado_map.get(e.estado or '', ('bg-gray-100 text-gray-700','bg-gray-500')) %}
+                        <tr class="row-emergencia border-t border-t-border-light dark:border-t-border-dark odd:bg-background-light/60 dark:odd:bg-background-dark/60 hover:bg-primary/5 transition-colors" data-id="{{ e.id_emergencias }}">
+                          <td class="h-[72px] px-4 py-2 text-sm text-muted-light dark:text-muted-dark">{{ e.id_emergencias }}</td>
+                          <td class="h-[72px] px-4 py-2 text-sm font-medium">{{ e.Nombre_emergencia }}</td>
+                          <td class="h-[72px] px-4 py-2 text-sm text-muted-light dark:text-muted-dark">{{ e.distrito or '-' }}</td>
+                          <td class="h-[72px] px-4 py-2 text-sm text-muted-light dark:text-muted-dark">{% if e.fecha_reporte %}{{ e.fecha_reporte.strftime('%d/%m/%Y %H:%M') }}{% else %}-{% endif %}</td>
+                          <td class="h-[72px] px-4 py-2 text-sm">
+                            <div class="inline-flex items-center justify-center rounded-full py-1 px-3 text-xs font-bold {{ pill[0] }}">
+                              <span class="w-2 h-2 mr-2 rounded-full {{ pill[1] }}"></span>
+                              {{ estado_display_map.get(e.estado or '', e.estado or 'Sin estado') }}
+                            </div>
+                          </td>
+                          <td class="h-[72px] px-4 py-2 text-right">
+                            <a href="{{ url_for('emergencia.detalle_emergencia', emergencia_id=e.id_emergencias) }}" class="text-primary text-sm font-bold hover:underline">Ver Detalle</a>
+                          </td>
+                        </tr>
+                        {% else %}
+                        <tr>
+              <td colspan="6" class="px-4 py-4 text-sm text-muted-light dark:text-muted-dark">No hay emergencias registradas.</td>
+                        </tr>
+                        {% endfor %}
+                      </tbody>
+                    </table>
+                  </div>
                 </div>
               </div>
-            </div>
-          </section>
+              <script>
+                // Interacción fila -> mapa
+                (function(){
+                  document.querySelectorAll('tr.row-emergencia').forEach(tr=>{
+                    tr.addEventListener('click', ()=>{
+                      const id = tr.getAttribute('data-id');
+                      if(window._MAP_CTX && window._MAP_CTX.focusById){
+                        window._MAP_CTX.focusById(id);
+                      }
+                    });
+                  });
+                })();
+              </script>
+            </section>
+            <!-- Columna derecha: Mapa -->
+            <section class="order-1">
+              <div class="h-[400px] lg:h-[70vh] w-full rounded-xl overflow-hidden shadow-sm border border-border-light dark:border-border-dark">
+                <div id="map" class="h-full w-full"></div>
+              </div>
+            </section>
+          </div>
         </div>
       </main>
     </div>
   </div>
 
   <script>
+    // Inyectar datos como JSON serializado y parsearlo para evitar problemas de linting en plantillas
     window.MARKERS = JSON.parse('{{ markers | tojson | safe }}');
+  </script>
+  <script>
+    (function(){
+      const btn = document.getElementById('user-menu-button');
+      const menu = document.getElementById('user-menu');
+      if(!btn || !menu) return;
+      function closeMenu(){
+        menu.classList.add('hidden');
+        btn.setAttribute('aria-expanded','false');
+      }
+      function toggleMenu(){
+        const open = menu.classList.contains('hidden');
+        if(open){
+          menu.classList.remove('hidden');
+          btn.setAttribute('aria-expanded','true');
+        } else {
+          closeMenu();
+        }
+      }
+      btn.addEventListener('click', (e)=>{
+        e.stopPropagation();
+        toggleMenu();
+      });
+      document.addEventListener('click', (e)=>{
+        if(!menu.contains(e.target) && e.target !== btn){
+          closeMenu();
+        }
+      });
+      document.addEventListener('keydown', (e)=>{
+        if(e.key === 'Escape') closeMenu();
+      });
+    })();
   </script>
   <script src="{{ url_for('static', filename='js/mapa.js') }}"></script>
 </body>

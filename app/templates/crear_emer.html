@@ -58,7 +58,7 @@
             <div class="container mx-auto px-4 sm:px-6 lg:px-8">
                 <div
                     class="flex items-center justify-between whitespace-nowrap border-b border-gray-200 dark:border-gray-700 py-3">
-                    <div class="flex items-center gap-4 text-gray-900 dark:text-white">
+                    <a href="{{ url_for('auth.inicio') }}" class="flex items-center gap-4 text-gray-900 dark:text-white">
                         <div class="size-6 text-brand-primary">
                             <svg fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
                                 <path
@@ -71,21 +71,25 @@
                         </div>
                         <h2 class="text-lg font-bold leading-tight tracking-[-0.015em] text-gray-900 dark:text-white">
                             SISGEM</h2>
-                    </div>
+                    </a>
                     <div class="flex flex-1 items-center justify-center">
                         <nav class="flex items-center gap-9">
-                            <a class="text-sm font-medium leading-normal text-gray-400 dark:text-gray-500 cursor-not-allowed"
-                                href="#">Inicio</a>
-                            <a class="text-sm font-medium leading-normal text-brand-primary dark:text-brand-primary"
-                                href="#">Registro</a>
-                            <a class="text-sm font-medium leading-normal text-gray-400 dark:text-gray-500 cursor-not-allowed"
-                                href="#">Crear Emergencia</a>
+                            <a class="text-sm font-medium leading-normal text-brand-primary dark:text-brand-primary" href="{{ url_for('auth.inicio') }}">Inicio</a>
+                            <a class="text-sm font-medium leading-normal text-gray-800 dark:text-gray-200" href="{{ url_for('emergencia.crear_emergencia') }}">Crear Emergencia</a>
                         </nav>
                     </div>
-                    <div class="flex items-center justify-end">
-                        <div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10"
-                            data-alt="User profile picture"
-                            style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuB9rESdA0YlqXUyGAwc4V7QArDt6yexF9LmD6-OHNLdNwqxYXuS6PA3MgJK4wLFas-iYBiDYLcQuWzbBtlMczCglFmMvHZ82Cgr56dSJiywSUFRNOZ5oZ1615wjvoyuAxCtgN-18jDL6_TW3a11Si-hIEEaMQ3rJbZLr1NLs_rBFFuP78Z7YGrrAYOP6G9nWc4Vss9KwpYGy8alIVCkNsoVASt00UNoO9QpJVTl4OGrgSQB7_QaM87MkBoLBZ-bzyv2FDNCDj8n3OE");'>
+                    <div class="flex items-center justify-end relative">
+                        <button id="user-menu-button" aria-haspopup="true" aria-expanded="false"
+                            class="w-10 h-10 rounded-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-brand-primary">
+                            <span class="material-symbols-outlined text-gray-800 dark:text-gray-200">person</span>
+                        </button>
+                        <!-- Dropdown -->
+                        <div id="user-menu" class="hidden absolute right-0 top-12 z-20 w-44 rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 shadow-lg py-1">
+                            <div class="px-4 py-2 text-xs uppercase tracking-wide text-gray-500 dark:text-gray-400">Cuenta</div>
+                            <a href="{{ url_for('auth.logout') }}" class="flex items-center gap-2 px-4 py-2 text-sm text-gray-800 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">
+                                <span class="material-symbols-outlined text-base">logout</span>
+                                Salir
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -112,49 +116,60 @@
                                 <select id="distrito-lima" required
                                     class="form-select w-full rounded-lg text-gray-800 dark:text-gray-200 focus:outline-0 focus:ring-2 focus:ring-brand-primary/50 border border-gray-300 dark:border-gray-600 bg-brand-light dark:bg-gray-800 h-12 px-4 text-base">
                                     <option value="">Seleccione un distrito</option>
-                                    <option value="Ancón">Ancón</option>
-                                    <option value="Ate">Ate</option>
-                                    <option value="Barranco">Barranco</option>
-                                    <option value="Breña">Breña</option>
-                                    <option value="Carabayllo">Carabayllo</option>
-                                    <option value="Chaclacayo">Chaclacayo</option>
-                                    <option value="Chorrillos">Chorrillos</option>
-                                    <option value="Cieneguilla">Cieneguilla</option>
-                                    <option value="Comas">Comas</option>
-                                    <option value="El Agustino">El Agustino</option>
-                                    <option value="Independencia">Independencia</option>
-                                    <option value="Jesús María">Jesús María</option>
-                                    <option value="La Molina">La Molina</option>
-                                    <option value="La Victoria">La Victoria</option>
-                                    <option value="Lima">Lima</option>
-                                    <option value="Lince">Lince</option>
-                                    <option value="Los Olivos">Los Olivos</option>
-                                    <option value="Lurigancho">Lurigancho</option>
-                                    <option value="Lurín">Lurín</option>
-                                    <option value="Magdalena del Mar">Magdalena del Mar</option>
-                                    <option value="Miraflores">Miraflores</option>
-                                    <option value="Pachacámac">Pachacámac</option>
-                                    <option value="Pucusana">Pucusana</option>
-                                    <option value="Pueblo Libre">Pueblo Libre</option>
-                                    <option value="Puente Piedra">Puente Piedra</option>
-                                    <option value="Punta Hermosa">Punta Hermosa</option>
-                                    <option value="Punta Negra">Punta Negra</option>
-                                    <option value="Rímac">Rímac</option>
-                                    <option value="San Bartolo">San Bartolo</option>
-                                    <option value="San Borja">San Borja</option>
-                                    <option value="San Isidro">San Isidro</option>
-                                    <option value="San Juan de Lurigancho">San Juan de Lurigancho</option>
-                                    <option value="San Juan de Miraflores">San Juan de Miraflores</option>
-                                    <option value="San Luis">San Luis</option>
-                                    <option value="San Martín de Porres">San Martín de Porres</option>
-                                    <option value="San Miguel">San Miguel</option>
-                                    <option value="Santa Anita">Santa Anita</option>
-                                    <option value="Santa María del Mar">Santa María del Mar</option>
-                                    <option value="Santa Rosa">Santa Rosa</option>
-                                    <option value="Santiago de Surco">Santiago de Surco</option>
-                                    <option value="Surquillo">Surquillo</option>
-                                    <option value="Villa El Salvador">Villa El Salvador</option>
-                                    <option value="Villa María del Triunfo">Villa María del Triunfo</option>
+                                    <optgroup label="Provincia de Lima (43)">
+                                        <option value="Ancón">Ancón</option>
+                                        <option value="Ate">Ate</option>
+                                        <option value="Barranco">Barranco</option>
+                                        <option value="Breña">Breña</option>
+                                        <option value="Carabayllo">Carabayllo</option>
+                                        <option value="Chaclacayo">Chaclacayo</option>
+                                        <option value="Chorrillos">Chorrillos</option>
+                                        <option value="Cieneguilla">Cieneguilla</option>
+                                        <option value="Comas">Comas</option>
+                                        <option value="El Agustino">El Agustino</option>
+                                        <option value="Independencia">Independencia</option>
+                                        <option value="Jesús María">Jesús María</option>
+                                        <option value="La Molina">La Molina</option>
+                                        <option value="La Victoria">La Victoria</option>
+                                        <option value="Lima">Lima</option>
+                                        <option value="Lince">Lince</option>
+                                        <option value="Los Olivos">Los Olivos</option>
+                                        <option value="Lurigancho">Lurigancho</option>
+                                        <option value="Lurín">Lurín</option>
+                                        <option value="Magdalena del Mar">Magdalena del Mar</option>
+                                        <option value="Miraflores">Miraflores</option>
+                                        <option value="Pachacámac">Pachacámac</option>
+                                        <option value="Pucusana">Pucusana</option>
+                                        <option value="Pueblo Libre">Pueblo Libre</option>
+                                        <option value="Puente Piedra">Puente Piedra</option>
+                                        <option value="Punta Hermosa">Punta Hermosa</option>
+                                        <option value="Punta Negra">Punta Negra</option>
+                                        <option value="Rímac">Rímac</option>
+                                        <option value="San Bartolo">San Bartolo</option>
+                                        <option value="San Borja">San Borja</option>
+                                        <option value="San Isidro">San Isidro</option>
+                                        <option value="San Juan de Lurigancho">San Juan de Lurigancho</option>
+                                        <option value="San Juan de Miraflores">San Juan de Miraflores</option>
+                                        <option value="San Luis">San Luis</option>
+                                        <option value="San Martín de Porres">San Martín de Porres</option>
+                                        <option value="San Miguel">San Miguel</option>
+                                        <option value="Santa Anita">Santa Anita</option>
+                                        <option value="Santa María del Mar">Santa María del Mar</option>
+                                        <option value="Santa Rosa">Santa Rosa</option>
+                                        <option value="Santiago de Surco">Santiago de Surco</option>
+                                        <option value="Surquillo">Surquillo</option>
+                                        <option value="Villa El Salvador">Villa El Salvador</option>
+                                        <option value="Villa María del Triunfo">Villa María del Triunfo</option>
+                                    </optgroup>
+                                    <optgroup label="Provincia Constitucional del Callao (7)">
+                                        <option value="Callao">Callao</option>
+                                        <option value="Bellavista">Bellavista</option>
+                                        <option value="Carmen de la Legua Reynoso">Carmen de la Legua Reynoso</option>
+                                        <option value="La Perla">La Perla</option>
+                                        <option value="La Punta">La Punta</option>
+                                        <option value="Ventanilla">Ventanilla</option>
+                                        <option value="Mi Perú">Mi Perú</option>
+                                    </optgroup>
                                 </select>
                             </div>
 
@@ -260,6 +275,27 @@
     <!-- Turf.js para operaciones geométricas (point-in-polygon) -->
     <script src="https://unpkg.com/@turf/turf@6.5.0/turf.min.js"></script>
     <script src="{{ url_for('static', filename='js/crear_emergencia.js') }}"></script>
+    <script>
+        (function(){
+            const btn = document.getElementById('user-menu-button');
+            const menu = document.getElementById('user-menu');
+            if(!btn || !menu) return;
+            function closeMenu(){
+                menu.classList.add('hidden');
+                btn.setAttribute('aria-expanded','false');
+            }
+            function toggleMenu(){
+                const open = menu.classList.contains('hidden');
+                if(open){
+                    menu.classList.remove('hidden');
+                    btn.setAttribute('aria-expanded','true');
+                } else { closeMenu(); }
+            }
+            btn.addEventListener('click', (e)=>{ e.stopPropagation(); toggleMenu(); });
+            document.addEventListener('click', (e)=>{ if(!menu.contains(e.target) && e.target !== btn){ closeMenu(); }});
+            document.addEventListener('keydown', (e)=>{ if(e.key === 'Escape') closeMenu(); });
+        })();
+    </script>
 </body>
 
 </html>

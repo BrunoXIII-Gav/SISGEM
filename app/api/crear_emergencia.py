@@ -4,6 +4,8 @@ from sqlalchemy.exc import SQLAlchemyError
 from app.api.auth import login_required
 from app.repositories.db import get_db
 from app.models.models import Emergencia
+from app.constants.geo import ALL_DISTRICTS, LIMA_CALLAO_BBOX
+from app.constants.status import ESTADOS_CIERRE, normalizar_estado
 
 emergencia_bp = Blueprint("emergencia", __name__)
 
@@ -20,29 +22,12 @@ def api_crear_emergencia():
 
     - fecha_reporte: ahora (UTC)
     - fecha_cierre: ahora si el estado implica cierre; en caso contrario, NULL
+    - Estados válidos esperados en BD: 'ABIERTO', 'EN CURSO', 'CERRADO'
     """
     data = request.get_json(silent=True) or {}
 
-    # Restricciones de ámbito: solo Lima Metropolitana
-    LIMA_DISTRITOS = {
-        "Ancón", "Ate", "Barranco", "Breña", "Carabayllo", "Chaclacayo", "Chorrillos",
-        "Cieneguilla", "Comas", "El Agustino", "Independencia", "Jesús María", "La Molina",
-        "La Victoria", "Lima", "Lince", "Los Olivos", "Lurigancho", "Lurín", "Magdalena del Mar",
-        "Miraflores", "Pachacámac", "Pucusana", "Pueblo Libre", "Puente Piedra", "Punta Hermosa",
-        "Punta Negra", "Rímac", "San Bartolo", "San Borja", "San Isidro",
-        "San Juan de Lurigancho", "San Juan de Miraflores", "San Luis",
-        "San Martín de Porres", "San Miguel", "Santa Anita", "Santa María del Mar",
-        "Santa Rosa", "Santiago de Surco", "Surquillo", "Villa El Salvador",
-        "Villa María del Triunfo"
-    }
-    # Caja aproximada que contiene Lima Metropolitana (provincia de Lima)
-    # lat in [-12.5, -11.6], lon in [-77.25, -76.6]
-    LIMA_BBOX = {
-        "south": -12.50,
-        "west": -77.25,
-        "north": -11.60,
-        "east": -76.60,
-    }
+    # Uso de listas y bounding box unificados (incluye Callao)
+    LIMA_BBOX = LIMA_CALLAO_BBOX
 
     # Extraer y normalizar payload
     nombre = (data.get("nombre") or data.get("Nombre_emergencia") or "").strip()
@@ -75,7 +60,7 @@ def api_crear_emergencia():
             "ok": False,
             "error": "Debe seleccionar un distrito de Lima Metropolitana."
         }), 400
-    if distrito not in LIMA_DISTRITOS:
+    if distrito not in ALL_DISTRICTS:
         return jsonify({
             "ok": False,
             "error": "Solo se permiten distritos de Lima Metropolitana."
@@ -91,27 +76,9 @@ def api_crear_emergencia():
 
     # Timestamps automáticos
     # Normalización de estado para coincidir con ENUM de la BD ('ABIERTA','EN PROGRESO','ATENDIDA')
-    estado_map = {
-        "ACTIVA": "ABIERTA",
-        "ABIERTA": "ABIERTA",
-        "ABIERTO": "ABIERTA",
-        "MONITOREO": "EN PROGRESO",
-        "EN PROGRESO": "EN PROGRESO",
-        "PROGRESO": "EN PROGRESO",
-        "EN CURSO": "EN PROGRESO",
-        "CURSO": "EN PROGRESO",
-        "CONTROLADA": "ATENDIDA",  # si el front envía 'controlada', guardar como 'ATENDIDA'
-        "ATENDIDA": "ATENDIDA",
-        "ATENDIDO": "ATENDIDA",
-        "CERRADA": "ATENDIDA",
-        "CERRADO": "ATENDIDA",
-    }
-    estado_upper = (estado or "").strip().upper()
-    estado_norm = estado_map.get(estado_upper, estado.upper() if estado else None)
-
-    now_utc = datetime.utcnow()  # naive para compatibilidad amplia con TIMESTAMP
-    estados_cierre = {"ATENDIDA"}
-    fecha_cierre = now_utc if (estado_norm in estados_cierre) else None
+    estado_norm = normalizar_estado(estado)
+    now_utc = datetime.utcnow()
+    fecha_cierre = now_utc if (estado_norm in ESTADOS_CIERRE) else None
 
     try:
         with next(get_db()) as db:
@@ -148,3 +115,27 @@ def identificar_recursos(emergencia_id: int):
     # Vista que carga la plantilla de identificación de recursos/peligros
     # Pasamos el ID por si la plantilla/JS necesita referenciar la emergencia creada
     return render_template("Identificar recursos.html", emergencia_id=emergencia_id)
+
+
+@emergencia_bp.route("/emergencias/<int:emergencia_id>")
+@login_required
+def detalle_emergencia(emergencia_id: int):
+    """Detalle de una emergencia específica."""
+    with next(get_db()) as db:
+        e = db.get(Emergencia, emergencia_id)
+        if not e:
+            # Podríamos devolver 404 y una página amigable; simple redirect por ahora
+            return render_template("reporte.html", emergencia=None), 404
+
+        # Preparar valores de presentación
+        from app.constants.status import ESTADO_DISPLAY, ESTADO_STYLES, estado_display as _disp
+        estado_txt = _disp(e.estado) or (e.estado or "Sin estado")
+        estilos = ESTADO_STYLES.get(e.estado or "", ("bg-gray-100 text-gray-700", "bg-gray-500"))
+
+        ctx = {
+            "emergencia": e,
+            "estado_display": estado_txt,
+            "estado_badge_classes": estilos[0],
+            "estado_dot_class": estilos[1],
+        }
+        return render_template("reporte.html", **ctx)

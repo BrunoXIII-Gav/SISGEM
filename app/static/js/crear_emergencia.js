@@ -11,8 +11,9 @@
     const defaultCenter = [-12.0464, -77.0428]; // Lima
     const defaultZoom = 11.5;
 
-    // BBOX aproximado de Lima Metropolitana (provincia de Lima)
-    const LIMA_BBOX = { south: -12.50, west: -77.25, north: -11.60, east: -76.60 };
+    // BBOX ampliado de Lima Metropolitana (Provincia de Lima + Callao)
+    // Ampliado para asegurar que toda el área metropolitana quede visible
+    const LIMA_BBOX = { south: -12.60, west: -77.35, north: -11.50, east: -76.25 };
 
     function isInsideLimaBBox(lat, lon) {
         return lat >= LIMA_BBOX.south && lat <= LIMA_BBOX.north && lon >= LIMA_BBOX.west && lon <= LIMA_BBOX.east;
@@ -37,8 +38,19 @@
         const mapEl = document.getElementById('map');
         if (!mapEl) return;
 
-        // Inicializar el mapa
-        map = L.map(mapEl).setView(defaultCenter, defaultZoom);
+        // Inicializar el mapa usando maxBounds para cubrir toda Lima Metropolitana y evitar que se salga demasiado
+        const southWest = L.latLng(LIMA_BBOX.south, LIMA_BBOX.west);
+        const northEast = L.latLng(LIMA_BBOX.north, LIMA_BBOX.east);
+        const limaBounds = L.latLngBounds(southWest, northEast);
+        map = L.map(mapEl, {
+            maxBounds: limaBounds,
+            maxBoundsViscosity: 0.7,
+            // Zoom mínimo y máximo razonables para la zona
+            minZoom: 9,
+            zoomSnap: 0.5
+        });
+        // Ajustar inmediatamente la vista a todo el bounding box mientras llega el polígono detallado
+        map.fitBounds(limaBounds);
 
         // Capa base (OSM)
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -46,25 +58,38 @@
             attribution: '&copy; OpenStreetMap'
         }).addTo(map);
 
-        // Cargar límites de Lima Metropolitana (provincia) y dibujarlos
-        fetch(getNominatimSearchUrl({ q: 'Provincia de Lima, Perú', polygon_geojson: '1', polygon_threshold: '0.001', limit: '1' }))
-            .then(r => r.json())
-            .then(data => {
-                if (Array.isArray(data) && data.length && data[0].geojson) {
-                    limaGeo = data[0].geojson;
-                    limaLayer = L.geoJSON(limaGeo, {
-                        style: {
-                            color: '#1976D2',
-                            weight: 1.5,
-                            opacity: 0.8,
-                            fillColor: '#90CAF9',
-                            fillOpacity: 0.10
-                        }
-                    }).addTo(map);
-                    try { map.fitBounds(limaLayer.getBounds()); } catch(e){}
-                }
-            })
-            .catch(err => console.warn('No se pudo cargar el polígono de Lima', err));
+        // Cargar límites de Lima Metropolitana (Provincia de Lima + Callao) y dibujarlos
+        Promise.all([
+            fetch(getNominatimSearchUrl({ q: 'Provincia de Lima, Perú', polygon_geojson: '1', polygon_threshold: '0.001', limit: '1' })).then(r => r.json()).catch(() => []),
+            fetch(getNominatimSearchUrl({ q: 'Provincia Constitucional del Callao, Perú', polygon_geojson: '1', polygon_threshold: '0.001', limit: '1' })).then(r => r.json()).catch(() => [])
+        ])
+        .then(([limaData, callaoData]) => {
+            const features = [];
+            if (Array.isArray(limaData) && limaData.length && limaData[0].geojson) {
+                const g = limaData[0].geojson;
+                if (g.type === 'FeatureCollection') features.push(...g.features);
+                else features.push({ type: 'Feature', geometry: g });
+            }
+            if (Array.isArray(callaoData) && callaoData.length && callaoData[0].geojson) {
+                const g = callaoData[0].geojson;
+                if (g.type === 'FeatureCollection') features.push(...g.features);
+                else features.push({ type: 'Feature', geometry: g });
+            }
+            if (features.length) {
+                limaGeo = { type: 'FeatureCollection', features };
+                limaLayer = L.geoJSON(limaGeo, {
+                    style: {
+                        color: '#1976D2',
+                        weight: 1.5,
+                        opacity: 0.8,
+                        fillColor: '#90CAF9',
+                        fillOpacity: 0.10
+                    }
+                }).addTo(map);
+                try { map.fitBounds(limaLayer.getBounds(), { padding: [24, 24] }); } catch(e){}
+            }
+        })
+        .catch(err => console.warn('No se pudo cargar el polígono de Lima/Callao', err));
 
         // Evento de clic en el mapa para colocar/mover el marcador
         map.on('click', function(e) {
@@ -434,6 +459,8 @@
     function setupDistritoHandler() {
         const distritoSelect = document.getElementById('distrito-lima');
         if (!distritoSelect) return;
+        // Conjunto de distritos que pertenecen a la Provincia Constitucional del Callao
+        const CALLAO_DISTRICTS = new Set(['Callao','Bellavista','Carmen de la Legua Reynoso','La Perla','La Punta','Ventanilla','Mi Perú']);
         distritoSelect.addEventListener('change', function() {
             const distrito = distritoSelect.value;
             if (!distrito) return;
@@ -443,8 +470,10 @@
                 distritoLayer = null;
             }
 
-            // Geocodificar el distrito en Lima, Perú y solicitar la geometría (GeoJSON)
-            const query = `${distrito}, Lima, Perú`;
+            // Determinar provincia (Lima o Callao)
+            const provincia = CALLAO_DISTRICTS.has(distrito) ? 'Callao' : 'Lima';
+            // Geocodificar el distrito y solicitar la geometría (GeoJSON)
+            const query = `${distrito}, ${provincia}, Perú`;
             // Si ya está en cache, úsalo
             if (distritoGeoCache[distrito]) {
                 try {

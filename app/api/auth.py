@@ -2,8 +2,12 @@
 from flask import Blueprint, render_template, request, redirect, url_for, session, g, flash, request as rq
 from functools import wraps
 from sqlalchemy.orm import Session
+from sqlalchemy import or_, func
 from app.repositories.db import get_db
 from app.models.models import UsuarioMunicipal, Emergencia
+from app.constants.status import estado_display, ESTADO_STYLES, ESTADO_DISPLAY
+from app.constants.geo import ALL_DISTRICTS
+from app.constants.types import EMERGENCY_TYPES
 
 auth_bp = Blueprint("auth", __name__)
 
@@ -62,51 +66,108 @@ def logout():
 @auth_bp.route("/inicio")
 @login_required
 def inicio():
+    # Parámetros de filtro
+    q = (rq.args.get('q') or '').strip()
+    distrito = (rq.args.get('distrito') or '').strip()
+    estado = (rq.args.get('estado') or '').strip()
+    tipo = (rq.args.get('tipo') or '').strip()
+    desde = (rq.args.get('desde') or '').strip()
+    hasta = (rq.args.get('hasta') or '').strip()
+    sort = (rq.args.get('sort') or '').strip()  # id|nombre|distrito|estado|fecha
+    direction = (rq.args.get('dir') or 'desc').lower()  # asc|desc
+
     with next(get_db()) as db:
-        emergencias = (
-            db.query(Emergencia)
-              .order_by(Emergencia.id_emergencias.desc())
-              .all()
-        )
+        # Construir consulta con filtros
+        query = db.query(Emergencia)
 
-    estado_map = {
-        "ABIERTO": ("bg-red-100 text-red-600", "bg-red-600"),
-        "ABIERTA": ("bg-red-100 text-red-600", "bg-red-600"),
-        "EN PROGRESO": ("bg-yellow-100 text-yellow-700", "bg-yellow-500"),
-        "ATENDIDO": ("bg-green-100 text-green-700", "bg-green-600"),
-        "ATENDIDA": ("bg-green-100 text-green-700", "bg-green-600"),
-    }
+        if q:
+            if q.isdigit():
+                query = query.filter(or_(Emergencia.id_emergencias == int(q),
+                                         Emergencia.Nombre_emergencia.ilike(f"%{q}%")))
+            else:
+                query = query.filter(Emergencia.Nombre_emergencia.ilike(f"%{q}%"))
 
-    # Mapeo solo de presentación (UI): cómo mostrar el estado al usuario
-    estado_display_map = {
-        "EN PROGRESO": "EN CURSO",
-        "ATENDIDA": "CERRADA",
-        "ABIERTA": "ABIERTA",
-        "ABIERTO": "ABIERTA",
-        "ATENDIDO": "CERRADA",
-    }
+        if distrito:
+            query = query.filter(Emergencia.distrito == distrito)
 
-    def es_abierta(s):
-        return bool(s) and s.upper().startswith("ABIER")
+        if estado:
+            query = query.filter(Emergencia.estado == estado)
+
+        if tipo:
+            query = query.filter(Emergencia.tipo == tipo)
+
+        # Rango de fechas por fecha_reporte
+        if desde:
+            try:
+                # interpretar como fecha (YYYY-MM-DD). Comparar desde 00:00:00
+                query = query.filter(func.date(Emergencia.fecha_reporte) >= desde)
+            except Exception:
+                pass
+        if hasta:
+            try:
+                query = query.filter(func.date(Emergencia.fecha_reporte) <= hasta)
+            except Exception:
+                pass
+
+        # Ordenamiento
+        sort_map = {
+            'id': Emergencia.id_emergencias,
+            'nombre': Emergencia.Nombre_emergencia,
+            'distrito': Emergencia.distrito,
+            'estado': Emergencia.estado,
+            'fecha': Emergencia.fecha_reporte,
+        }
+        col = sort_map.get(sort or 'id', Emergencia.id_emergencias)
+        if direction == 'asc':
+            query = query.order_by(col.asc())
+        else:
+            query = query.order_by(col.desc())
+
+        emergencias = query.all()
+
+        # Opciones para selects (no filtradas) 
+    # Opciones fijas: Distritos de Lima + Callao y tipos predefinidos
+    distritos_opts = sorted(ALL_DISTRICTS)
+    tipos_opts = EMERGENCY_TYPES  # dict codigo -> etiqueta
+
+    # Se reutilizan estilos y display centralizados
+    estado_map = ESTADO_STYLES
 
     markers = []
     for e in emergencias:
-        if es_abierta(e.estado) and e.lat is not None and e.lon is not None:
+        # Mostrar en el mapa todas las emergencias que tengan coordenadas
+        if e.lat is not None and e.lon is not None:
             try:
                 markers.append({
                     "id": e.id_emergencias,
                     "nombre": e.Nombre_emergencia,
                     "distrito": e.distrito or "",
                     # Mostrar etiqueta amigable en el popup del mapa
-                    "estado": estado_display_map.get(e.estado or "", e.estado or ""),
+                    "estado": estado_display(e.estado) or e.estado,
                     "lat": float(e.lat),
                     "lon": float(e.lon),
                 })
             except Exception:
                 pass
 
-    return render_template("inicio.html",
-                           emergencias=emergencias,
-                           estado_map=estado_map,
-                           estado_display_map=estado_display_map,
-                           markers=markers)
+    return render_template(
+        "inicio.html",
+        emergencias=emergencias,
+        estado_map=estado_map,
+        estado_display_map=ESTADO_DISPLAY,
+        markers=markers,
+        filtros={
+            "q": q,
+            "distrito": distrito,
+            "estado": estado,
+            "tipo": tipo,
+            "desde": desde,
+            "hasta": hasta,
+            "sort": sort or 'id',
+            "dir": direction,
+        },
+        distritos_opts=distritos_opts,
+        estados_opts=list(ESTADO_DISPLAY.keys()),
+        tipos_opts=tipos_opts,
+        total=len(emergencias)
+    )
