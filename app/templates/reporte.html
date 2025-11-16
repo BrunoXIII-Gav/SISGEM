@@ -9,15 +9,27 @@
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;700;800;900&amp;display=swap"
     rel="stylesheet" />
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+  <!-- Leaflet CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+  <!-- Leaflet JS -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+    integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
   <script id="tailwind-config">
     tailwind.config = {
       darkMode: "class",
       theme: {
         extend: {
           colors: {
-            "primary": "#ef5d5d",
-            "background-light": "#f8f6f6",
-            "background-dark": "#211111",
+            "primary": "#005A9C",
+            "secondary": "#2E7D32",
+            "accent": "#FF8F00",
+            "background-light": "#F4F6F8",
+            "background-dark": "#212529",
+            "text-light-primary": "#212529",
+            "text-light-secondary": "#6C757D",
+            "text-dark-primary": "#F4F6F8",
+            "text-dark-secondary": "#6C757D",
           },
           fontFamily: {
             "display": ["Manrope", "sans-serif"]
@@ -43,236 +55,330 @@
 <body class="bg-background-light dark:bg-background-dark font-display">
   <div class="relative flex min-h-screen w-full flex-col">
     <header
-      class="sticky top-0 z-10 w-full border-b border-[#f3e7e7] dark:border-background-dark/50 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-sm">
-      <div class="mx-auto flex max-w-7xl items-center justify-between whitespace-nowrap px-4 sm:px-6 lg:px-8 py-3">
-        <div class="flex items-center gap-4 text-[#1b0e0e] dark:text-white">
-          <div class="text-primary size-7">
-            <svg fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
-              <path
-                d="M39.5563 34.1455V13.8546C39.5563 15.708 36.8773 17.3437 32.7927 18.3189C30.2914 18.916 27.263 19.2655 24 19.2655C20.737 19.2655 17.7086 18.916 15.2073 18.3189C11.1227 17.3437 8.44365 15.708 8.44365 13.8546V34.1455C8.44365 35.9988 11.1227 37.6346 15.2073 38.6098C17.7086 39.2069 20.737 39.5564 24 39.5564C27.263 39.5564 30.2914 39.2069 32.7927 38.6098C36.8773 37.6346 39.5563 35.9988 39.5563 34.1455Z"
-                fill="currentColor"></path>
-              <path clip-rule="evenodd"
-                d="M10.4485 13.8519C10.4749 13.9271 10.6203 14.246 11.379 14.7361C12.298 15.3298 13.7492 15.9145 15.6717 16.3735C18.0007 16.9296 20.8712 17.2655 24 17.2655C27.1288 17.2655 29.9993 16.9296 32.3283 16.3735C34.2508 15.9145 35.702 15.3298 36.621 14.7361C37.3796 14.246 37.5251 13.9271 37.5515 13.8519C37.5287 13.7876 37.4333 13.5973 37.0635 13.2931C36.5266 12.8516 35.6288 12.3647 34.343 11.9175C31.79 11.0295 28.1333 10.4437 24 10.4437C19.8667 10.4437 16.2099 11.0295 13.657 11.9175C12.3712 12.3647 11.4734 12.8516 10.9365 13.2931C10.5667 13.5973 10.4713 13.7876 10.4485 13.8519ZM37.5563 18.7877C36.3176 19.3925 34.8502 19.8839 33.2571 20.2642C30.5836 20.9025 27.3973 21.2655 24 21.2655C20.6027 21.2655 17.4164 20.9025 14.7429 20.2642C13.1498 19.8839 11.6824 19.3925 10.4436 18.7877V34.1275C10.4515 34.1545 10.5427 34.4867 11.379 35.027C12.298 35.6207 13.7492 36.2054 15.6717 36.6644C18.0007 37.2205 20.8712 37.5564 24 37.5564C27.1288 37.5564 29.9993 37.2205 32.3283 36.6644C34.2508 36.2054 35.702 35.6207 36.621 35.027C37.4573 34.4867 37.5485 34.1546 37.5563 34.1275V18.7877ZM41.5563 13.8546V34.1455C41.5563 36.1078 40.158 37.5042 38.7915 38.3869C37.3498 39.3182 35.4192 40.0389 33.2571 40.5551C30.5836 41.1934 27.3973 41.5564 24 41.5564C20.6027 41.5564 17.4164 41.1934 14.7429 40.5551C12.5808 40.0389 10.6502 39.3182 9.20848 38.3869C7.84205 37.5042 6.44365 36.1078 6.44365 34.1455L6.44365 13.8546C6.44365 12.2684 7.37223 11.0454 8.39581 10.2036C9.43325 9.3505 10.8137 8.67141 12.343 8.13948C15.4203 7.06909 19.5418 6.44366 24 6.44366C28.4582 6.44366 32.5797 7.06909 35.657 8.13948C37.1863 8.67141 38.5667 9.3505 39.6042 10.2036C40.6278 11.0454 41.5563 12.2684 41.5563 13.8546Z"
-                fill="currentColor" fill-rule="evenodd"></path>
-            </svg>
+      class="sticky top-0 z-50 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-sm border-b border-gray-200 dark:border-gray-700">
+      <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-between h-16">
+          <div class="flex items-center gap-4 text-text-light-primary dark:text-text-dark-primary">
+            <span class="material-symbols-outlined text-primary text-3xl">emergency_home</span>
+            <h2 class="text-lg font-bold">SISGEM</h2>
           </div>
-          <h2 class="text-[#1b0e0e] dark:text-white text-lg font-bold leading-tight tracking-[-0.015em]">SISGEM</h2>
-        </div>
-        <nav class="flex-1">
-          <div class="flex items-center justify-center gap-2 sm:gap-4">
-            <button
-              class="flex max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 text-[#1b0e0e] dark:text-white text-sm font-bold leading-normal tracking-[0.015em] hover:bg-[#f3e7e7] dark:hover:bg-white/10 transition-colors">Inicio</button>
-            <button
-              class="flex max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 text-[#1b0e0e] dark:text-white text-sm font-bold leading-normal tracking-[0.015em] hover:bg-[#f3e7e7] dark:hover:bg-white/10 transition-colors">Registro</button>
-            <button
-              class="flex max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-primary text-white text-sm font-bold leading-normal tracking-[0.015em]">Crear
-              Emergencia</button>
-          </div>
-        </nav>
-        <div class="flex items-center justify-end gap-2 sm:gap-4 relative">
-          <button id="user-menu-button" aria-haspopup="true" aria-expanded="false" class="w-10 h-10 rounded-full bg-[#f3e7e7] dark:bg-white/10 flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-primary">
-            <span class="material-symbols-outlined text-[#1b0e0e] dark:text-white">person</span>
-          </button>
-          <!-- Dropdown -->
-          <div id="user-menu" class="hidden absolute right-0 top-12 z-20 w-44 rounded-lg border border-[#f3e7e7] dark:border-white/10 bg-background-light dark:bg-background-dark shadow-lg py-1">
-            <div class="px-4 py-2 text-xs uppercase tracking-wide text-[#994d4d] dark:text-primary/70">Cuenta</div>
-            <a href="{{ url_for('auth.logout') }}" class="flex items-center gap-2 px-4 py-2 text-sm text-[#1b0e0e] dark:text-white hover:bg-[#f3e7e7] dark:hover:bg-white/10">
-              <span class="material-symbols-outlined text-base">logout</span>
-              Salir
-            </a>
+          <nav class="hidden md:flex flex-1 justify-center items-center gap-8">
+            <a class="text-sm font-medium text-text-light-secondary dark:text-text-dark-secondary hover:text-primary dark:hover:text-primary transition-colors"
+              href="/">Inicio</a>
+            <a class="text-sm font-medium text-text-light-secondary dark:text-text-dark-secondary hover:text-primary dark:hover:text-primary transition-colors"
+              href="#">Registro</a>
+            <a class="text-sm font-bold text-primary border-b-2 border-primary" href="#">Reporte</a>
+          </nav>
+          <div class="flex items-center relative">
+            <button id="user-menu-button" aria-haspopup="true" aria-expanded="false" class="w-10 h-10 rounded-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-primary">
+              <span class="material-symbols-outlined text-text-light-primary dark:text-text-dark-primary">person</span>
+            </button>
+            <!-- Dropdown -->
+            <div id="user-menu" class="hidden absolute right-0 top-12 z-20 w-44 rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 shadow-lg py-1">
+              <div class="px-4 py-2 text-xs uppercase tracking-wide text-gray-500 dark:text-gray-400">Cuenta</div>
+              <a href="{{ url_for('auth.logout') }}" class="flex items-center gap-2 px-4 py-2 text-sm text-gray-800 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">
+                <span class="material-symbols-outlined text-base">logout</span>
+                Salir
+              </a>
+            </div>
           </div>
         </div>
       </div>
     </header>
-    <main class="flex-1">
-      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8">
-        <div class="flex flex-wrap items-start justify-between gap-4 mb-8">
-          {% if emergencia %}
-          <h1 class="text-[#1b0e0e] dark:text-white text-3xl md:text-4xl font-black leading-tight tracking-[-0.033em]">
+    <main class="flex-grow container mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <div class="flex flex-wrap items-start justify-between gap-4 mb-8">
+        {% if emergencia %}
+        <div>
+          <h1 class="text-text-light-primary dark:text-text-dark-primary text-4xl font-black tracking-tight mb-2">
             {{ emergencia.Nombre_emergencia }}</h1>
-          {% else %}
-          <h1 class="text-[#1b0e0e] dark:text-white text-3xl md:text-4xl font-black leading-tight tracking-[-0.033em]">
-            Emergencia no encontrada</h1>
-          {% endif %}
-          <div class="flex gap-3">
-            <button
-              class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-[#f3e7e7] dark:bg-white/10 text-[#1b0e0e] dark:text-white text-sm font-bold leading-normal tracking-[0.015em]">
-              <span class="truncate">Volver</span>
-            </button>
-            <button
-              class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-[#f3e7e7] dark:bg-white/10 text-[#1b0e0e] dark:text-white gap-2 pl-3 text-sm font-bold leading-normal tracking-[0.015em]">
-              <span class="material-symbols-outlined text-xl">print</span>
-              <span class="truncate">Exportar</span>
-            </button>
-            <button
-              class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-primary text-white gap-2 pl-3 text-sm font-bold leading-normal tracking-[0.015em]">
-              <span class="material-symbols-outlined text-xl">edit</span>
-              <span class="truncate">Editar</span>
-            </button>
+          <p class="text-text-light-secondary dark:text-text-dark-secondary">Reporte completo de emergencia</p>
+        </div>
+        {% else %}
+        <h1 class="text-text-light-primary dark:text-text-dark-primary text-4xl font-black tracking-tight">
+          Emergencia no encontrada</h1>
+        {% endif %}
+        <div class="flex gap-3">
+          <a href="{{ url_for('emergencia.crear_emergencia') }}"
+            class="flex items-center gap-2 px-6 py-3 bg-gray-500 text-white font-semibold rounded-lg hover:bg-gray-600 transition-colors shadow">
+            <span class="material-symbols-outlined">arrow_back</span>
+            Volver
+          </a>
+          <button onclick="window.print()"
+            class="flex items-center gap-2 px-6 py-3 bg-white dark:bg-gray-700 border-2 border-gray-300 dark:border-gray-600 text-text-light-primary dark:text-text-dark-primary font-semibold rounded-lg hover:bg-gray-50 dark:hover:bg-gray-600 transition-colors shadow">
+            <span class="material-symbols-outlined">print</span>
+            Imprimir
+          </button>
+        </div>
+      </div>
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <!-- Columna Principal -->
+        <div class="lg:col-span-2 flex flex-col gap-8">
+          <!-- Detalles de la Emergencia -->
+          <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm p-6">
+            <h2 class="text-text-light-primary dark:text-text-dark-primary text-2xl font-bold mb-6">
+              Detalles de la Emergencia</h2>
+            <div class="grid grid-cols-[140px_1fr] gap-x-6 gap-y-4 text-sm">
+              <p class="text-text-light-secondary dark:text-text-dark-secondary font-medium">ID Emergencia</p>
+              <p class="text-text-light-primary dark:text-text-dark-primary">{{ emergencia.id_emergencias if emergencia else '-' }}</p>
+              
+              <p class="text-text-light-secondary dark:text-text-dark-secondary font-medium">Estado Actual</p>
+              <p class="text-text-light-primary dark:text-text-dark-primary">
+                {% if emergencia %}
+                <span class="inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-medium {{ estado_badge_classes }}">
+                  <span class="size-1.5 rounded-full {{ estado_dot_class }}"></span>
+                  {{ estado_display }}
+                </span>
+                {% else %}-{% endif %}
+              </p>
+              
+              <p class="text-text-light-secondary dark:text-text-dark-secondary font-medium">Fecha Reporte</p>
+              <p class="text-text-light-primary dark:text-text-dark-primary">
+                {% if emergencia and emergencia.fecha_reporte %}{{ emergencia.fecha_reporte.strftime('%d/%m/%Y %H:%M') }}{% else %}-{% endif %}
+              </p>
+              
+              <p class="text-text-light-secondary dark:text-text-dark-secondary font-medium">Fecha Cierre</p>
+              <p class="text-text-light-primary dark:text-text-dark-primary">
+                {% if emergencia and emergencia.fecha_cierre %}{{ emergencia.fecha_cierre.strftime('%d/%m/%Y %H:%M') }}{% else %}-{% endif %}
+              </p>
+              
+              <p class="text-text-light-secondary dark:text-text-dark-secondary font-medium">Tipo</p>
+              <p class="text-text-light-primary dark:text-text-dark-primary">{{ emergencia.tipo or '-' if emergencia else '-' }}</p>
+              
+              <p class="text-text-light-secondary dark:text-text-dark-secondary font-medium">Distrito</p>
+              <p class="text-text-light-primary dark:text-text-dark-primary font-semibold">{{ emergencia.distrito or '-' if emergencia else '-' }}</p>
+              
+              <p class="text-text-light-secondary dark:text-text-dark-secondary font-medium">Dirección</p>
+              <p class="text-text-light-primary dark:text-text-dark-primary">{{ emergencia.direccion or '-' if emergencia else '-' }}</p>
+              
+              <p class="text-text-light-secondary dark:text-text-dark-secondary font-medium">Coordenadas</p>
+              <p class="text-text-light-primary dark:text-text-dark-primary font-mono text-xs">
+                {% if emergencia and emergencia.lat and emergencia.lon %}{{ emergencia.lat }}, {{ emergencia.lon }}{% else %}-{% endif %}
+              </p>
+            </div>
+            
+            <hr class="border-t border-gray-200 dark:border-gray-700 my-6" />
+            
+            <div>
+              <p class="text-text-light-secondary dark:text-text-dark-secondary font-medium text-sm mb-2">Descripción</p>
+              <p class="text-text-light-primary dark:text-text-dark-primary text-sm leading-relaxed">
+                {% if emergencia %}{{ emergencia.descripcion or 'Sin descripción registrada.' }}{% else %}No se encontró la emergencia solicitada.{% endif %}
+              </p>
+            </div>
+          </div>
+          <!-- Recursos Desplegados -->
+          <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm p-6">
+            <h2 class="text-text-light-primary dark:text-text-dark-primary text-2xl font-bold mb-6 flex items-center gap-2">
+              <span class="material-symbols-outlined text-secondary">local_fire_department</span>
+              Recursos Desplegados
+            </h2>
+            
+            {% if total_bomberos > 0 or total_hidrantes > 0 %}
+            <!-- Resumen de Recursos -->
+            <div class="grid grid-cols-2 gap-4 mb-6">
+              <div class="bg-green-50 dark:bg-green-900/20 border-2 border-green-200 dark:border-green-700 rounded-lg p-4">
+                <div class="flex items-center gap-3">
+                  <div class="w-12 h-12 rounded-full bg-secondary/20 flex items-center justify-center">
+                    <span class="material-symbols-outlined text-secondary text-2xl">local_fire_department</span>
+                  </div>
+                  <div>
+                    <p class="text-2xl font-bold text-secondary">{{ total_bomberos }}</p>
+                    <p class="text-sm text-text-light-secondary dark:text-text-dark-secondary">Estaciones de Bomberos</p>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="bg-blue-50 dark:bg-blue-900/20 border-2 border-blue-200 dark:border-blue-700 rounded-lg p-4">
+                <div class="flex items-center gap-3">
+                  <div class="w-12 h-12 rounded-full bg-blue-500/20 flex items-center justify-center">
+                    <span class="material-symbols-outlined text-blue-600 text-2xl">water_drop</span>
+                  </div>
+                  <div>
+                    <p class="text-2xl font-bold text-blue-600">{{ total_hidrantes }}</p>
+                    <p class="text-sm text-text-light-secondary dark:text-text-dark-secondary">Hidrantes</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Lista de Bomberos -->
+            {% if recursos_bomberos %}
+            <div class="mb-6">
+              <h3 class="text-lg font-bold text-text-light-primary dark:text-text-dark-primary mb-3">
+                Estaciones de Bomberos ({{ recursos_bomberos|length }})
+              </h3>
+              <div class="space-y-2">
+                {% for bombero in recursos_bomberos %}
+                <div class="flex items-center gap-3 p-3 bg-gray-50 dark:bg-gray-700/50 rounded-lg border border-gray-200 dark:border-gray-600">
+                  <span class="material-symbols-outlined text-secondary">local_fire_department</span>
+                  <div class="flex-grow">
+                    <p class="font-semibold text-sm text-text-light-primary dark:text-text-dark-primary">{{ bombero.direccion }}</p>
+                    <p class="text-xs text-text-light-secondary dark:text-text-dark-secondary">ID: {{ bombero.entidad_recurso }}</p>
+                  </div>
+                  <span class="text-xs font-semibold text-secondary bg-green-100 dark:bg-green-900/30 px-2 py-1 rounded">
+                    {{ bombero.distancia_recurso }}
+                  </span>
+                </div>
+                {% endfor %}
+              </div>
+            </div>
+            {% endif %}
+            
+            <!-- Lista de Hidrantes -->
+            {% if recursos_hidrantes %}
+            <div>
+              <h3 class="text-lg font-bold text-text-light-primary dark:text-text-dark-primary mb-3">
+                Hidrantes ({{ recursos_hidrantes|length }})
+              </h3>
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                {% for hidrante in recursos_hidrantes %}
+                <div class="flex items-center gap-2 p-2 bg-gray-50 dark:bg-gray-700/50 rounded-lg border border-gray-200 dark:border-gray-600">
+                  <span class="material-symbols-outlined text-blue-600 text-sm">water_drop</span>
+                  <div class="flex-grow min-w-0">
+                    <p class="font-medium text-xs text-text-light-primary dark:text-text-dark-primary truncate">{{ hidrante.direccion }}</p>
+                  </div>
+                  <span class="text-xs font-semibold text-blue-600 bg-blue-100 dark:bg-blue-900/30 px-2 py-0.5 rounded">
+                    {{ hidrante.distancia_recurso }}
+                  </span>
+                </div>
+                {% endfor %}
+              </div>
+            </div>
+            {% endif %}
+            
+            {% else %}
+            <div class="text-center py-8">
+              <span class="material-symbols-outlined text-6xl text-gray-300 dark:text-gray-600">info</span>
+              <p class="mt-3 text-text-light-secondary dark:text-text-dark-secondary">No se han desplegado recursos para esta emergencia</p>
+            </div>
+            {% endif %}
+          </div>
+          <!-- Registro de Acciones -->
+          <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm p-6">
+            <h2 class="text-text-light-primary dark:text-text-dark-primary text-2xl font-bold mb-6 flex items-center gap-2">
+              <span class="material-symbols-outlined text-accent">assignment</span>
+              Registro de Acciones
+            </h2>
+            
+            {% if acciones %}
+            <div class="flow-root">
+              <ul class="-mb-8" role="list">
+                {% for accion in acciones %}
+                <li>
+                  <div class="relative pb-8 {% if not loop.last %}border-l-2 border-gray-200 dark:border-gray-700 ml-4{% endif %}">
+                    <div class="relative flex space-x-3 items-start">
+                      <div class="-ml-4">
+                        <span class="h-8 w-8 rounded-full bg-accent/20 flex items-center justify-center ring-4 ring-white dark:ring-gray-800">
+                          {% if accion.tipo_accion == 'DESPLIEGUE_RECURSOS' %}
+                          <span class="material-symbols-outlined text-accent text-lg">local_shipping</span>
+                          {% elif accion.tipo_accion == 'ACTUALIZACION' %}
+                          <span class="material-symbols-outlined text-accent text-lg">update</span>
+                          {% else %}
+                          <span class="material-symbols-outlined text-accent text-lg">note_add</span>
+                          {% endif %}
+                        </span>
+                      </div>
+                      <div class="min-w-0 flex-1 pt-1">
+                        <div class="mb-1">
+                          <span class="inline-block px-2 py-0.5 bg-accent/10 text-accent text-xs font-semibold rounded">
+                            {{ accion.tipo_accion }}
+                          </span>
+                        </div>
+                        <p class="text-sm text-text-light-primary dark:text-text-dark-primary whitespace-pre-wrap">{{ accion.descripcion_durante_emer }}</p>
+                        <p class="mt-2 text-xs text-text-light-secondary dark:text-text-dark-secondary flex items-center gap-1">
+                          <span class="material-symbols-outlined text-xs">schedule</span>
+                          {% if accion.fecha_hora %}{{ accion.fecha_hora.strftime('%d/%m/%Y %H:%M:%S') }}{% else %}-{% endif %}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+                {% endfor %}
+              </ul>
+            </div>
+            {% else %}
+            <div class="text-center py-8">
+              <span class="material-symbols-outlined text-6xl text-gray-300 dark:text-gray-600">event_note</span>
+              <p class="mt-3 text-text-light-secondary dark:text-text-dark-secondary">No se han registrado acciones para esta emergencia</p>
+            </div>
+            {% endif %}
           </div>
         </div>
-        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          <div class="lg:col-span-2 flex flex-col gap-8">
-            <div class="bg-white dark:bg-background-dark/50 rounded-xl shadow-sm overflow-hidden">
-              <div class="p-6">
-                <h2 class="text-[#1b0e0e] dark:text-white text-[22px] font-bold leading-tight tracking-[-0.015em] mb-4">
-                  Detalles de la Emergencia</h2>
-                <div class="grid grid-cols-[150px_1fr] gap-x-6 gap-y-5 text-sm">
-                  <p class="text-[#994d4d] dark:text-primary/70 font-normal">ID de Emergencia</p>
-                  <p class="text-[#1b0e0e] dark:text-white font-normal">{{ emergencia.id_emergencias if emergencia else '-' }}</p>
-                  <p class="text-[#994d4d] dark:text-primary/70 font-normal">Estado Actual</p>
-                  <p class="text-[#1b0e0e] dark:text-white font-normal">
-                    {% if emergencia %}
-                    <span
-                      class="inline-flex items-center gap-1.5 rounded-full px-2 py-0.5 text-xs font-medium {{ estado_badge_classes }}">
-                      <span class="size-1.5 rounded-full {{ estado_dot_class }}"></span>
-                      {{ estado_display }}
-                    </span>
-                    {% else %}-{% endif %}
-                  </p>
-                  <p class="text-[#994d4d] dark:text-primary/70 font-normal">Fecha Reporte</p>
-                  <p class="text-[#1b0e0e] dark:text-white font-normal">{% if emergencia and emergencia.fecha_reporte %}{{ emergencia.fecha_reporte }}{% else %}-{% endif %}</p>
-                  <p class="text-[#994d4d] dark:text-primary/70 font-normal">Fecha Cierre</p>
-                  <p class="text-[#1b0e0e] dark:text-white font-normal">{% if emergencia and emergencia.fecha_cierre %}{{ emergencia.fecha_cierre }}{% else %}-{% endif %}</p>
-                  <p class="text-[#994d4d] dark:text-primary/70 font-normal">Tipo</p>
-                  <p class="text-[#1b0e0e] dark:text-white font-normal">{{ emergencia.tipo or '-' if emergencia else '-' }}</p>
-                  <p class="text-[#994d4d] dark:text-primary/70 font-normal">Distrito</p>
-                  <p class="text-[#1b0e0e] dark:text-white font-normal">{{ emergencia.distrito or '-' if emergencia else '-' }}</p>
-                  <p class="text-[#994d4d] dark:text-primary/70 font-normal">Dirección</p>
-                  <p class="text-[#1b0e0e] dark:text-white font-normal">{{ emergencia.direccion or '-' if emergencia else '-' }}</p>
-                  <p class="text-[#994d4d] dark:text-primary/70 font-normal">Lat/Lon</p>
-                  <p class="text-[#1b0e0e] dark:text-white font-normal">{% if emergencia and emergencia.lat and emergencia.lon %}{{ emergencia.lat }}, {{ emergencia.lon }}{% else %}-{% endif %}</p>
-                </div>
-                <hr class="border-t border-t-[#e7d0d0] dark:border-t-white/10 my-6" />
-                <p class="text-[#994d4d] dark:text-primary/70 text-sm mb-2">Descripción</p>
-                <p class="text-[#1b0e0e] dark:text-white/90 text-sm leading-relaxed">
-                  {% if emergencia %}{{ emergencia.descripcion or 'Sin descripción registrada.' }}{% else %}No se encontró la emergencia solicitada.{% endif %}
-                </p>
+        <!-- Columna Lateral -->
+        <div class="lg:col-span-1 flex flex-col gap-8">
+          <!-- Mapa de Ubicación -->
+          <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm overflow-hidden">
+            <div class="p-6">
+              <h2 class="text-text-light-primary dark:text-text-dark-primary text-xl font-bold mb-4 flex items-center gap-2">
+                <span class="material-symbols-outlined">location_on</span>
+                Ubicación
+              </h2>
+            </div>
+            {% if emergencia and emergencia.lat and emergencia.lon %}
+            <div id="mapa-reporte" class="h-80 w-full"></div>
+            {% else %}
+            <div class="h-80 w-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center">
+              <div class="text-center">
+                <span class="material-symbols-outlined text-6xl text-gray-400 dark:text-gray-600">location_off</span>
+                <p class="text-text-light-secondary dark:text-text-dark-secondary text-sm mt-2">Sin coordenadas</p>
               </div>
             </div>
-            <div class="bg-white dark:bg-background-dark/50 rounded-xl shadow-sm overflow-hidden">
-              <div class="p-6">
-                <h2 class="text-[#1b0e0e] dark:text-white text-[22px] font-bold leading-tight tracking-[-0.015em] mb-4">
-                  Peligros Identificados</h2>
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <div
-                    class="flex items-start gap-3 p-4 rounded-lg bg-red-50 dark:bg-red-500/10 border border-red-200 dark:border-red-500/20">
-                    <span
-                      class="material-symbols-outlined text-red-600 dark:text-red-300 mt-0.5">local_fire_department</span>
-                    <div>
-                      <h3 class="font-bold text-red-800 dark:text-red-200">Viento Fuerte</h3>
-                      <p class="text-sm text-red-700 dark:text-red-300/80">Ráfagas de hasta 60 km/h que aceleran la
-                        propagación del fuego.</p>
-                    </div>
+            {% endif %}
+            <div class="p-6">
+              {% if emergencia %}
+              <div class="space-y-2">
+                <div class="flex items-start gap-2">
+                  <span class="material-symbols-outlined text-primary text-sm mt-0.5">home</span>
+                  <div>
+                    <p class="text-xs text-text-light-secondary dark:text-text-dark-secondary">Dirección</p>
+                    <p class="text-sm font-medium text-text-light-primary dark:text-text-dark-primary">
+                      {{ emergencia.direccion or 'Sin dirección registrada' }}
+                    </p>
                   </div>
-                  <div
-                    class="flex items-start gap-3 p-4 rounded-lg bg-yellow-50 dark:bg-yellow-500/10 border border-yellow-200 dark:border-yellow-500/20">
-                    <span class="material-symbols-outlined text-yellow-600 dark:text-yellow-300 mt-0.5">terrain</span>
-                    <div>
-                      <h3 class="font-bold text-yellow-800 dark:text-yellow-200">Terreno Escarpado</h3>
-                      <p class="text-sm text-yellow-700 dark:text-yellow-300/80">Dificulta el acceso de equipos
-                        terrestres y vehículos de extinción.</p>
-                    </div>
+                </div>
+                <div class="flex items-start gap-2">
+                  <span class="material-symbols-outlined text-primary text-sm mt-0.5">location_city</span>
+                  <div>
+                    <p class="text-xs text-text-light-secondary dark:text-text-dark-secondary">Distrito</p>
+                    <p class="text-sm font-semibold text-primary">
+                      {{ emergencia.distrito or 'No especificado' }}
+                    </p>
                   </div>
                 </div>
               </div>
-            </div>
-            <div class="bg-white dark:bg-background-dark/50 rounded-xl shadow-sm overflow-hidden">
-              <div class="p-6">
-                <h2 class="text-[#1b0e0e] dark:text-white text-[22px] font-bold leading-tight tracking-[-0.015em] mb-4">
-                  Registro de Actuaciones</h2>
-                <div class="flow-root">
-                  <ul class="-mb-8" role="list">
-                    <li>
-                      <div class="relative pb-8">
-                        <span aria-hidden="true"
-                          class="absolute left-4 top-4 -ml-px h-full w-0.5 bg-gray-200 dark:bg-gray-700"></span>
-                        <div class="relative flex space-x-3 items-start">
-                          <div>
-                            <span
-                              class="h-8 w-8 rounded-full bg-primary/20 flex items-center justify-center ring-8 ring-white dark:ring-[#2f1c1c]">
-                              <span class="material-symbols-outlined text-primary text-lg">campaign</span>
-                            </span>
-                          </div>
-                          <div class="min-w-0 flex-1 pt-1.5">
-                            <p class="text-sm text-gray-500 dark:text-gray-400">Estado cambiado a <strong
-                                class="font-medium text-gray-900 dark:text-white">'Activo'</strong> por <strong
-                                class="font-medium text-gray-900 dark:text-white">Admin</strong></p>
-                            <p class="mt-1 text-xs text-gray-400 dark:text-gray-500">Hace 2 horas</p>
-                          </div>
-                        </div>
-                      </div>
-                    </li>
-                    <li>
-                      <div class="relative pb-8">
-                        <span aria-hidden="true"
-                          class="absolute left-4 top-4 -ml-px h-full w-0.5 bg-gray-200 dark:bg-gray-700"></span>
-                        <div class="relative flex space-x-3 items-start">
-                          <div>
-                            <span
-                              class="h-8 w-8 rounded-full bg-primary/20 flex items-center justify-center ring-8 ring-white dark:ring-[#2f1c1c]">
-                              <span class="material-symbols-outlined text-primary text-lg">local_shipping</span>
-                            </span>
-                          </div>
-                          <div class="min-w-0 flex-1 pt-1.5">
-                            <p class="text-sm text-gray-500 dark:text-gray-400">Recurso <strong
-                                class="font-medium text-gray-900 dark:text-white">'Dotación Bomberos'</strong> asignado
-                              por <strong class="font-medium text-gray-900 dark:text-white">Operador 1</strong></p>
-                            <p class="mt-1 text-xs text-gray-400 dark:text-gray-500">Hace 1 hora</p>
-                          </div>
-                        </div>
-                      </div>
-                    </li>
-                    <li>
-                      <div class="relative pb-8">
-                        <div class="relative flex space-x-3 items-start">
-                          <div>
-                            <span
-                              class="h-8 w-8 rounded-full bg-primary/20 flex items-center justify-center ring-8 ring-white dark:ring-[#2f1c1c]">
-                              <span class="material-symbols-outlined text-primary text-lg">note_add</span>
-                            </span>
-                          </div>
-                          <div class="min-w-0 flex-1 pt-1.5">
-                            <p class="text-sm text-gray-500 dark:text-gray-400">Añadido nuevo informe de situación por
-                              <strong class="font-medium text-gray-900 dark:text-white">Jefe de Guardia</strong></p>
-                            <p class="mt-1 text-xs text-gray-400 dark:text-gray-500">Hace 15 minutos</p>
-                          </div>
-                        </div>
-                      </div>
-                    </li>
-                  </ul>
-                </div>
-              </div>
+              {% endif %}
             </div>
           </div>
-          <div class="lg:col-span-1 flex flex-col gap-8">
-            <div class="bg-white dark:bg-background-dark/50 rounded-xl shadow-sm overflow-hidden">
-              <div class="p-6">
-                <h2 class="text-[#1b0e0e] dark:text-white text-[22px] font-bold leading-tight tracking-[-0.015em] mb-4">
-                  Ubicación</h2>
+          
+          <!-- Resumen de Recursos -->
+          <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm p-6">
+            <h2 class="text-text-light-primary dark:text-text-dark-primary text-xl font-bold mb-4 flex items-center gap-2">
+              <span class="material-symbols-outlined">summarize</span>
+              Resumen
+            </h2>
+            
+            <div class="space-y-4">
+              <div class="flex items-center justify-between p-3 bg-green-50 dark:bg-green-900/20 rounded-lg">
+                <div class="flex items-center gap-2">
+                  <span class="material-symbols-outlined text-secondary">local_fire_department</span>
+                  <span class="text-sm font-medium text-text-light-primary dark:text-text-dark-primary">Bomberos</span>
+                </div>
+                <span class="text-lg font-bold text-secondary">{{ total_bomberos }}</span>
               </div>
-              <div class="h-64 w-full bg-cover bg-center"
-                data-alt="Map showing the location of the emergency in Sierra de Gádor" data-location="Sierra de Gádor"
-                style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBje2-kUyx2RDnGOMyPI5sEwJYvgN9L5_H6LGloa-vynJg6zY75SwDtKGdMOOYk3-g9q4KbtV22EJd8ObIeC-sZyGi2XFnPVifsMMJ9z8vYT3wZ44l7FGb3fIciZNosb-xoB-naV8Bec9-alx8efi4x3EwLBQ1U41LuQcNtq7ZIWF1r0NhJe9I4s7geyjQDRfyKF369zTySIpsEvfPh-K7xHaF5shzLXcf-6QIyY_v6idF41qATg-tgjfa-rAEwTYE5jnmB7hnqdUE');">
+              
+              <div class="flex items-center justify-between p-3 bg-blue-50 dark:bg-blue-900/20 rounded-lg">
+                <div class="flex items-center gap-2">
+                  <span class="material-symbols-outlined text-blue-600">water_drop</span>
+                  <span class="text-sm font-medium text-text-light-primary dark:text-text-dark-primary">Hidrantes</span>
+                </div>
+                <span class="text-lg font-bold text-blue-600">{{ total_hidrantes }}</span>
               </div>
-              <div class="p-6">
-                {% if emergencia %}
-                <p class="text-[#1b0e0e] dark:text-white font-medium text-sm">{{ emergencia.direccion or 'Sin dirección' }}</p>
-                <p class="text-[#994d4d] dark:text-primary/70 text-xs">{{ emergencia.distrito or 'Distrito no registrado' }}</p>
-                {% else %}
-                <p class="text-[#1b0e0e] dark:text-white font-medium text-sm">-</p>
-                <p class="text-[#994d4d] dark:text-primary/70 text-xs">-</p>
-                {% endif %}
-              </div>
-            </div>
-            <div class="bg-white dark:bg-background-dark/50 rounded-xl shadow-sm overflow-hidden">
-              <div class="p-6">
-                <h2 class="text-[#1b0e0e] dark:text-white text-[22px] font-bold leading-tight tracking-[-0.015em] mb-4">
-                  Recursos Identificados</h2>
-                <ul class="space-y-4">
-                  <!-- Placeholder dinámico / futuro: recursos asociados -->
-                  <li class="text-sm text-[#994d4d] dark:text-primary/70">(Recursos asociados aún no implementados)</li>
-                </ul>
+              
+              <div class="flex items-center justify-between p-3 bg-orange-50 dark:bg-orange-900/20 rounded-lg">
+                <div class="flex items-center gap-2">
+                  <span class="material-symbols-outlined text-accent">assignment</span>
+                  <span class="text-sm font-medium text-text-light-primary dark:text-text-dark-primary">Acciones</span>
+                </div>
+                <span class="text-lg font-bold text-accent">{{ acciones|length if acciones else 0 }}</span>
               </div>
             </div>
           </div>
@@ -280,22 +386,76 @@
       </div>
     </main>
   </div>
+  
+  <script>
+    // User menu toggle
+    (function(){
+      const btn = document.getElementById('user-menu-button');
+      const menu = document.getElementById('user-menu');
+      if(!btn || !menu) return;
+      function closeMenu(){ menu.classList.add('hidden'); btn.setAttribute('aria-expanded','false'); }
+      function toggleMenu(){
+        const open = menu.classList.contains('hidden');
+        if(open){ menu.classList.remove('hidden'); btn.setAttribute('aria-expanded','true'); }
+        else { closeMenu(); }
+      }
+      btn.addEventListener('click', (e)=>{ e.stopPropagation(); toggleMenu(); });
+      document.addEventListener('click', (e)=>{ if(!menu.contains(e.target) && e.target !== btn){ closeMenu(); }});
+      document.addEventListener('keydown', (e)=>{ if(e.key === 'Escape') closeMenu(); });
+    })();
+  </script>
+  
+  <!-- Script externo para el mapa -->
+  <script src="{{ url_for('static', filename='js/reporte_mapa.js') }}"></script>
+  
+  {% if emergencia and emergencia.lat and emergencia.lon %}
+  <!-- Datos para inicializar el mapa -->
+  <script>
+    /* eslint-disable */
+    // @ts-nocheck
+    document.addEventListener('DOMContentLoaded', function() {
+      // Preparar datos de emergencia
+      const emergenciaData = {
+        lat: {{ emergencia.lat }},
+        lon: {{ emergencia.lon }},
+        nombre: {{ emergencia.Nombre_emergencia|tojson }},
+        direccion: {{ emergencia.direccion|tojson }},
+        distrito: {{ emergencia.distrito|tojson }}
+      };
+      
+      // Preparar datos de bomberos
+      const recursosBomberos = [
+        {% if recursos_bomberos %}
+        {% for bombero in recursos_bomberos %}
+        {
+          lat: {{ bombero.lat }},
+          lon: {{ bombero.lon }},
+          direccion: {{ bombero.direccion|tojson }},
+          distancia_recurso: {{ bombero.distancia_recurso|tojson }}
+        }{% if not loop.last %},{% endif %}
+        {% endfor %}
+        {% endif %}
+      ];
+      
+      // Preparar datos de hidrantes
+      const recursosHidrantes = [
+        {% if recursos_hidrantes %}
+        {% for hidrante in recursos_hidrantes[:10] %}
+        {
+          lat: {{ hidrante.lat }},
+          lon: {{ hidrante.lon }},
+          direccion: {{ hidrante.direccion|tojson }},
+          distancia_recurso: {{ hidrante.distancia_recurso|tojson }}
+        }{% if not loop.last %},{% endif %}
+        {% endfor %}
+        {% endif %}
+      ];
+      
+      // Inicializar mapa
+      inicializarMapaReporte(emergenciaData, recursosBomberos, recursosHidrantes);
+    });
+  </script>
+  {% endif %}
 </body>
 
 </html>
-<script>
-  (function(){
-    const btn = document.getElementById('user-menu-button');
-    const menu = document.getElementById('user-menu');
-    if(!btn || !menu) return;
-    function closeMenu(){ menu.classList.add('hidden'); btn.setAttribute('aria-expanded','false'); }
-    function toggleMenu(){
-      const open = menu.classList.contains('hidden');
-      if(open){ menu.classList.remove('hidden'); btn.setAttribute('aria-expanded','true'); }
-      else { closeMenu(); }
-    }
-    btn.addEventListener('click', (e)=>{ e.stopPropagation(); toggleMenu(); });
-    document.addEventListener('click', (e)=>{ if(!menu.contains(e.target) && e.target !== btn){ closeMenu(); }});
-    document.addEventListener('keydown', (e)=>{ if(e.key === 'Escape') closeMenu(); });
-  })();
-</script>

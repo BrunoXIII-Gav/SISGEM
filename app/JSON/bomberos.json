@@ -1,0 +1,2092 @@
+[
+  {
+    "idCompaniaBomberos": 1,
+    "nombre": "CIA Bomberos Aguas Verdes",
+    "lat": -3.48744044099999,
+    "lng": -80.262201829,
+    "bomberos_disponibles": 7,
+    "vehiculos_disponibles": 2,
+    "nombre_responsable": "Paula Ponce",
+    "cargo_responsable": "Comandante"
+  },
+  {
+    "idCompaniaBomberos": 2,
+    "nombre": "Nuestra Senora De Las Mercedes N°37",
+    "lat": -13.709493,
+    "lng": -76.203114,
+    "bomberos_disponibles": 6,
+    "vehiculos_disponibles": 5,
+    "nombre_responsable": "Catalina Salazar",
+    "cargo_responsable": "Comandante"
+  },
+  {
+    "idCompaniaBomberos": 3,
+    "nombre": "Salvadora Chincha N°38",
+    "lat": -13.41598,
+    "lng": -76.135458,
+    "bomberos_disponibles": 7,
+    "vehiculos_disponibles": 3,
+    "nombre_responsable": "Isabel Ramos",
+    "cargo_responsable": "Comandante"
+  },
+  {
+    "idCompaniaBomberos": 4,
+    "nombre": "Ayacucho N°63",
+    "lat": -13.148092,
+    "lng": -74.223692,
+    "bomberos_disponibles": 6,
+    "vehiculos_disponibles": 3,
+    "nombre_responsable": "Patricia Herrera",
+    "cargo_responsable": "Comandante"
+  },
+  {
+    "idCompaniaBomberos": 5,
+    "nombre": "Nasca N°82",
+    "lat": -14.825502,
+    "lng": -74.930009,
+    "bomberos_disponibles": 9,
+    "vehiculos_disponibles": 2,
+    "nombre_responsable": "Francisco Medina",
+    "cargo_responsable": "Teniente"
+  },
+  {
+    "idCompaniaBomberos": 6,
+    "nombre": "Sama N°165",
+    "lat": -17.860155,
+    "lng": -70.557378,
+    "bomberos_disponibles": 5,
+    "vehiculos_disponibles": 2,
+    "nombre_responsable": "José Vega",
+    "cargo_responsable": "Teniente"
+  },
+  {
+    "idCompaniaBomberos": 7,
+    "nombre": "Tupac Amaru Inca N°90",
+    "lat": -13.713136,
+    "lng": -76.152908,
+    "bomberos_disponibles": 4,
+    "vehiculos_disponibles": 4,
+    "nombre_responsable": "Daniel Herrera",
+    "cargo_responsable": "Teniente"
+  },
+  {
+    "idCompaniaBomberos": 8,
+    "nombre": "Marcona N°126",
+    "lat": -15.362119,
+    "lng": -75.161172,
+    "bomberos_disponibles": 5,
+    "vehiculos_disponibles": 3,
+    "nombre_responsable": "Fernando Cruz",
+    "cargo_responsable": "Teniente"
+  },
+  {
+    "idCompaniaBomberos": 9,
+    "nombre": "San Clemente N°95",
+    "lat": -13.681141,
+    "lng": -76.154244,
+    "bomberos_disponibles": 7,
+    "vehiculos_disponibles": 2,
+    "nombre_responsable": "Daniel Peña",
+    "cargo_responsable": "Comandante"
+  },
+  {
+    "idCompaniaBomberos": 10,
+    "nombre": "Ofelia Banchero de Datorre N°109",
+    "lat": -14.052736,
+    "lng": -75.745583,
+    "bomberos_disponibles": 8,
+    "vehiculos_disponibles": 3,
+    "nombre_responsable": "Isabella Ramos",
+    "cargo_responsable": "Teniente"
+  },
+  {
+    "idCompaniaBomberos": 11,
+    "nombre": "BRIGADIER CBP CESAR FRANCISCO FONSECA GONZALES",
+    "lat": -14.0401,
+    "lng": -75.710338,
+    "bomberos_disponibles": 9,
+    "vehiculos_disponibles": 3,
+    "nombre_responsable": "David Sánchez",
+    "cargo_responsable": "Comandante"
+  },
+  {
+    "idCompaniaBomberos": 12,
+    "nombre": "MARIA REICHE NEWMAN - VISTA ALEGRE N°197",
+    "lat": -14.844253,
+    "lng": -74.946477,
+    "bomberos_disponibles": 2,
+    "vehiculos_disponibles": 2,
+    "nombre_responsable": "Elena Torres",
+    "cargo_responsable": "Sargento"
+  },
+  {
+    "idCompaniaBomberos": 13,
+    "nombre": "Mollendo N°12",
+    "lat": -17.029756,
+    "lng": -72.015416,
+    "bomberos_disponibles": 6,
+    "vehiculos_disponibles": 3,
+    "nombre_responsable": "Francisco Sánchez",
+    "cargo_responsable": "Comandante"
+  },
+  {
+    "idCompaniaBomberos": 14,
+    "nombre": "Arequipa N°19",
+    "lat": -16.397096,
+    "lng": -71.537889,
+    "bomberos_disponibles": 7,
+    "vehiculos_disponibles": 3,
+    "nombre_responsable": "Valentina Vega",
+    "cargo_responsable": "Capitán"
+  },
+  {
+    "idCompaniaBomberos": 15,
+    "nombre": "Camana N°15",
+    "lat": -16.624976,
+    "lng": -72.712122,
+    "bomberos_disponibles": 5,
+    "vehiculos_disponibles": 1,
+    "nombre_responsable": "Lucía Cabrera",
+    "cargo_responsable": "Capitán"
+  },
+  {
+    "idCompaniaBomberos": 16,
+    "nombre": "Luis Kaemena Weiss N°77",
+    "lat": -16.416887,
+    "lng": -71.541129,
+    "bomberos_disponibles": 10,
+    "vehiculos_disponibles": 2,
+    "nombre_responsable": "Fernando Paredes",
+    "cargo_responsable": "Comandante"
+  },
+  {
+    "idCompaniaBomberos": 17,
+    "nombre": "Guillermo Crosby Tizon N°113",
+    "lat": -16.427914,
+    "lng": -71.518759,
+    "bomberos_disponibles": 9,
+    "vehiculos_disponibles": 2,
+    "nombre_responsable": "Sofía Sánchez",
+    "cargo_responsable": "Comandante"
+  },
+  {
+    "idCompaniaBomberos": 18,
+    "nombre": "Yanahuara Renzo Tomas Can de Garay N°140",
+    "lat": -16.393365,
+    "lng": -71.551734,
+    "bomberos_disponibles": 6,
+    "vehiculos_disponibles": 5,
+    "nombre_responsable": "Andrés Medina",
+    "cargo_responsable": "Capitán"
+  },
+  {
+    "idCompaniaBomberos": 19,
+    "nombre": "Samuel Malaga N°135",
+    "lat": -17.021487,
+    "lng": -72.005543,
+    "bomberos_disponibles": 5,
+    "vehiculos_disponibles": 4,
+    "nombre_responsable": "Elena Castillo",
+    "cargo_responsable": "Capitán"
+  },
+  {
+    "idCompaniaBomberos": 20,
+    "nombre": "Maria Melgar Valdiviezo N°136",
+    "lat": -16.400209,
+    "lng": -71.494035,
+    "bomberos_disponibles": 9,
+    "vehiculos_disponibles": 3,
+    "nombre_responsable": "Diego Guzman",
+    "cargo_responsable": "Capitán"
+  },
+  {
+    "idCompaniaBomberos": 21,
+    "nombre": "Cap. Rafael Glave Chavez N°156",
+    "lat": -16.390812,
+    "lng": -71.513057,
+    "bomberos_disponibles": 5,
+    "vehiculos_disponibles": 3,
+    "nombre_responsable": "María Ramos",
+    "cargo_responsable": "Comandante"
+  },
+  {
+    "idCompaniaBomberos": 22,
+    "nombre": "EL PEDREGAL N°194",
+    "lat": -16.370668,
+    "lng": -72.195861,
+    "bomberos_disponibles": 8,
+    "vehiculos_disponibles": 3,
+    "nombre_responsable": "Catalina Díaz",
+    "cargo_responsable": "Comandante"
+  },
+  {
+    "idCompaniaBomberos": 23,
+    "nombre": "COCACHACRA N°196",
+    "lat": -17.0937879,
+    "lng": -71.7670298,
+    "bomberos_disponibles": 3,
+    "vehiculos_disponibles": 0,
+    "nombre_responsable": "Luis Ortiz",
+    "cargo_responsable": "Sargento"
+  },
+  {
+    "idCompaniaBomberos": 24,
+    "nombre": "Tacna N°24",
+    "lat": -18.012202,
+    "lng": -70.25318,
+    "bomberos_disponibles": 5,
+    "vehiculos_disponibles": 3,
+    "nombre_responsable": "Daniel Martínez",
+    "cargo_responsable": "Capitán"
+  },
+  {
+    "idCompaniaBomberos": 25,
+    "nombre": "Jorge Martorell Flores N°46",
+    "lat": -18.025078,
+    "lng": -70.262643,
+    "bomberos_disponibles": 6,
+    "vehiculos_disponibles": 3,
+    "nombre_responsable": "Martina Salazar",
+    "cargo_responsable": "Comandante"
+  },
+  {
+    "idCompaniaBomberos": 26,
+    "nombre": "Oscar Lince Asturizaga N°72",
+    "lat": -17.984341,
+    "lng": -70.23559,
+    "bomberos_disponibles": 5,
+    "vehiculos_disponibles": 5,
+    "nombre_responsable": "Mateo Reyes",
+    "cargo_responsable": "Cabo"
+  },
+  {
+    "idCompaniaBomberos": 27,
+    "nombre": "Ricardo Perez Meneses N°101",
+    "lat": -18.006988,
+    "lng": -70.22771,
+    "bomberos_disponibles": 5,
+    "vehiculos_disponibles": 4,
+    "nombre_responsable": "Carmen Chávez",
+    "cargo_responsable": "Comandante"
+  },
+  {
+    "idCompaniaBomberos": 28,
+    "nombre": "Peruana N°111",
+    "lat": -18.043053,
+    "lng": -70.255466,
+    "bomberos_disponibles": 8,
+    "vehiculos_disponibles": 2,
+    "nombre_responsable": "Paula Ramos",
+    "cargo_responsable": "Capitán"
+  },
+  {
+    "idCompaniaBomberos": 29,
+    "nombre": "Tarata N°114",
+    "lat": -17.474488,
+    "lng": -70.032456,
+    "bomberos_disponibles": 8,
+    "vehiculos_disponibles": 3,
+    "nombre_responsable": "Daniela Mendoza",
+    "cargo_responsable": "Comandante"
+  },
+  {
+    "idCompaniaBomberos": 30,
+    "nombre": "Boca Del Rio N°141",
+    "lat": -18.054917,
+    "lng": -70.247537,
+    "bomberos_disponibles": 7,
+    "vehiculos_disponibles": 3,
+    "nombre_responsable": "Catalina Castillo",
+    "cargo_responsable": "Comandante"
+  },
+  {
+    "idCompaniaBomberos": 31,
+    "nombre": "Coronel Francisco Bolognesi N°147",
+    "lat": -18.039054,
+    "lng": -70.238857,
+    "bomberos_disponibles": 8,
+    "vehiculos_disponibles": 1,
+    "nombre_responsable": "Ricardo Guzman",
+    "cargo_responsable": "Comandante"
+  },
+  {
+    "idCompaniaBomberos": 32,
+    "nombre": "Jorge Basadre Grohoman N°159",
+    "lat": -18.034239,
+    "lng": -70.239115,
+    "bomberos_disponibles": 5,
+    "vehiculos_disponibles": 2,
+    "nombre_responsable": "Miguel García",
+    "cargo_responsable": "Comandante"
+  },
+  {
+    "idCompaniaBomberos": 33,
+    "nombre": "Laredo N°118",
+    "lat": -8.09234500000002,
+    "lng": -78.956557,
+    "bomberos_disponibles": 5,
+    "vehiculos_disponibles": 2,
+    "nombre_responsable": "Verónica Fernández",
+    "cargo_responsable": "Capitán"
+  },
+  {
+    "idCompaniaBomberos": 34,
+    "nombre": "Roma N°2",
+    "lat": -12.048095,
+    "lng": -77.026265,
+    "bomberos_disponibles": 5,
+    "vehiculos_disponibles": 4,
+    "nombre_responsable": "Lucía Mendoza",
+    "cargo_responsable": "Comandante"
+  },
+  {
+    "idCompaniaBomberos": 35,
+    "nombre": "France N°3",
+    "lat": -12.049092,
+    "lng": -77.035266,
+    "bomberos_disponibles": 5,
+    "vehiculos_disponibles": 2,
+    "nombre_responsable": "Laura Sánchez",
+    "cargo_responsable": "Capitán"
+  },
+  {
+    "idCompaniaBomberos": 36,
+    "nombre": "Lima N°4",
+    "lat": -12.082044,
+    "lng": -77.032228,
+    "bomberos_disponibles": 9,
+    "vehiculos_disponibles": 4,
+    "nombre_responsable": "Gabriela Soto",
+    "cargo_responsable": "Capitán"
+  },
+  {
+    "idCompaniaBomberos": 37,
+    "nombre": "Victoria N°8",
+    "lat": -12.067553,
+    "lng": -77.021247,
+    "bomberos_disponibles": 8,
+    "vehiculos_disponibles": 3,
+    "nombre_responsable": "Sofía Romero",
+    "cargo_responsable": "Comandante"
+  },
+  {
+    "idCompaniaBomberos": 38,
+    "nombre": "Salvadora Lima N°10",
+    "lat": -12.052276,
+    "lng": -77.035537,
+    "bomberos_disponibles": 7,
+    "vehiculos_disponibles": 3,
+    "nombre_responsable": "Verónica Peña",
+    "cargo_responsable": "Capitán"
+  },
+  {
+    "idCompaniaBomberos": 39,
+    "nombre": "Internacional N°14",
+    "lat": -12.059854,
+    "lng": -77.045799,
+    "bomberos_disponibles": 8,
+    "vehiculos_disponibles": 2,
+    "nombre_responsable": "Paula Martínez",
+    "cargo_responsable": "Comandante"
+  },
+  {
+    "idCompaniaBomberos": 40,
+    "nombre": "Rimac N°21",
+    "lat": -12.036188,
+    "lng": -77.028354,
+    "bomberos_disponibles": 6,
+    "vehiculos_disponibles": 2,
+    "nombre_responsable": "Carmen Martínez",
+    "cargo_responsable": "Comandante"
+  },
+  {
+    "idCompaniaBomberos": 41,
+    "nombre": "Chosica N°32",
+    "lat": -11.936752,
+    "lng": -76.694411,
+    "bomberos_disponibles": 5,
+    "vehiculos_disponibles": 1,
+    "nombre_responsable": "Ana Flores",
+    "cargo_responsable": "Comandante"
+  },
+  {
+    "idCompaniaBomberos": 42,
+    "nombre": "Magdalena N°36",
+    "lat": -12.080158,
+    "lng": -77.065967,
+    "bomberos_disponibles": 3,
+    "vehiculos_disponibles": 4,
+    "nombre_responsable": "Diego Ortiz",
+    "cargo_responsable": "Capitán"
+  },
+  {
+    "idCompaniaBomberos": 43,
+    "nombre": "San Miguel N°40",
+    "lat": -12.085585,
+    "lng": -77.076017,
+    "bomberos_disponibles": 10,
+    "vehiculos_disponibles": 3,
+    "nombre_responsable": "José Quispe",
+    "cargo_responsable": "Comandante"
+  },
+  {
+    "idCompaniaBomberos": 44,
+    "nombre": "San Isidro N°56",
+    "lat": -12.107521,
+    "lng": -77.055584,
+    "bomberos_disponibles": 9,
+    "vehiculos_disponibles": 3,
+    "nombre_responsable": "Luis Medina",
+    "cargo_responsable": "Comandante"
+  },
+  {
+    "idCompaniaBomberos": 45,
+    "nombre": "Brig.Gnral CBP Virgilio Airaldi P.-CHACLACAYO N°68",
+    "lat": -11.949235,
+    "lng": -76.721832,
+    "bomberos_disponibles": 7,
+    "vehiculos_disponibles": 3,
+    "nombre_responsable": "Renata López",
+    "cargo_responsable": "Comandante"
+  },
+  {
+    "idCompaniaBomberos": 46,
+    "nombre": "San Juan De Lurigancho N°105",
+    "lat": -11.97877,
+    "lng": -77.00591,
+    "bomberos_disponibles": 8,
+    "vehiculos_disponibles": 1,
+    "nombre_responsable": "Mateo Paredes",
+    "cargo_responsable": "Comandante"
+  },
+  {
+    "idCompaniaBomberos": 47,
+    "nombre": "Salamanca N°127",
+    "lat": -12.077218,
+    "lng": -76.976384,
+    "bomberos_disponibles": 4,
+    "vehiculos_disponibles": 1,
+    "nombre_responsable": "Valentina Ortiz",
+    "cargo_responsable": "Capitán"
+  },
+  {
+    "idCompaniaBomberos": 48,
+    "nombre": "Tecnico Carlos Leon Delgado N°130",
+    "lat": -12.049609,
+    "lng": -76.975198,
+    "bomberos_disponibles": 4,
+    "vehiculos_disponibles": 1,
+    "nombre_responsable": "Martina Sánchez",
+    "cargo_responsable": "Comandante"
+  },
+  {
+    "idCompaniaBomberos": 49,
+    "nombre": "Cap. CBP Andres Roman Gutierrez ATE N°176",
+    "lat": -12.040244,
+    "lng": -76.949717,
+    "bomberos_disponibles": 6,
+    "vehiculos_disponibles": 2,
+    "nombre_responsable": "Francisco Martínez",
+    "cargo_responsable": "Comandante"
+  },
+  {
+    "idCompaniaBomberos": 50,
+    "nombre": "El Agustino N°178",
+    "lat": -12.051466,
+    "lng": -76.997391,
+    "bomberos_disponibles": 6,
+    "vehiculos_disponibles": 1,
+    "nombre_responsable": "María Guzman",
+    "cargo_responsable": "Comandante"
+  },
+  {
+    "idCompaniaBomberos": 51,
+    "nombre": "JESUS MARIA - WALDO HERNAN OLIVOS V. N°195",
+    "lat": -12.082325,
+    "lng": -77.042004,
+    "bomberos_disponibles": 7,
+    "vehiculos_disponibles": 4,
+    "nombre_responsable": "Raúl Ramos",
+    "cargo_responsable": "Comandante"
+  },
+  {
+    "idCompaniaBomberos": 52,
+    "nombre": "Union Chalaca N°1",
+    "lat": -12.058254,
+    "lng": -77.142906,
+    "bomberos_disponibles": 8,
+    "vehiculos_disponibles": 2,
+    "nombre_responsable": "Camila Núñez",
+    "cargo_responsable": "Comandante"
+  },
+  {
+    "idCompaniaBomberos": 53,
+    "nombre": "Italia N°5",
+    "lat": -12.05934,
+    "lng": -77.117586,
+    "bomberos_disponibles": 5,
+    "vehiculos_disponibles": 1,
+    "nombre_responsable": "Sebastián García",
+    "cargo_responsable": "Comandante"
+  },
+  {
+    "idCompaniaBomberos": 54,
+    "nombre": "Garibaldi N°6",
+    "lat": -12.068473,
+    "lng": -77.113139,
+    "bomberos_disponibles": 7,
+    "vehiculos_disponibles": 4,
+    "nombre_responsable": "Fernando Gómez",
+    "cargo_responsable": "Comandante"
+  },
+  {
+    "idCompaniaBomberos": 55,
+    "nombre": "Salvadora Callao N°7",
+    "lat": -12.062978,
+    "lng": -77.145508,
+    "bomberos_disponibles": 3,
+    "vehiculos_disponibles": 2,
+    "nombre_responsable": "Martina Ramos",
+    "cargo_responsable": "Teniente"
+  },
+  {
+    "idCompaniaBomberos": 56,
+    "nombre": "Callao N°17",
+    "lat": -12.061092,
+    "lng": -77.131019,
+    "bomberos_disponibles": 5,
+    "vehiculos_disponibles": 2,
+    "nombre_responsable": "Camila Herrera",
+    "cargo_responsable": "Capitán"
+  },
+  {
+    "idCompaniaBomberos": 57,
+    "nombre": "Peru N°22",
+    "lat": -12.059558,
+    "lng": -77.139784,
+    "bomberos_disponibles": 9,
+    "vehiculos_disponibles": 1,
+    "nombre_responsable": "Francisco Gómez",
+    "cargo_responsable": "Comandante"
+  },
+  {
+    "idCompaniaBomberos": 58,
+    "nombre": "La Punta N°34",
+    "lat": -12.072161,
+    "lng": -77.164503,
+    "bomberos_disponibles": 8,
+    "vehiculos_disponibles": 2,
+    "nombre_responsable": "Paula López",
+    "cargo_responsable": "Teniente"
+  },
+  {
+    "idCompaniaBomberos": 59,
+    "nombre": "Antonio Alarco Espinoza N°60",
+    "lat": -12.059949,
+    "lng": -77.092717,
+    "bomberos_disponibles": 9,
+    "vehiculos_disponibles": 3,
+    "nombre_responsable": "Lucía Castillo",
+    "cargo_responsable": "Comandante"
+  },
+  {
+    "idCompaniaBomberos": 60,
+    "nombre": "Tecnico Lorenzo Giraldo Vega N°79",
+    "lat": -11.876008,
+    "lng": -77.127862,
+    "bomberos_disponibles": 9,
+    "vehiculos_disponibles": 3,
+    "nombre_responsable": "David Fernández",
+    "cargo_responsable": "Comandante"
+  },
+  {
+    "idCompaniaBomberos": 61,
+    "nombre": "BRIGADIER CBP ALEJANDRO REYES LEON N°103",
+    "lat": -11.856484,
+    "lng": -77.119659,
+    "bomberos_disponibles": 11,
+    "vehiculos_disponibles": 3,
+    "nombre_responsable": "Elena Castro",
+    "cargo_responsable": "Capitán"
+  },
+  {
+    "idCompaniaBomberos": 62,
+    "nombre": "ADOLFO MARTIN KING LEOANE N°115",
+    "lat": -11.838778,
+    "lng": -77.127325,
+    "bomberos_disponibles": 10,
+    "vehiculos_disponibles": 3,
+    "nombre_responsable": "Mateo Cabrera",
+    "cargo_responsable": "Comandante"
+  },
+  {
+    "idCompaniaBomberos": 63,
+    "nombre": "Salvadora Ica N°25",
+    "lat": -14.073472,
+    "lng": -75.731099,
+    "bomberos_disponibles": 9,
+    "vehiculos_disponibles": 0,
+    "nombre_responsable": "David Ortiz",
+    "cargo_responsable": "Comandante"
+  },
+  {
+    "idCompaniaBomberos": 64,
+    "nombre": "Salvadora Chiclayo N°27",
+    "lat": -6.76736099999999,
+    "lng": -79.839755,
+    "bomberos_disponibles": 9,
+    "vehiculos_disponibles": 3,
+    "nombre_responsable": "Renata Ramos",
+    "cargo_responsable": "Comandante"
+  },
+  {
+    "idCompaniaBomberos": 65,
+    "nombre": "Ferrenate N°28",
+    "lat": -6.64268700000002,
+    "lng": -79.786792,
+    "bomberos_disponibles": 8,
+    "vehiculos_disponibles": 1,
+    "nombre_responsable": "Miguel Fernández",
+    "cargo_responsable": "Comandante"
+  },
+  {
+    "idCompaniaBomberos": 66,
+    "nombre": "Salvadora Lambayeque N°29",
+    "lat": -6.698733,
+    "lng": -79.905404,
+    "bomberos_disponibles": 7,
+    "vehiculos_disponibles": 3,
+    "nombre_responsable": "Valentina Peña",
+    "cargo_responsable": "Teniente"
+  },
+  {
+    "idCompaniaBomberos": 67,
+    "nombre": "Cap. Jose A. Quinones G. - Pimentel N°39",
+    "lat": -6.83385900000002,
+    "lng": -79.936164,
+    "bomberos_disponibles": 7,
+    "vehiculos_disponibles": 1,
+    "nombre_responsable": "David Gómez",
+    "cargo_responsable": "Comandante"
+  },
+  {
+    "idCompaniaBomberos": 68,
+    "nombre": "Illimo N°69",
+    "lat": -6.47467499999999,
+    "lng": -79.856272,
+    "bomberos_disponibles": 9,
+    "vehiculos_disponibles": 4,
+    "nombre_responsable": "Raúl Flores",
+    "cargo_responsable": "Capitán"
+  },
+  {
+    "idCompaniaBomberos": 69,
+    "nombre": "Salvadora Picsi N°73",
+    "lat": -6.71669800000001,
+    "lng": -79.770758,
+    "bomberos_disponibles": 3,
+    "vehiculos_disponibles": 2,
+    "nombre_responsable": "Sebastián Reyes",
+    "cargo_responsable": "Teniente"
+  },
+  {
+    "idCompaniaBomberos": 70,
+    "nombre": "Olmos N°78",
+    "lat": -5.98984799999999,
+    "lng": -79.751022,
+    "bomberos_disponibles": 7,
+    "vehiculos_disponibles": 2,
+    "nombre_responsable": "Valentina Castillo",
+    "cargo_responsable": "Capitán"
+  },
+  {
+    "idCompaniaBomberos": 71,
+    "nombre": "BRIGADIER MAYOR CBP JOSE ESTEVES CASTRO N°188",
+    "lat": -6.75048199999998,
+    "lng": -79.840318,
+    "bomberos_disponibles": 11,
+    "vehiculos_disponibles": 2,
+    "nombre_responsable": "Daniela Fernández",
+    "cargo_responsable": "Capitán"
+  },
+  {
+    "idCompaniaBomberos": 72,
+    "nombre": "Salvadora Pacasmayo N°23",
+    "lat": -7.40141399999999,
+    "lng": -79.572105,
+    "bomberos_disponibles": 9,
+    "vehiculos_disponibles": 2,
+    "nombre_responsable": "Alejandro Ramos",
+    "cargo_responsable": "Capitán"
+  },
+  {
+    "idCompaniaBomberos": 73,
+    "nombre": "Salvadora Trujillo N°26",
+    "lat": -8.110726,
+    "lng": -79.032592,
+    "bomberos_disponibles": 8,
+    "vehiculos_disponibles": 3,
+    "nombre_responsable": "Juan Peña",
+    "cargo_responsable": "Capitán"
+  },
+  {
+    "idCompaniaBomberos": 74,
+    "nombre": "Salaverry N°102",
+    "lat": -8.22106300000002,
+    "lng": -78.976985,
+    "bomberos_disponibles": 3,
+    "vehiculos_disponibles": 3,
+    "nombre_responsable": "Raúl Rojas",
+    "cargo_responsable": "Capitán"
+  },
+  {
+    "idCompaniaBomberos": 75,
+    "nombre": "Chepen N°121",
+    "lat": -7.22609199999999,
+    "lng": -79.431624,
+    "bomberos_disponibles": 6,
+    "vehiculos_disponibles": 2,
+    "nombre_responsable": "Fernando Flores",
+    "cargo_responsable": "Comandante"
+  },
+  {
+    "idCompaniaBomberos": 76,
+    "nombre": "Nuestra Senora De Guadalupe N°122",
+    "lat": -7.24798800000002,
+    "lng": -79.466643,
+    "bomberos_disponibles": 6,
+    "vehiculos_disponibles": 2,
+    "nombre_responsable": "Ricardo Ortiz",
+    "cargo_responsable": "Sargento"
+  },
+  {
+    "idCompaniaBomberos": 77,
+    "nombre": "Cartavio - Trujillo N°149",
+    "lat": -7.89070800000002,
+    "lng": -79.219612,
+    "bomberos_disponibles": 7,
+    "vehiculos_disponibles": 4,
+    "nombre_responsable": "Miguel García",
+    "cargo_responsable": "Comandante"
+  },
+  {
+    "idCompaniaBomberos": 78,
+    "nombre": "Washington State La Rinconada N°189",
+    "lat": -8.09236600000003,
+    "lng": -79.005196,
+    "bomberos_disponibles": 6,
+    "vehiculos_disponibles": 2,
+    "nombre_responsable": "Carlos Mendoza",
+    "cargo_responsable": "Comandante"
+  },
+  {
+    "idCompaniaBomberos": 79,
+    "nombre": "Piura N°25",
+    "lat": -5.19403399999999,
+    "lng": -80.626055,
+    "bomberos_disponibles": 9,
+    "vehiculos_disponibles": 2,
+    "nombre_responsable": "Luis Paredes",
+    "cargo_responsable": "Capitán"
+  },
+  {
+    "idCompaniaBomberos": 80,
+    "nombre": "Paita N°26",
+    "lat": -5.08446800000002,
+    "lng": -81.114571,
+    "bomberos_disponibles": 5,
+    "vehiculos_disponibles": 5,
+    "nombre_responsable": "Camila González",
+    "cargo_responsable": "Comandante"
+  },
+  {
+    "idCompaniaBomberos": 81,
+    "nombre": "Illescas N°65",
+    "lat": -5.55700100000001,
+    "lng": -80.814872,
+    "bomberos_disponibles": 7,
+    "vehiculos_disponibles": 3,
+    "nombre_responsable": "Sebastián Medina",
+    "cargo_responsable": "Comandante"
+  },
+  {
+    "idCompaniaBomberos": 82,
+    "nombre": "Morropon N°74",
+    "lat": -5.18940199999997,
+    "lng": -79.968377,
+    "bomberos_disponibles": 5,
+    "vehiculos_disponibles": 4,
+    "nombre_responsable": "Sebastián Martín",
+    "cargo_responsable": "Comandante"
+  },
+  {
+    "idCompaniaBomberos": 83,
+    "nombre": "Chulucanas N°75",
+    "lat": -5.10762599999998,
+    "lng": -80.170428,
+    "bomberos_disponibles": 3,
+    "vehiculos_disponibles": 2,
+    "nombre_responsable": "Valeria Sánchez",
+    "cargo_responsable": "Comandante"
+  },
+  {
+    "idCompaniaBomberos": 84,
+    "nombre": "Alto De La Alianza N°139",
+    "lat": -17.995111,
+    "lng": -70.248256,
+    "bomberos_disponibles": 8,
+    "vehiculos_disponibles": 0,
+    "nombre_responsable": "Gabriela Reyes",
+    "cargo_responsable": "Teniente"
+  },
+  {
+    "idCompaniaBomberos": 85,
+    "nombre": "CORONEL GREGORIO ALBARRACION N°170",
+    "lat": -18.068881,
+    "lng": -70.255637,
+    "bomberos_disponibles": 7,
+    "vehiculos_disponibles": 2,
+    "nombre_responsable": "Juan Ortiz",
+    "cargo_responsable": "Comandante"
+  },
+  {
+    "idCompaniaBomberos": 86,
+    "nombre": "SAN JOSE DE ITE N°182",
+    "lat": -17.860132,
+    "lng": -70.964921,
+    "bomberos_disponibles": 5,
+    "vehiculos_disponibles": 2,
+    "nombre_responsable": "Francisco Reyes",
+    "cargo_responsable": "Capitán"
+  },
+  {
+    "idCompaniaBomberos": 87,
+    "nombre": "Cusco N°1",
+    "lat": -13.522553,
+    "lng": -71.97032,
+    "bomberos_disponibles": 6,
+    "vehiculos_disponibles": 2,
+    "nombre_responsable": "Fernando Aguirre",
+    "cargo_responsable": "Comandante"
+  },
+  {
+    "idCompaniaBomberos": 88,
+    "nombre": "Canchis N°39",
+    "lat": -14.271277,
+    "lng": -71.2304,
+    "bomberos_disponibles": 7,
+    "vehiculos_disponibles": 4,
+    "nombre_responsable": "Miguel Medina",
+    "cargo_responsable": "Comandante"
+  },
+  {
+    "idCompaniaBomberos": 89,
+    "nombre": "Quillabamba N°44",
+    "lat": -12.867948,
+    "lng": -72.694275,
+    "bomberos_disponibles": 5,
+    "vehiculos_disponibles": 3,
+    "nombre_responsable": "David Rodríguez",
+    "cargo_responsable": "Comandante"
+  },
+  {
+    "idCompaniaBomberos": 90,
+    "nombre": "Echarati Teniente Carlos Vidal Bergeot N°138",
+    "lat": -12.768737,
+    "lng": -72.577121,
+    "bomberos_disponibles": 7,
+    "vehiculos_disponibles": 4,
+    "nombre_responsable": "Elena Rodríguez",
+    "cargo_responsable": "Comandante"
+  },
+  {
+    "idCompaniaBomberos": 91,
+    "nombre": "Urcos N°55",
+    "lat": -13.687937,
+    "lng": -71.625173,
+    "bomberos_disponibles": 8,
+    "vehiculos_disponibles": 1,
+    "nombre_responsable": "Verónica Silva",
+    "cargo_responsable": "Comandante"
+  },
+  {
+    "idCompaniaBomberos": 92,
+    "nombre": "San Sebastian N°61",
+    "lat": -13.533568,
+    "lng": -71.909616,
+    "bomberos_disponibles": 6,
+    "vehiculos_disponibles": 4,
+    "nombre_responsable": "Jorge González",
+    "cargo_responsable": "Comandante"
+  },
+  {
+    "idCompaniaBomberos": 93,
+    "nombre": "Urubamba N°67",
+    "lat": -13.306024,
+    "lng": -72.116822,
+    "bomberos_disponibles": 5,
+    "vehiculos_disponibles": 2,
+    "nombre_responsable": "Laura Guzman",
+    "cargo_responsable": "Capitán"
+  },
+  {
+    "idCompaniaBomberos": 94,
+    "nombre": "San Jeronimo N°70",
+    "lat": -13.543269,
+    "lng": -71.887439,
+    "bomberos_disponibles": 6,
+    "vehiculos_disponibles": 1,
+    "nombre_responsable": "Diego Sánchez",
+    "cargo_responsable": "Capitán"
+  },
+  {
+    "idCompaniaBomberos": 95,
+    "nombre": "Calca N°76",
+    "lat": -13.32181,
+    "lng": -71.954398,
+    "bomberos_disponibles": 8,
+    "vehiculos_disponibles": 1,
+    "nombre_responsable": "Isabel Martín",
+    "cargo_responsable": "Comandante"
+  },
+  {
+    "idCompaniaBomberos": 96,
+    "nombre": "Espinar N°119",
+    "lat": -14.793379,
+    "lng": -71.411937,
+    "bomberos_disponibles": 8,
+    "vehiculos_disponibles": 4,
+    "nombre_responsable": "Valentina Aguirre",
+    "cargo_responsable": "Comandante"
+  },
+  {
+    "idCompaniaBomberos": 97,
+    "nombre": "Santa Barbara N°128",
+    "lat": -13.495403,
+    "lng": -72.042058,
+    "bomberos_disponibles": 6,
+    "vehiculos_disponibles": 1,
+    "nombre_responsable": "Ricardo Martín",
+    "cargo_responsable": "Comandante"
+  },
+  {
+    "idCompaniaBomberos": 98,
+    "nombre": "Pisac N°133",
+    "lat": -13.420647,
+    "lng": -71.851455,
+    "bomberos_disponibles": 5,
+    "vehiculos_disponibles": 3,
+    "nombre_responsable": "Gabriela López",
+    "cargo_responsable": "Comandante"
+  },
+  {
+    "idCompaniaBomberos": 99,
+    "nombre": "Paucartambo N°134",
+    "lat": -13.314502,
+    "lng": -71.592879,
+    "bomberos_disponibles": 8,
+    "vehiculos_disponibles": 1,
+    "nombre_responsable": "Pedro Morales",
+    "cargo_responsable": "Capitán"
+  },
+  {
+    "idCompaniaBomberos": 100,
+    "nombre": "KIMBIRI N°191",
+    "lat": -12.620175,
+    "lng": -73.789244,
+    "bomberos_disponibles": 7,
+    "vehiculos_disponibles": 2,
+    "nombre_responsable": "Fernando Ponce",
+    "cargo_responsable": "Teniente"
+  },
+  {
+    "idCompaniaBomberos": 101,
+    "nombre": "Huancayo N°30",
+    "lat": -12.069564,
+    "lng": -75.208508,
+    "bomberos_disponibles": 7,
+    "vehiculos_disponibles": 2,
+    "nombre_responsable": "Fernando Paredes",
+    "cargo_responsable": "Comandante"
+  },
+  {
+    "idCompaniaBomberos": 102,
+    "nombre": "Jauja N°35",
+    "lat": -11.777901,
+    "lng": -75.496456,
+    "bomberos_disponibles": 7,
+    "vehiculos_disponibles": 3,
+    "nombre_responsable": "Ana González",
+    "cargo_responsable": "Comandante"
+  },
+  {
+    "idCompaniaBomberos": 103,
+    "nombre": "Huancavelica N°49",
+    "lat": -12.785068,
+    "lng": -74.973801,
+    "bomberos_disponibles": 4,
+    "vehiculos_disponibles": 4,
+    "nombre_responsable": "Elena Chávez",
+    "cargo_responsable": "Comandante"
+  },
+  {
+    "idCompaniaBomberos": 104,
+    "nombre": "Alberto Benavides de la Quintana N°106",
+    "lat": -12.989588,
+    "lng": -74.721859,
+    "bomberos_disponibles": 4,
+    "vehiculos_disponibles": 3,
+    "nombre_responsable": "Laura Medina",
+    "cargo_responsable": "Capitán"
+  },
+  {
+    "idCompaniaBomberos": 105,
+    "nombre": "EL TAMBO N°150",
+    "lat": -12.050013,
+    "lng": -75.212349,
+    "bomberos_disponibles": 8,
+    "vehiculos_disponibles": 5,
+    "nombre_responsable": "Isabella Silva",
+    "cargo_responsable": "Comandante"
+  },
+  {
+    "idCompaniaBomberos": 106,
+    "nombre": "CHURCAMPA N°193",
+    "lat": -12.740066,
+    "lng": -74.387741,
+    "bomberos_disponibles": 6,
+    "vehiculos_disponibles": 4,
+    "nombre_responsable": "Miguel Torres",
+    "cargo_responsable": "Teniente"
+  },
+  {
+    "idCompaniaBomberos": 107,
+    "nombre": "Belen N°100",
+    "lat": -3.757589,
+    "lng": -73.248478,
+    "bomberos_disponibles": 7,
+    "vehiculos_disponibles": 2,
+    "nombre_responsable": "Verónica Pérez",
+    "cargo_responsable": "Capitán"
+  },
+  {
+    "idCompaniaBomberos": 108,
+    "nombre": "Salvadora Punchana N°157",
+    "lat": -3.73016000000001,
+    "lng": -73.240796,
+    "bomberos_disponibles": 7,
+    "vehiculos_disponibles": 3,
+    "nombre_responsable": "Sebastián Torres",
+    "cargo_responsable": "Comandante"
+  },
+  {
+    "idCompaniaBomberos": 109,
+    "nombre": "San Juan Bautista N°199",
+    "lat": -3.76619599999998,
+    "lng": -73.272629,
+    "bomberos_disponibles": 10,
+    "vehiculos_disponibles": 5,
+    "nombre_responsable": "Miguel Torres",
+    "cargo_responsable": "Comandante"
+  },
+  {
+    "idCompaniaBomberos": 110,
+    "nombre": "San Antonio N°129",
+    "lat": -3.775735,
+    "lng": -73.293142,
+    "bomberos_disponibles": 7,
+    "vehiculos_disponibles": 3,
+    "nombre_responsable": "Camila Paredes",
+    "cargo_responsable": "Capitán"
+  },
+  {
+    "idCompaniaBomberos": 111,
+    "nombre": "Nauta N°132",
+    "lat": -4.51144099999999,
+    "lng": -73.581791,
+    "bomberos_disponibles": 8,
+    "vehiculos_disponibles": 3,
+    "nombre_responsable": "Lucía Aguirre",
+    "cargo_responsable": "Teniente"
+  },
+  {
+    "idCompaniaBomberos": 112,
+    "nombre": "Salvadora Caballo Cocha N°145",
+    "lat": -3.90565800000002,
+    "lng": -70.517614,
+    "bomberos_disponibles": 6,
+    "vehiculos_disponibles": 2,
+    "nombre_responsable": "Isabel Aguirre",
+    "cargo_responsable": "Capitán"
+  },
+  {
+    "idCompaniaBomberos": 113,
+    "nombre": "SALVADORA REQUENA N°198",
+    "lat": -5.057772,
+    "lng": -73.853102,
+    "bomberos_disponibles": 8,
+    "vehiculos_disponibles": 2,
+    "nombre_responsable": "Catalina Martínez",
+    "cargo_responsable": "Comandante"
+  },
+  {
+    "idCompaniaBomberos": 114,
+    "nombre": "Pucallpa N°46",
+    "lat": -8.38529299999999,
+    "lng": -74.532167,
+    "bomberos_disponibles": 3,
+    "vehiculos_disponibles": 4,
+    "nombre_responsable": "Juan Morales",
+    "cargo_responsable": "Comandante"
+  },
+  {
+    "idCompaniaBomberos": 115,
+    "nombre": "Yarinacocha N°107",
+    "lat": -8.35348099999999,
+    "lng": -74.575464,
+    "bomberos_disponibles": 9,
+    "vehiculos_disponibles": 2,
+    "nombre_responsable": "Mateo Rojas",
+    "cargo_responsable": "Comandante"
+  },
+  {
+    "idCompaniaBomberos": 116,
+    "nombre": "Campo Verde N°137",
+    "lat": -8.47181999999998,
+    "lng": -74.805565,
+    "bomberos_disponibles": 10,
+    "vehiculos_disponibles": 1,
+    "nombre_responsable": "Alejandro Salazar",
+    "cargo_responsable": "Comandante"
+  },
+  {
+    "idCompaniaBomberos": 117,
+    "nombre": "Atalaya N°146",
+    "lat": -10.726267,
+    "lng": -73.761435,
+    "bomberos_disponibles": 11,
+    "vehiculos_disponibles": 1,
+    "nombre_responsable": "Daniela Cruz",
+    "cargo_responsable": "Comandante"
+  },
+  {
+    "idCompaniaBomberos": 118,
+    "nombre": "Salvadora Chimbote N°33",
+    "lat": -9.07184000000001,
+    "lng": -78.596653,
+    "bomberos_disponibles": 7,
+    "vehiculos_disponibles": 4,
+    "nombre_responsable": "Ricardo Rodríguez",
+    "cargo_responsable": "Comandante"
+  },
+  {
+    "idCompaniaBomberos": 119,
+    "nombre": "Santiago Antunez De Mayolo N°58",
+    "lat": -9.52945299999999,
+    "lng": -77.529724,
+    "bomberos_disponibles": 4,
+    "vehiculos_disponibles": 3,
+    "nombre_responsable": "Camila Flores",
+    "cargo_responsable": "Sargento"
+  },
+  {
+    "idCompaniaBomberos": 120,
+    "nombre": "Virgen Del Rosario N°86",
+    "lat": -10.067847,
+    "lng": -78.150483,
+    "bomberos_disponibles": 6,
+    "vehiculos_disponibles": 3,
+    "nombre_responsable": "David Morales",
+    "cargo_responsable": "Comandante"
+  },
+  {
+    "idCompaniaBomberos": 121,
+    "nombre": "Buenos Aires Cmdte. Ismael Pomar Iturrino N°104",
+    "lat": -9.12796600000001,
+    "lng": -78.521546,
+    "bomberos_disponibles": 4,
+    "vehiculos_disponibles": 3,
+    "nombre_responsable": "Valentina Ortiz",
+    "cargo_responsable": "Capitán"
+  },
+  {
+    "idCompaniaBomberos": 122,
+    "nombre": "Casma N°125",
+    "lat": -9.476699,
+    "lng": -78.306373,
+    "bomberos_disponibles": 9,
+    "vehiculos_disponibles": 1,
+    "nombre_responsable": "Valentina López",
+    "cargo_responsable": "Comandante"
+  },
+  {
+    "idCompaniaBomberos": 123,
+    "nombre": "San Judas Tadeo N°181",
+    "lat": -9.06836499999997,
+    "lng": -78.58042,
+    "bomberos_disponibles": 9,
+    "vehiculos_disponibles": 1,
+    "nombre_responsable": "Martina Cabrera",
+    "cargo_responsable": "Comandante"
+  },
+  {
+    "idCompaniaBomberos": 124,
+    "nombre": "Caraz N°183",
+    "lat": -9.05143900000002,
+    "lng": -77.81068,
+    "bomberos_disponibles": 3,
+    "vehiculos_disponibles": 4,
+    "nombre_responsable": "Miguel Pérez",
+    "cargo_responsable": "Comandante"
+  },
+  {
+    "idCompaniaBomberos": 125,
+    "nombre": "Salvadora Cosmopolita N°1",
+    "lat": -10.687952,
+    "lng": -76.254859,
+    "bomberos_disponibles": 4,
+    "vehiculos_disponibles": 2,
+    "nombre_responsable": "Fernando Guzman",
+    "cargo_responsable": "Capitán"
+  },
+  {
+    "idCompaniaBomberos": 126,
+    "nombre": "Salvadora Huanuco N°1",
+    "lat": -9.93486300000001,
+    "lng": -76.244715,
+    "bomberos_disponibles": 7,
+    "vehiculos_disponibles": 3,
+    "nombre_responsable": "Andrés Chávez",
+    "cargo_responsable": "Capitán"
+  },
+  {
+    "idCompaniaBomberos": 127,
+    "nombre": "Tingo Maria N°120",
+    "lat": -9.29862500000002,
+    "lng": -75.999888,
+    "bomberos_disponibles": 5,
+    "vehiculos_disponibles": 1,
+    "nombre_responsable": "Daniela Reyes",
+    "cargo_responsable": "Comandante"
+  },
+  {
+    "idCompaniaBomberos": 128,
+    "nombre": "Aucayacu N°172",
+    "lat": -8.93518499999999,
+    "lng": -76.111903,
+    "bomberos_disponibles": 6,
+    "vehiculos_disponibles": 3,
+    "nombre_responsable": "Raúl Rodríguez",
+    "cargo_responsable": "Teniente"
+  },
+  {
+    "idCompaniaBomberos": 129,
+    "nombre": "Amarilis N°173",
+    "lat": -9.94296100000003,
+    "lng": -76.242542,
+    "bomberos_disponibles": 4,
+    "vehiculos_disponibles": 3,
+    "nombre_responsable": "José Chávez",
+    "cargo_responsable": "Comandante"
+  },
+  {
+    "idCompaniaBomberos": 130,
+    "nombre": "Oxapampa N°119",
+    "lat": -10.574971,
+    "lng": -75.404491,
+    "bomberos_disponibles": 6,
+    "vehiculos_disponibles": 2,
+    "nombre_responsable": "Javier Morales",
+    "cargo_responsable": "Teniente"
+  },
+  {
+    "idCompaniaBomberos": 131,
+    "nombre": "San Ramon N°123",
+    "lat": -11.11977,
+    "lng": -75.356126,
+    "bomberos_disponibles": 10,
+    "vehiculos_disponibles": 0,
+    "nombre_responsable": "Isabel Paredes",
+    "cargo_responsable": "Sargento"
+  },
+  {
+    "idCompaniaBomberos": 132,
+    "nombre": "Tarma N°124",
+    "lat": -11.419675,
+    "lng": -75.687086,
+    "bomberos_disponibles": 7,
+    "vehiculos_disponibles": 3,
+    "nombre_responsable": "María Gómez",
+    "cargo_responsable": "Comandante"
+  },
+  {
+    "idCompaniaBomberos": 133,
+    "nombre": "Chanchamayo N°137",
+    "lat": -11.056085,
+    "lng": -75.330178,
+    "bomberos_disponibles": 6,
+    "vehiculos_disponibles": 2,
+    "nombre_responsable": "Daniela Aguirre",
+    "cargo_responsable": "Capitán"
+  },
+  {
+    "idCompaniaBomberos": 134,
+    "nombre": "Satipo N°148",
+    "lat": -11.25248,
+    "lng": -74.634719,
+    "bomberos_disponibles": 7,
+    "vehiculos_disponibles": 3,
+    "nombre_responsable": "Pedro Rodríguez",
+    "cargo_responsable": "Comandante"
+  },
+  {
+    "idCompaniaBomberos": 135,
+    "nombre": "Villa Perene N°166",
+    "lat": -10.946993,
+    "lng": -75.226497,
+    "bomberos_disponibles": 8,
+    "vehiculos_disponibles": 3,
+    "nombre_responsable": "Manuel Martín",
+    "cargo_responsable": "Capitán"
+  },
+  {
+    "idCompaniaBomberos": 136,
+    "nombre": "MARIA PARADO DE BELLIDO - UNION PERENE N°192",
+    "lat": -10.942709,
+    "lng": -75.216866,
+    "bomberos_disponibles": 9,
+    "vehiculos_disponibles": 2,
+    "nombre_responsable": "Javier Soto",
+    "cargo_responsable": "Comandante"
+  },
+  {
+    "idCompaniaBomberos": 137,
+    "nombre": "SAN MARTIN DE PANGOA-VRAEM N°200",
+    "lat": -11.431655,
+    "lng": -74.487305,
+    "bomberos_disponibles": 8,
+    "vehiculos_disponibles": 3,
+    "nombre_responsable": "Valeria Ponce",
+    "cargo_responsable": "Comandante"
+  },
+  {
+    "idCompaniaBomberos": 138,
+    "nombre": "VILLA RICA N°174",
+    "lat": -10.735796,
+    "lng": -75.269587,
+    "bomberos_disponibles": 2,
+    "vehiculos_disponibles": 4,
+    "nombre_responsable": "Gabriela Martín",
+    "cargo_responsable": "Capitán"
+  },
+  {
+    "idCompaniaBomberos": 139,
+    "nombre": "Madre De Dios N°114",
+    "lat": -12.596392,
+    "lng": -69.18211,
+    "bomberos_disponibles": 8,
+    "vehiculos_disponibles": 3,
+    "nombre_responsable": "Carlos Martín",
+    "cargo_responsable": "Comandante"
+  },
+  {
+    "idCompaniaBomberos": 140,
+    "nombre": "Laberinto N°168",
+    "lat": -12.717628,
+    "lng": -69.583454,
+    "bomberos_disponibles": 7,
+    "vehiculos_disponibles": 5,
+    "nombre_responsable": "Ana Vargas",
+    "cargo_responsable": "Comandante"
+  },
+  {
+    "idCompaniaBomberos": 141,
+    "nombre": "Juan R. Acevedo N°84",
+    "lat": -6.481786,
+    "lng": -76.374958,
+    "bomberos_disponibles": 4,
+    "vehiculos_disponibles": 1,
+    "nombre_responsable": "Elena Cruz",
+    "cargo_responsable": "Capitán"
+  },
+  {
+    "idCompaniaBomberos": 142,
+    "nombre": "Salvadora Yurimaguas N°20",
+    "lat": -5.89184299999999,
+    "lng": -76.112359,
+    "bomberos_disponibles": 7,
+    "vehiculos_disponibles": 1,
+    "nombre_responsable": "José Martínez",
+    "cargo_responsable": "Comandante"
+  },
+  {
+    "idCompaniaBomberos": 143,
+    "nombre": "Brig. Eduardo Cruz Rodriguez N°71",
+    "lat": -6.04315400000002,
+    "lng": -76.973648,
+    "bomberos_disponibles": 10,
+    "vehiculos_disponibles": 2,
+    "nombre_responsable": "Pedro Guzman",
+    "cargo_responsable": "Comandante"
+  },
+  {
+    "idCompaniaBomberos": 144,
+    "nombre": "Teniente Eleazar Blanco N°108",
+    "lat": -7.065832,
+    "lng": -76.585211,
+    "bomberos_disponibles": 10,
+    "vehiculos_disponibles": 4,
+    "nombre_responsable": "Raúl Sánchez",
+    "cargo_responsable": "Comandante"
+  },
+  {
+    "idCompaniaBomberos": 145,
+    "nombre": "Mariscal Caceres N°116",
+    "lat": -7.18183699999997,
+    "lng": -76.735532,
+    "bomberos_disponibles": 5,
+    "vehiculos_disponibles": 2,
+    "nombre_responsable": "María Núñez",
+    "cargo_responsable": "Comandante"
+  },
+  {
+    "idCompaniaBomberos": 146,
+    "nombre": "Saposoa N°131",
+    "lat": -6.93278500000002,
+    "lng": -76.771764,
+    "bomberos_disponibles": 6,
+    "vehiculos_disponibles": 4,
+    "nombre_responsable": "Martina Martínez",
+    "cargo_responsable": "Cabo"
+  },
+  {
+    "idCompaniaBomberos": 147,
+    "nombre": "Rioja N°143",
+    "lat": -6.04976900000003,
+    "lng": -77.173612,
+    "bomberos_disponibles": 9,
+    "vehiculos_disponibles": 3,
+    "nombre_responsable": "María Gómez",
+    "cargo_responsable": "Teniente"
+  },
+  {
+    "idCompaniaBomberos": 148,
+    "nombre": "Nueva Cajamarca N°144",
+    "lat": -5.938244,
+    "lng": -77.309182,
+    "bomberos_disponibles": 8,
+    "vehiculos_disponibles": 2,
+    "nombre_responsable": "Verónica Peña",
+    "cargo_responsable": "Comandante"
+  },
+  {
+    "idCompaniaBomberos": 149,
+    "nombre": "Abancay N°66",
+    "lat": -13.639392,
+    "lng": -72.87873,
+    "bomberos_disponibles": 4,
+    "vehiculos_disponibles": 2,
+    "nombre_responsable": "Catalina Quispe",
+    "cargo_responsable": "Teniente"
+  },
+  {
+    "idCompaniaBomberos": 150,
+    "nombre": "Tumbes N°64",
+    "lat": -3.56294700000001,
+    "lng": -80.455311,
+    "bomberos_disponibles": 4,
+    "vehiculos_disponibles": 1,
+    "nombre_responsable": "José Acosta",
+    "cargo_responsable": "Comandante"
+  },
+  {
+    "idCompaniaBomberos": 151,
+    "nombre": "Micaela Bastidas N°96",
+    "lat": -13.622616,
+    "lng": -72.873559,
+    "bomberos_disponibles": 8,
+    "vehiculos_disponibles": 1,
+    "nombre_responsable": "Diego Castillo",
+    "cargo_responsable": "Comandante"
+  },
+  {
+    "idCompaniaBomberos": 152,
+    "nombre": "Curahuasi N°97",
+    "lat": -14.06332,
+    "lng": -72.670784,
+    "bomberos_disponibles": 9,
+    "vehiculos_disponibles": 4,
+    "nombre_responsable": "Miguel Ponce",
+    "cargo_responsable": "Teniente"
+  },
+  {
+    "idCompaniaBomberos": 153,
+    "nombre": "Andahuaylas N°98",
+    "lat": -13.657226,
+    "lng": -73.385587,
+    "bomberos_disponibles": 6,
+    "vehiculos_disponibles": 5,
+    "nombre_responsable": "Laura Núñez",
+    "cargo_responsable": "Comandante"
+  },
+  {
+    "idCompaniaBomberos": 154,
+    "nombre": "Chalhuanca N°100",
+    "lat": -14.294317,
+    "lng": -73.243994,
+    "bomberos_disponibles": 7,
+    "vehiculos_disponibles": 2,
+    "nombre_responsable": "Camila Peña",
+    "cargo_responsable": "Comandante"
+  },
+  {
+    "idCompaniaBomberos": 155,
+    "nombre": "Puno N°41",
+    "lat": -15.835924,
+    "lng": -70.023379,
+    "bomberos_disponibles": 3,
+    "vehiculos_disponibles": 3,
+    "nombre_responsable": "Francisco Castro",
+    "cargo_responsable": "Comandante"
+  },
+  {
+    "idCompaniaBomberos": 156,
+    "nombre": "San Roman N°57",
+    "lat": -15.497283,
+    "lng": -70.133967,
+    "bomberos_disponibles": 4,
+    "vehiculos_disponibles": 3,
+    "nombre_responsable": "Andrés Vega",
+    "cargo_responsable": "Comandante"
+  },
+  {
+    "idCompaniaBomberos": 157,
+    "nombre": "Ayaviri N°62",
+    "lat": -14.881668,
+    "lng": -70.589583,
+    "bomberos_disponibles": 4,
+    "vehiculos_disponibles": 2,
+    "nombre_responsable": "Francisco García",
+    "cargo_responsable": "Comandante"
+  },
+  {
+    "idCompaniaBomberos": 158,
+    "nombre": "Mariscal Nieto N°104",
+    "lat": -17.190559,
+    "lng": -70.929456,
+    "bomberos_disponibles": 10,
+    "vehiculos_disponibles": 2,
+    "nombre_responsable": "Ana Cabrera",
+    "cargo_responsable": "Comandante"
+  },
+  {
+    "idCompaniaBomberos": 159,
+    "nombre": "Almirante Miguel Grau N°110",
+    "lat": -17.639033,
+    "lng": -71.337222,
+    "bomberos_disponibles": 4,
+    "vehiculos_disponibles": 1,
+    "nombre_responsable": "Juan Guzman",
+    "cargo_responsable": "Sargento"
+  },
+  {
+    "idCompaniaBomberos": 160,
+    "nombre": "Brigadier Juan Penalosa Arriaga N°112",
+    "lat": -17.655222,
+    "lng": -71.325683,
+    "bomberos_disponibles": 9,
+    "vehiculos_disponibles": 3,
+    "nombre_responsable": "José Rojas",
+    "cargo_responsable": "Capitán"
+  },
+  {
+    "idCompaniaBomberos": 161,
+    "nombre": "Tnte Jose Trabuco N°120",
+    "lat": -17.615781,
+    "lng": -71.340805,
+    "bomberos_disponibles": 4,
+    "vehiculos_disponibles": 3,
+    "nombre_responsable": "Laura Díaz",
+    "cargo_responsable": "Capitán"
+  },
+  {
+    "idCompaniaBomberos": 162,
+    "nombre": "Virgen de la Candelaria N°160",
+    "lat": -17.072987,
+    "lng": -70.838033,
+    "bomberos_disponibles": 4,
+    "vehiculos_disponibles": 4,
+    "nombre_responsable": "Luis Pérez",
+    "cargo_responsable": "Capitán"
+  },
+  {
+    "idCompaniaBomberos": 163,
+    "nombre": "Samegua N°169",
+    "lat": -17.178366,
+    "lng": -70.897785,
+    "bomberos_disponibles": 5,
+    "vehiculos_disponibles": 4,
+    "nombre_responsable": "Carlos García",
+    "cargo_responsable": "Comandante"
+  },
+  {
+    "idCompaniaBomberos": 164,
+    "nombre": "SAN ANTONIO N°201",
+    "lat": -17.207921,
+    "lng": -70.948259,
+    "bomberos_disponibles": 10,
+    "vehiculos_disponibles": 4,
+    "nombre_responsable": "Daniela Aguirre",
+    "cargo_responsable": "Capitán"
+  },
+  {
+    "idCompaniaBomberos": 165,
+    "nombre": "Bagua N°128",
+    "lat": -5.63797,
+    "lng": -78.53685,
+    "bomberos_disponibles": 4,
+    "vehiculos_disponibles": 3,
+    "nombre_responsable": "Isabel Soto",
+    "cargo_responsable": "Capitán"
+  },
+  {
+    "idCompaniaBomberos": 166,
+    "nombre": "Chachapoyas Hugos Urco N°162",
+    "lat": -6.22823299999999,
+    "lng": -77.873653,
+    "bomberos_disponibles": 9,
+    "vehiculos_disponibles": 1,
+    "nombre_responsable": "Paula Rodríguez",
+    "cargo_responsable": "Comandante"
+  },
+  {
+    "idCompaniaBomberos": 167,
+    "nombre": "Cajamarca N°59",
+    "lat": -7.16454399999998,
+    "lng": -78.509765,
+    "bomberos_disponibles": 8,
+    "vehiculos_disponibles": 2,
+    "nombre_responsable": "Valeria Rodríguez",
+    "cargo_responsable": "Comandante"
+  },
+  {
+    "idCompaniaBomberos": 168,
+    "nombre": "Manuel Ugarte Y Moscoso N°85",
+    "lat": -5.708348,
+    "lng": -78.810875,
+    "bomberos_disponibles": 8,
+    "vehiculos_disponibles": 2,
+    "nombre_responsable": "Ana Acosta",
+    "cargo_responsable": "Comandante"
+  },
+  {
+    "idCompaniaBomberos": 169,
+    "nombre": "Celendon N°92",
+    "lat": -6.86092200000002,
+    "lng": -78.145452,
+    "bomberos_disponibles": 10,
+    "vehiculos_disponibles": 3,
+    "nombre_responsable": "Jorge Flores",
+    "cargo_responsable": "Comandante"
+  },
+  {
+    "idCompaniaBomberos": 170,
+    "nombre": "Los Banos Del Inca N°117",
+    "lat": -7.16259600000001,
+    "lng": -78.460858,
+    "bomberos_disponibles": 6,
+    "vehiculos_disponibles": 1,
+    "nombre_responsable": "Francisco Castro",
+    "cargo_responsable": "Comandante"
+  },
+  {
+    "idCompaniaBomberos": 171,
+    "nombre": "Garibaldi N°78",
+    "lat": -12.167271,
+    "lng": -77.026048,
+    "bomberos_disponibles": 10,
+    "vehiculos_disponibles": 1,
+    "nombre_responsable": "Renata Díaz",
+    "cargo_responsable": "Comandante"
+  },
+  {
+    "idCompaniaBomberos": 172,
+    "nombre": "Cosmopolita N°11",
+    "lat": -12.107258,
+    "lng": -77.007337,
+    "bomberos_disponibles": 9,
+    "vehiculos_disponibles": 3,
+    "nombre_responsable": "Daniela Torres",
+    "cargo_responsable": "Comandante"
+  },
+  {
+    "idCompaniaBomberos": 173,
+    "nombre": "Olaya N°13",
+    "lat": -12.1645026,
+    "lng": -77.024578,
+    "bomberos_disponibles": 5,
+    "vehiculos_disponibles": 2,
+    "nombre_responsable": "Lucía Quispe",
+    "cargo_responsable": "Teniente"
+  },
+  {
+    "idCompaniaBomberos": 174,
+    "nombre": "Grau N°16",
+    "lat": -12.146699,
+    "lng": -77.020088,
+    "bomberos_disponibles": 6,
+    "vehiculos_disponibles": 1,
+    "nombre_responsable": "Pedro Pérez",
+    "cargo_responsable": "Teniente"
+  },
+  {
+    "idCompaniaBomberos": 175,
+    "nombre": "Miraflores N°28",
+    "lat": -12.119831,
+    "lng": -77.022679,
+    "bomberos_disponibles": 8,
+    "vehiculos_disponibles": 3,
+    "nombre_responsable": "Raúl Fernández",
+    "cargo_responsable": "Teniente"
+  },
+  {
+    "idCompaniaBomberos": 176,
+    "nombre": "Canete N°43",
+    "lat": -13.084589,
+    "lng": -76.387274,
+    "bomberos_disponibles": 7,
+    "vehiculos_disponibles": 2,
+    "nombre_responsable": "Francisco Ramos",
+    "cargo_responsable": "Comandante"
+  },
+  {
+    "idCompaniaBomberos": 177,
+    "nombre": "La Molina N°107",
+    "lat": -12.078703,
+    "lng": -76.91626,
+    "bomberos_disponibles": 6,
+    "vehiculos_disponibles": 2,
+    "nombre_responsable": "Manuel Núñez",
+    "cargo_responsable": "Comandante"
+  },
+  {
+    "idCompaniaBomberos": 178,
+    "nombre": "Villa El Salvador N°125",
+    "lat": -12.212769,
+    "lng": -76.938629,
+    "bomberos_disponibles": 6,
+    "vehiculos_disponibles": 1,
+    "nombre_responsable": "Catalina García",
+    "cargo_responsable": "Comandante"
+  },
+  {
+    "idCompaniaBomberos": 179,
+    "nombre": "Villa Maria Del Triunfo N°126",
+    "lat": -12.17262,
+    "lng": -76.945136,
+    "bomberos_disponibles": 3,
+    "vehiculos_disponibles": 2,
+    "nombre_responsable": "Pedro González",
+    "cargo_responsable": "Teniente"
+  },
+  {
+    "idCompaniaBomberos": 180,
+    "nombre": "San Pedro De Mala N°131",
+    "lat": -12.653424,
+    "lng": -76.639574,
+    "bomberos_disponibles": 7,
+    "vehiculos_disponibles": 2,
+    "nombre_responsable": "Patricia Torres",
+    "cargo_responsable": "Capitán"
+  },
+  {
+    "idCompaniaBomberos": 181,
+    "nombre": "San Juan De Miraflores N°134",
+    "lat": -12.158029,
+    "lng": -76.98019,
+    "bomberos_disponibles": 11,
+    "vehiculos_disponibles": 1,
+    "nombre_responsable": "Andrés Soto",
+    "cargo_responsable": "Comandante"
+  },
+  {
+    "idCompaniaBomberos": 182,
+    "nombre": "Punta Negra N°136",
+    "lat": -12.367167,
+    "lng": -76.793479,
+    "bomberos_disponibles": 8,
+    "vehiculos_disponibles": 3,
+    "nombre_responsable": "Raúl Rodríguez",
+    "cargo_responsable": "Capitán"
+  },
+  {
+    "idCompaniaBomberos": 183,
+    "nombre": "San Pedro De Lurin N°138",
+    "lat": -12.271974,
+    "lng": -76.870375,
+    "bomberos_disponibles": 6,
+    "vehiculos_disponibles": 3,
+    "nombre_responsable": "Lucía González",
+    "cargo_responsable": "Comandante"
+  },
+  {
+    "idCompaniaBomberos": 184,
+    "nombre": "Nuestra Senora De La Asuncion De Maria N°142",
+    "lat": -12.510681,
+    "lng": -76.736079,
+    "bomberos_disponibles": 7,
+    "vehiculos_disponibles": 2,
+    "nombre_responsable": "Daniel Herrera",
+    "cargo_responsable": "Comandante"
+  },
+  {
+    "idCompaniaBomberos": 185,
+    "nombre": "Santiago Apostol N°144",
+    "lat": -12.143536,
+    "lng": -76.988738,
+    "bomberos_disponibles": 10,
+    "vehiculos_disponibles": 2,
+    "nombre_responsable": "Camila Soto",
+    "cargo_responsable": "Comandante"
+  },
+  {
+    "idCompaniaBomberos": 186,
+    "nombre": "Nuevo Milenio N°147",
+    "lat": -12.20212,
+    "lng": -76.908492,
+    "bomberos_disponibles": 6,
+    "vehiculos_disponibles": 3,
+    "nombre_responsable": "Fernando Reyes",
+    "cargo_responsable": "Capitán"
+  },
+  {
+    "idCompaniaBomberos": 187,
+    "nombre": "Pachacamac N°149",
+    "lat": -12.225472,
+    "lng": -76.859297,
+    "bomberos_disponibles": 3,
+    "vehiculos_disponibles": 2,
+    "nombre_responsable": "Camila Rodríguez",
+    "cargo_responsable": "Teniente"
+  },
+  {
+    "idCompaniaBomberos": 188,
+    "nombre": "Virgen del Carmen N°151",
+    "lat": -13.061597,
+    "lng": -76.347135,
+    "bomberos_disponibles": 6,
+    "vehiculos_disponibles": 2,
+    "nombre_responsable": "Sebastián Chávez",
+    "cargo_responsable": "Comandante"
+  },
+  {
+    "idCompaniaBomberos": 189,
+    "nombre": "Huacho N°20",
+    "lat": -11.110803,
+    "lng": -77.610008,
+    "bomberos_disponibles": 7,
+    "vehiculos_disponibles": 3,
+    "nombre_responsable": "Verónica Martín",
+    "cargo_responsable": "Comandante"
+  },
+  {
+    "idCompaniaBomberos": 190,
+    "nombre": "Huaral N°23",
+    "lat": -11.49236,
+    "lng": -77.211179,
+    "bomberos_disponibles": 6,
+    "vehiculos_disponibles": 3,
+    "nombre_responsable": "Valeria Ortiz",
+    "cargo_responsable": "Comandante"
+  },
+  {
+    "idCompaniaBomberos": 191,
+    "nombre": "San Martin De Porres N°31",
+    "lat": -12.018271,
+    "lng": -77.056072,
+    "bomberos_disponibles": 4,
+    "vehiculos_disponibles": 2,
+    "nombre_responsable": "Paula Pérez",
+    "cargo_responsable": "Comandante"
+  },
+  {
+    "idCompaniaBomberos": 192,
+    "nombre": "Barranca N°42",
+    "lat": -10.754226,
+    "lng": -77.760463,
+    "bomberos_disponibles": 5,
+    "vehiculos_disponibles": 1,
+    "nombre_responsable": "Fernando Acosta",
+    "cargo_responsable": "Teniente"
+  },
+  {
+    "idCompaniaBomberos": 193,
+    "nombre": "Santiago Tavara Renovales N°52",
+    "lat": -11.566774,
+    "lng": -77.266714,
+    "bomberos_disponibles": 7,
+    "vehiculos_disponibles": 1,
+    "nombre_responsable": "Verónica Núñez",
+    "cargo_responsable": "Comandante"
+  },
+  {
+    "idCompaniaBomberos": 194,
+    "nombre": "Salvadora Paramonga N°81",
+    "lat": -10.67317,
+    "lng": -77.820969,
+    "bomberos_disponibles": 7,
+    "vehiculos_disponibles": 2,
+    "nombre_responsable": "Andrés Paredes",
+    "cargo_responsable": "Comandante"
+  },
+  {
+    "idCompaniaBomberos": 195,
+    "nombre": "Pativilca - Simon Bolivar N°91",
+    "lat": -10.693297,
+    "lng": -77.781835,
+    "bomberos_disponibles": 4,
+    "vehiculos_disponibles": 5,
+    "nombre_responsable": "María Ponce",
+    "cargo_responsable": "Comandante"
+  },
+  {
+    "idCompaniaBomberos": 196,
+    "nombre": "Comas N°124",
+    "lat": -11.942793,
+    "lng": -77.0623,
+    "bomberos_disponibles": 6,
+    "vehiculos_disponibles": 1,
+    "nombre_responsable": "David Morales",
+    "cargo_responsable": "Capitán"
+  },
+  {
+    "idCompaniaBomberos": 197,
+    "nombre": "Puente Piedra - Brig Julio Upiachihua C. N°150",
+    "lat": -11.867251,
+    "lng": -77.07885,
+    "bomberos_disponibles": 10,
+    "vehiculos_disponibles": 5,
+    "nombre_responsable": "Alejandro Silva",
+    "cargo_responsable": "Comandante"
+  },
+  {
+    "idCompaniaBomberos": 198,
+    "nombre": "Los Olivos N°161",
+    "lat": -12.007641,
+    "lng": -77.072664,
+    "bomberos_disponibles": 3,
+    "vehiculos_disponibles": 2,
+    "nombre_responsable": "Miguel González",
+    "cargo_responsable": "Teniente"
+  },
+  {
+    "idCompaniaBomberos": 199,
+    "nombre": "Ancon N°163",
+    "lat": -11.772324,
+    "lng": -77.172239,
+    "bomberos_disponibles": 6,
+    "vehiculos_disponibles": 3,
+    "nombre_responsable": "Carmen Torres",
+    "cargo_responsable": "Comandante"
+  },
+  {
+    "idCompaniaBomberos": 200,
+    "nombre": "Carabayllo N°164",
+    "lat": -11.902391,
+    "lng": -77.033118,
+    "bomberos_disponibles": 4,
+    "vehiculos_disponibles": 1,
+    "nombre_responsable": "María Gómez",
+    "cargo_responsable": "Capitán"
+  },
+  {
+    "idCompaniaBomberos": 201,
+    "nombre": "Independencia N°175",
+    "lat": -11.99647,
+    "lng": -77.054136,
+    "bomberos_disponibles": 6,
+    "vehiculos_disponibles": 3,
+    "nombre_responsable": "David Reyes",
+    "cargo_responsable": "Comandante"
+  },
+  {
+    "idCompaniaBomberos": 202,
+    "nombre": "Negritos N°185",
+    "lat": -4.65741600000001,
+    "lng": -81.306121,
+    "bomberos_disponibles": 8,
+    "vehiculos_disponibles": 1,
+    "nombre_responsable": "Juan Herrera",
+    "cargo_responsable": "Comandante"
+  },
+  {
+    "idCompaniaBomberos": 203,
+    "nombre": "Catacaos N°190",
+    "lat": -5.26529499999998,
+    "lng": -80.675445,
+    "bomberos_disponibles": 7,
+    "vehiculos_disponibles": 2,
+    "nombre_responsable": "Javier Núñez",
+    "cargo_responsable": "Comandante"
+  },
+  {
+    "idCompaniaBomberos": 204,
+    "nombre": "Zarumilla N°202",
+    "lat": -3.50078500000001,
+    "lng": -80.27549,
+    "bomberos_disponibles": 9,
+    "vehiculos_disponibles": 3,
+    "nombre_responsable": "Sebastián Reyes",
+    "cargo_responsable": "Comandante"
+  },
+  {
+    "idCompaniaBomberos": 205,
+    "nombre": "Santa Rosa N°203",
+    "lat": -5.191779,
+    "lng": -80.652314,
+    "bomberos_disponibles": 7,
+    "vehiculos_disponibles": 3,
+    "nombre_responsable": "Sofía Ortiz",
+    "cargo_responsable": "Comandante"
+  },
+  {
+    "idCompaniaBomberos": 206,
+    "nombre": "Bellavista - Sullana N°204",
+    "lat": -4.89240699999999,
+    "lng": -80.678862,
+    "bomberos_disponibles": 8,
+    "vehiculos_disponibles": 2,
+    "nombre_responsable": "Elena Martín",
+    "cargo_responsable": "Capitán"
+  },
+  {
+    "idCompaniaBomberos": 207,
+    "nombre": "Talara N°205",
+    "lat": -4.58501000000001,
+    "lng": -81.263391,
+    "bomberos_disponibles": 7,
+    "vehiculos_disponibles": 3,
+    "nombre_responsable": "Daniela Guzman",
+    "cargo_responsable": "Capitán"
+  },
+  {
+    "idCompaniaBomberos": 208,
+    "nombre": "Sullana N°206",
+    "lat": -4.89368400000001,
+    "lng": -80.689441,
+    "bomberos_disponibles": 10,
+    "vehiculos_disponibles": 0,
+    "nombre_responsable": "Camila Vargas",
+    "cargo_responsable": "Comandante"
+  },
+  {
+    "idCompaniaBomberos": 209,
+    "nombre": "Maizavilca N°207",
+    "lat": -4.868006999,
+    "lng": -80.71887,
+    "bomberos_disponibles": 7,
+    "vehiculos_disponibles": 2,
+    "nombre_responsable": "María Pérez",
+    "cargo_responsable": "Capitán"
+  }
+]

@@ -117,15 +117,46 @@ def identificar_recursos(emergencia_id: int):
     return render_template("Identificar recursos.html", emergencia_id=emergencia_id)
 
 
+@emergencia_bp.route("/desplegar-recursos/<int:emergencia_id>")
+@login_required
+def desplegar_recursos(emergencia_id: int):
+    """Vista para seleccionar y desplegar recursos a una emergencia."""
+    # Verificar que la emergencia existe
+    with next(get_db()) as db:
+        emergencia = db.get(Emergencia, emergencia_id)
+        if not emergencia:
+            return render_template("crear_emer.html", error="Emergencia no encontrada"), 404
+    
+    return render_template("acciones_recursos_despla.html", emergencia_id=emergencia_id)
+
+
 @emergencia_bp.route("/emergencias/<int:emergencia_id>")
 @login_required
 def detalle_emergencia(emergencia_id: int):
-    """Detalle de una emergencia específica."""
+    """Detalle de una emergencia específica con recursos y acciones."""
+    from app.models.models import Recurso, RecursoDesplazado, Accion
+    
     with next(get_db()) as db:
         e = db.get(Emergencia, emergencia_id)
         if not e:
-            # Podríamos devolver 404 y una página amigable; simple redirect por ahora
             return render_template("reporte.html", emergencia=None), 404
+
+        # Cargar recursos identificados
+        recursos = db.query(Recurso).filter(Recurso.emergencias_id_emergencias == emergencia_id).all()
+        
+        # Cargar recursos desplazados
+        recursos_desplazados = db.query(RecursoDesplazado).filter(
+            RecursoDesplazado.emergencias_id_emergencias == emergencia_id
+        ).all()
+        
+        # Cargar acciones realizadas
+        acciones = db.query(Accion).filter(
+            Accion.emergencias_id_emergencias == emergencia_id
+        ).order_by(Accion.fecha_hora.desc()).all()
+        
+        # Separar recursos por tipo
+        bomberos = [r for r in recursos if r.tipo_recurso == 'bombero']
+        hidrantes = [r for r in recursos if r.tipo_recurso == 'hidrante']
 
         # Preparar valores de presentación
         from app.constants.status import ESTADO_DISPLAY, ESTADO_STYLES, estado_display as _disp
@@ -137,5 +168,11 @@ def detalle_emergencia(emergencia_id: int):
             "estado_display": estado_txt,
             "estado_badge_classes": estilos[0],
             "estado_dot_class": estilos[1],
+            "recursos_bomberos": bomberos,
+            "recursos_hidrantes": hidrantes,
+            "recursos_desplazados": recursos_desplazados,
+            "acciones": acciones,
+            "total_bomberos": len(bomberos),
+            "total_hidrantes": len(hidrantes),
         }
         return render_template("reporte.html", **ctx)
