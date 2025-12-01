@@ -5,7 +5,7 @@ from typing import List, Dict, Any
 from datetime import datetime
 from decimal import Decimal
 from sqlalchemy.exc import SQLAlchemyError
-from app.api.auth import login_required
+from app.api.auth import login_required, permission_required
 from app.repositories.db import get_db
 from app.models.models import Emergencia, Recurso, RecursoDesplazado, Accion
 
@@ -168,6 +168,7 @@ def obtener_recursos(emergencia_id: int):
 
 @identificar_recursos_bp.route("/api/desplegar-recursos", methods=["POST"])
 @login_required
+@permission_required("puede_gestionar_recursos")
 def guardar_recursos_desplegados():
     """
     Guarda los recursos desplegados y las acciones realizadas para una emergencia.

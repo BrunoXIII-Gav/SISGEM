@@ -1,7 +1,7 @@
 from flask import Blueprint, render_template, request, jsonify, g
 from datetime import datetime
 from sqlalchemy.exc import SQLAlchemyError
-from app.api.auth import login_required
+from app.api.auth import login_required, permission_required
 from app.repositories.db import get_db
 from app.models.models import Emergencia
 from app.constants.geo import ALL_DISTRICTS, LIMA_CALLAO_BBOX
@@ -11,12 +11,14 @@ emergencia_bp = Blueprint("emergencia", __name__)
 
 @emergencia_bp.route("/crear-emergencia")
 @login_required
+@permission_required("puede_crear_emergencias")
 def crear_emergencia():
     return render_template("crear_emer.html")
 
 
 @emergencia_bp.route("/api/emergencias", methods=["POST"])
 @login_required
+@permission_required("puede_crear_emergencias")
 def api_crear_emergencia():
     """Crea una nueva emergencia con timestamps automáticos.
 

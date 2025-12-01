@@ -23,6 +23,9 @@ app.register_blueprint(emergencia_bp)
 from app.api.identificar_recursos import identificar_recursos_bp
 app.register_blueprint(identificar_recursos_bp)
 
+from app.api.gestionar_usuarios import gestionar_usuarios_bp
+app.register_blueprint(gestionar_usuarios_bp)
+
 
 @app.route("/")
 def root():

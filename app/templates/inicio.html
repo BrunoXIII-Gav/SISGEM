@@ -74,9 +74,16 @@
 
         <div class="hidden md:flex items-center gap-6">
           <a class="text-sm font-medium text-muted-light dark:text-muted-dark hover:text-primary dark:hover:text-primary" href="{{ url_for('auth.inicio') }}">Inicio</a>
+          {% if g.user and (g.user.is_admin or g.user.has_permission('puede_gestionar_usuarios')) %}
+          <a class="text-sm font-medium text-muted-light dark:text-muted-dark hover:text-primary dark:hover:text-primary" href="{{ url_for('gestionar_usuarios.listar_usuarios') }}">
+            <span class="material-symbols-outlined text-base align-middle">admin_panel_settings</span> Administración
+          </a>
+          {% endif %}
+          {% if g.user and g.user.has_permission('puede_crear_emergencias') %}
           <a href="{{ url_for('emergencia.crear_emergencia') }}" class="flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-primary text-white text-sm font-bold shadow-sm hover:bg-primary/90">
             <span>Crear Emergencia</span>
           </a>
+          {% endif %}
         </div>
 
         <div class="flex items-center gap-4 relative">
@@ -85,8 +92,31 @@
             <span class="material-symbols-outlined text-xl">person</span>
           </button>
           <!-- Dropdown -->
-          <div id="user-menu" class="hidden absolute right-0 top-12 z-20 w-44 rounded-lg border border-border-light dark:border-border-dark bg-surface-light dark:bg-surface-dark shadow-lg py-1">
-            <div class="px-4 py-2 text-xs uppercase tracking-wide text-muted-light dark:text-muted-dark">Cuenta</div>
+          <div id="user-menu" class="hidden absolute right-0 top-12 z-20 w-56 rounded-lg border border-border-light dark:border-border-dark bg-surface-light dark:bg-surface-dark shadow-lg py-1">
+            <div class="px-4 py-2 text-xs uppercase tracking-wide text-muted-light dark:text-muted-dark">
+              {{ g.user.nombre_usuario if g.user else 'Usuario' }}
+            </div>
+            {% if g.user and g.user.roles %}
+            <div class="px-4 py-2 border-b border-border-light dark:border-border-dark">
+              <div class="text-xs text-muted-light dark:text-muted-dark">Roles:</div>
+              <div class="flex flex-wrap gap-1 mt-1">
+                {% for rol in g.user.roles %}
+                <span class="text-xs px-2 py-0.5 rounded-full bg-primary/10 text-primary">{{ rol.nombre_rol }}</span>
+                {% endfor %}
+              </div>
+            </div>
+            {% endif %}
+            {% if g.user and (g.user.is_admin or g.user.has_permission('puede_gestionar_usuarios')) %}
+            <a href="{{ url_for('gestionar_usuarios.listar_usuarios') }}" class="flex items-center gap-2 px-4 py-2 text-sm text-text-light dark:text-text-dark hover:bg-background-light dark:hover:bg-background-dark/60">
+              <span class="material-symbols-outlined text-base">admin_panel_settings</span>
+              Gestión de Usuarios
+            </a>
+            <a href="{{ url_for('gestionar_usuarios.listar_roles') }}" class="flex items-center gap-2 px-4 py-2 text-sm text-text-light dark:text-text-dark hover:bg-background-light dark:hover:bg-background-dark/60">
+              <span class="material-symbols-outlined text-base">shield</span>
+              Roles del Sistema
+            </a>
+            <div class="border-t border-border-light dark:border-border-dark my-1"></div>
+            {% endif %}
             <a href="{{ url_for('auth.logout') }}" class="flex items-center gap-2 px-4 py-2 text-sm text-text-light dark:text-text-dark hover:bg-background-light dark:hover:bg-background-dark/60">
               <span class="material-symbols-outlined text-base">logout</span>
               Salir

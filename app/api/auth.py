@@ -1,7 +1,7 @@
 # app/api/auth.py
-from flask import Blueprint, render_template, request, redirect, url_for, session, g, flash, request as rq
+from flask import Blueprint, render_template, request, redirect, url_for, session, g, flash, request as rq, abort
 from functools import wraps
-from sqlalchemy.orm import Session
+from sqlalchemy.orm import Session, joinedload
 from sqlalchemy import or_, func
 from app.repositories.db import get_db
 from app.models.models import UsuarioMunicipal, Emergencia
@@ -19,13 +19,46 @@ def login_required(f):
         return f(*args, **kwargs)
     return _wrap
 
+def admin_required(f):
+    """Decorador que requiere que el usuario sea administrador"""
+    @wraps(f)
+    def _wrap(*args, **kwargs):
+        if not session.get("user_id"):
+            return redirect(url_for("auth.login"))
+        if not g.user:
+            return redirect(url_for("auth.login"))
+        if not g.user.is_admin and not g.user.has_permission("puede_gestionar_usuarios"):
+            flash("No tienes permisos para acceder a esta sección", "error")
+            return redirect(url_for("auth.inicio"))
+        return f(*args, **kwargs)
+    return _wrap
+
+def permission_required(permission: str):
+    """Decorador que verifica un permiso específico"""
+    def decorator(f):
+        @wraps(f)
+        def _wrap(*args, **kwargs):
+            if not session.get("user_id"):
+                return redirect(url_for("auth.login"))
+            if not g.user:
+                return redirect(url_for("auth.login"))
+            if not g.user.has_permission(permission):
+                flash(f"No tienes permisos suficientes para realizar esta acción", "error")
+                return redirect(url_for("auth.inicio"))
+            return f(*args, **kwargs)
+        return _wrap
+    return decorator
+
 @auth_bp.before_app_request
 def load_current_user():
     g.user = None
     uid = session.get("user_id")
     if uid:
         with next(get_db()) as db:
-            g.user = db.get(UsuarioMunicipal, uid)
+            # Cargar usuario con sus roles para evitar DetachedInstanceError
+            g.user = db.query(UsuarioMunicipal).options(
+                joinedload(UsuarioMunicipal.roles)
+            ).filter_by(usuario_municipal_id=uid).first()
 
 @auth_bp.after_app_request
 def add_no_cache_headers(resp):
@@ -49,6 +82,9 @@ def login():
             user = db.query(UsuarioMunicipal).filter_by(email_usuario=email).first()
             if not user:
                 flash("Usuario no encontrado", "error")
+                return render_template("login.html")
+            if not user.is_active:
+                flash("Usuario desactivado. Contacta al administrador", "error")
                 return render_template("login.html")
             if user.password_usuario == password:
                 session["user_id"] = user.usuario_municipal_id
